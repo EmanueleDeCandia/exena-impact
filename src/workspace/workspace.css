@@ -2050,9 +2050,7 @@
   .attestation-review-panel { position: static; grid-column: 1 / -1; }
   .attestation-review-panel .review-timeline { grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .attestation-review-panel .review-timeline li::before { display: none; }
-  .composer-layout { grid-template-columns: 175px minmax(0, 1fr); }
-  .composer-evidence { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
-  .composer-outline { top: 82px; }
+  .composer-layout { grid-template-columns: minmax(0, 1fr) 260px; }
   .pack-status-header { grid-template-columns: minmax(0, 1fr) auto 250px; }
 }
 
