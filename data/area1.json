@@ -3,7 +3,7 @@
     "schemaVersion": 6,
     "demo": true,
     "notice": "Dati sintetici per validazione funzionale. Non utilizzare per reporting, revisione o finalità legali.",
-    "updatedAt": "2026-10-25T15:59:44.399Z"
+    "updatedAt": "2026-10-25T16:13:52.349Z"
   },
   "organization": {
     "id": "org-csr-demo",
@@ -1845,6 +1845,13 @@
       "organizationId": "org-gc-demo",
       "createdAt": "2026-10-25T15:35:55.824Z",
       "expiresAt": "2026-10-25T23:35:55.824Z"
+    },
+    {
+      "token": "15151b0585484d6d816c69d60c63db008b1287cfaa024f2cb6ea8a93e74b5440",
+      "memberId": "OP-PROC-001",
+      "organizationId": "org-gc-demo",
+      "createdAt": "2026-10-25T16:12:26.982Z",
+      "expiresAt": "2026-10-26T00:12:26.983Z"
     }
   ],
   "productCatalog": [

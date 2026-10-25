@@ -76,8 +76,9 @@ erDiagram
 
 - **`reports`** (Report di Impatto - C03):
   - `id`: string (es. `REP-DEMO-001`)
-  - `template`: `'AREA_SISMA' | 'CANTIERE_INTEGRATO' | 'CPT' | 'STAKEHOLDER_SUMMARY'`
-  - `siteId`: string | null
+  - `template`: `'AREA_SISMA' | 'CANTIERE_INTEGRATO' | 'CPT' | 'STAKEHOLDER_SUMMARY' | 'CSR_BILANCIO'`
+  - `targetProfile`: `'CONSTRUCTION' | 'CSR_ORIENTED' | 'UNIVERSAL'`
+  - `siteId`: string | null (sede/stabilimento per CSR_BILANCIO, cantiere per CANTIERE_INTEGRATO)
   - `period`: `{ from: string, to: string }`
   - `narrative`: string
   - `evidenceIds`: array di string (ref `evidence_documents`)
@@ -138,6 +139,32 @@ erDiagram
 - **`transparency_projects`** (C14):
   - Opere nei borghi con allocazioni pubbliche collegate ad attestazioni e rettifiche storiche.
 - **`logistics_plans`** (C15):
-  - Fabbisogni taglie per cantiere, finestre di consegna, riconciliazione ordini/spedizioni.
+  - Fabbisogni taglie per cantiere / stabilimento, finestre di consegna, riconciliazione ordini/spedizioni.
 - **`subcontractor_links`** (C16):
-  - Accordi quadro con subappaltatori: verifica Partita IVA, consensi, doppia attribuzione ordini.
+  - Accordi di filiera e fornitura sostenibile: verifica Partita IVA, consensi, doppia attribuzione ordini.
+
+---
+
+## 3. Matrice dei 3 Profili Aziendali e Separazione dei Perimetri Operativi (RBAC)
+
+Per evitare sovrapposizioni e incongruenze di ruolo ("ognuno fa tutto"), l'applicazione distingue tre profili aziendali netti:
+
+| Modulo / Servizio | 1. General Contractor (`CONSTRUCTION`) | 2. Impresa CSR (`CSR_ORIENTED`) | 3. Subappaltatore / Filiera (`SUBCONTRACTOR`) |
+| :--- | :--- | :--- | :--- |
+| **C01 — Scope 3 Data Hub** | Dati emissioni flotta/commessa | Dati emissioni stabilimenti/filiera | Propri dati di fornitura |
+| **C02 — Fondo & Attestazioni** | Attestazioni quota commessa | Attestazioni con Matching Grant | Attestazioni proprie forniture |
+| **C03 — Impact Report Composer** | Report Cantiere Etico & CPT | Bilancio di Sostenibilità ESG | **Non accessibile** (riservato al committente) |
+| **C04 — Assurance & Bank Pack** | Fascicoli bancari per commessa | Fascicoli rating ESG aziendale | **Non accessibile** (riservato al committente) |
+| **C05 — Co-Brand Asset Studio** | Kit General Contractor | Kit Impresa Sostenibile Promotrice | Kit Fornitore / Subappaltatore Aderente |
+| **C06 — Editorial CMS** | Redazione Case History cantiere | Redazione Case History corporate | **Non accessibile** (riservato al committente) |
+| **C07 — Partner Registry** | Gestione propria iscrizione GC | Gestione propria iscrizione CSR | Consultazione & scheda partner |
+| **C08 — Hospitality Booking** | Alloggi per maestranze/cantiere | Alloggi per trasferte/ospiti | Alloggi convenzionati |
+| **C09 — E-Learning Sicurezza** | Formazione operai e capicantiere | Formazione dipendenti stabilimento | Formazione per i propri addetti |
+| **C10 — Fund Direction** | Diritto di voto / Indirizzo fondo | Diritto di voto / Indirizzo fondo | **Non accessibile** (riservato al board committente) |
+| **C11 — Board Briefing Room** | Briefing assembleare commessa | Briefing assembleare ESG | **Non accessibile** (riservato al board committente) |
+| **C12 — Bulk Order Portal** | Ordini aggregati commessa | Ordini stabilimenti con Matching Grant | Inserimento ordini della propria ditta |
+| **C13 — Benefit & Dashboard** | Ledger e benefit commessa | Ledger e benefit corporate | Ledger e benefit filiera propria |
+| **C14 — Registro Trasparenza** | Pubblico (lettura universale) | Pubblico (lettura universale) | Pubblico (lettura universale) |
+| **C15 — Logistics Planner** | Fabbisogni cantieri & capicantiere | Fabbisogni stabilimenti & spedizioni | **Non accessibile** (pianificato dal committente) |
+| **C16 — Filiera / Subappalti** | Console gestione subappalti | Supply Chain & Partner Network | Accettazione accordo e consenso attribuzione |
+

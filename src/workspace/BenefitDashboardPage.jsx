@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import { WorkspaceContext } from './WorkspaceApp.jsx';
 import { DemoNotice, EmptyState, ErrorState, ExportMenu, LoadingState, StatusBadge, dateTime } from './ui.jsx';
 import { OperationsFrame, useOperationsData, useOperationsSession } from './operations.jsx';
+import { getTerminology } from '../lib/terminology.js';
 
 const roles = ['PROCUREMENT', 'HR_WELFARE', 'BOARD', 'SITE_MANAGER', 'SUBCONTRACTOR'];
 const stateLabel = { ACTIVE: 'Attivo', AVAILABLE: 'Da attivare', LOCKED_THRESHOLD: 'Soglia non raggiunta', ACTIVATION_REQUIRED: 'Attivazione contrattuale richiesta', EXPIRED: 'Scaduto' };
 
 export function BenefitDashboardPage() {
-  const { notify } = useContext(WorkspaceContext);
+  const { notify, data: bootstrap } = useContext(WorkspaceContext);
+  const t = getTerminology(bootstrap?.organization?.profileType);
   const operations = useOperationsSession();
   const session = operations.session && roles.includes(operations.session?.member?.role) ? operations.session : null;
   const { data, error, loading, reload } = useOperationsData('/area5/dashboard', session);
@@ -36,7 +38,7 @@ export function BenefitDashboardPage() {
   const actionCount = current?.services.filter((service) => ['AVAILABLE', 'ACTIVATION_REQUIRED'].includes(service.state) && !service.requestPending).length || 0;
 
   return <div className="operations-page benefit-dashboard-page">
-    <header className="module-heading"><div><div className="eyebrow"><span /> AREA 05 / C13 · BENEFIT & THRESHOLD DASHBOARD</div><h1>Il volume maturato.<br /><em>La prossima azione chiara.</em></h1><p>Per Procurement, HR, Board, capicantiere e subappaltatori: leggi lo stesso ledger nel tuo perimetro, distingui Standard e Varianti e agisci solo quando i requisiti sono soddisfatti.</p></div><div className="component-status"><span className="live-dot" />LEDGER DEDUPLICATO<span className="status-tag">10 / 25 / 50 / 100</span></div></header>
+    <header className="module-heading"><div><div className="eyebrow"><span /> AREA 05 / C13 · BENEFIT & THRESHOLD DASHBOARD</div><h1>Il volume maturato.<br /><em>La prossima azione chiara.</em></h1><p>Per Procurement, HR, Board, {t.managerRole.toLowerCase()} e {t.supplierPlural.toLowerCase()}: leggi lo stesso ledger nel tuo perimetro, distingui Standard e Varianti e agisci solo quando i requisiti sono soddisfatti.</p></div><div className="component-status"><span className="live-dot" />LEDGER DEDUPLICATO<span className="status-tag">10 / 25 / 50 / 100</span></div></header>
     <DemoNotice />
     <OperationsFrame operations={operations} roles={roles} component="C13 Benefit & Threshold Dashboard">
       {loading && !data && <LoadingState label="Allineamento ledger, soglie ed entitlement" />}
@@ -55,7 +57,7 @@ export function BenefitDashboardPage() {
           {service.state === 'ACTIVE' && service.route && <Link className="button button--dark" to={service.route}>Apri componente <ArrowRight size={16} /></Link>}
           {service.state === 'ACTIVE' && service.voucher && <ExportMenu label="Voucher demo" formats={['pdf', 'json']} onExport={(format) => operations.download(`/area5/dashboard/entitlements/${service.id}/voucher?format=${format}&viewId=${encodeURIComponent(current.id)}`)} notify={notify} />}
         </div></article>)}</div> : <EmptyState icon={Gift} title="Nessun servizio in questo filtro" text="Cambia filtro per vedere entitlement, soglie e azioni disponibili." />}
-        <section className="dashboard-ledger-detail"><div><span className="micro-label">VOLUMI PER CANTIERE</span><h2>Origine del volume</h2>{current.ledger.sites.length ? <dl>{current.ledger.sites.map((site) => <div key={site.siteId}><dt>{site.siteId}</dt><dd>{site.pairs} paia</dd></div>)}</dl> : <p>Nessun ordine confermato in questa vista.</p>}</div><div><span className="micro-label">CRONOLOGIA ATTIVAZIONI</span><h2>Eventi registrati</h2>{data.events.length ? <ol>{data.events.map((event) => <li key={event.id}><b>{event.type === 'ACTIVATED' ? 'Servizio attivato' : 'Richiesta di attivazione'}</b><p>{event.note}</p><small>{event.actor} · {dateTime(event.at)}</small></li>)}</ol> : <p>Nessuna attivazione manuale registrata. Gli entitlement seed restano distinti dal ledger.</p>}</div></section>
+        <section className="dashboard-ledger-detail"><div><span className="micro-label">{t.volumeBySiteLabel.toUpperCase()}</span><h2>Origine del volume</h2>{current.ledger.sites.length ? <dl>{current.ledger.sites.map((site) => <div key={site.siteId}><dt>{site.siteId}</dt><dd>{site.pairs} paia</dd></div>)}</dl> : <p>Nessun ordine confermato in questa vista.</p>}</div><div><span className="micro-label">CRONOLOGIA ATTIVAZIONI</span><h2>Eventi registrati</h2>{data.events.length ? <ol>{data.events.map((event) => <li key={event.id}><b>{event.type === 'ACTIVATED' ? 'Servizio attivato' : 'Richiesta di attivazione'}</b><p>{event.note}</p><small>{event.actor} · {dateTime(event.at)}</small></li>)}</ol> : <p>Nessuna attivazione manuale registrata. Gli entitlement seed restano distinti dal ledger.</p>}</div></section>
       </>}
     </OperationsFrame>
   </div>;

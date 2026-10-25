@@ -109,7 +109,7 @@ export function HospitalityPage() {
   return (
     <div className="module-page workspace-page hospitality-page">
       <header className="module-heading page-header page-header--split">
-        <div><span className="micro-label">AREA 03 / C08 · HOSPITALITY</span><h1>Dormire nel borgo,<br /><em>senza false conferme.</em></h1><p>Per dipendenti, famiglie e ospiti di cantiere: cerca una struttura convenzionata, verifica costi e condizioni e invia una richiesta tracciata alla struttura partner.</p></div>
+        <div><span className="micro-label">AREA 03 / C08 · HOSPITALITY</span><h1>Dormire nel borgo,<br /><em>senza false conferme.</em></h1><p>Per dipendenti, famiglie e ospiti aziendali o di cantiere: cerca una struttura convenzionata, verifica costi e condizioni e invia una richiesta tracciata alla struttura partner.</p></div>
         <div className="module-heading__actions page-header__actions"><span className="component-status"><span />VERTICAL SLICE · C08</span><button className="button button--outline" type="button" onClick={() => setView(view === 'search' ? 'requests' : 'search')}>{view === 'search' ? <ReceiptText size={17} /> : <Search size={17} />}{view === 'search' ? 'Le mie richieste' : 'Nuova ricerca'}</button></div>
       </header>
       <DemoNotice compact />

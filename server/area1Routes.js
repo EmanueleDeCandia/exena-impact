@@ -22,10 +22,11 @@ const checklistTypeRequirements = {
 };
 
 const templateDefinitions = {
-  AREA_SISMA: { title: 'Rendicontazione di Impatto Sociale — Area Sisma', description: 'Contributo dell’impresa alla rigenerazione dei borghi interni.', requiresSite: false },
-  CANTIERE_INTEGRATO: { title: 'Cantiere Etico Integrato — Report General Contractor', description: 'Aggregazione della commessa e dei subappaltatori sullo stesso cantiere.', requiresSite: true },
-  CPT: { title: 'Attestazione di Trasparenza — Enti Paritetici e Casse Edili', description: 'Relazione digitale per benessere, sicurezza e sostenibilità dei lavoratori.', requiresSite: false },
-  STAKEHOLDER_SUMMARY: { title: 'Sintesi Monografica d’Impatto per Stakeholder', description: 'Executive summary digitale entro due pagine.', requiresSite: false },
+  AREA_SISMA: { title: 'Rendicontazione di Impatto Sociale — Area Sisma', description: 'Contributo dell’impresa alla rigenerazione dei borghi interni.', requiresSite: false, targetProfile: 'ALL' },
+  CSR_BILANCIO: { title: 'Bilancio di Sostenibilità & Fornitori Sostenibili', description: 'Rendicontazione ESG aziendale integrata con ordini degli stabilimenti e fornitori di filiera.', requiresSite: true, targetProfile: 'CSR_ORIENTED' },
+  CANTIERE_INTEGRATO: { title: 'Cantiere Etico Integrato — Report General Contractor', description: 'Aggregazione della commessa e dei subappaltatori sullo stesso cantiere.', requiresSite: true, targetProfile: 'CONSTRUCTION' },
+  CPT: { title: 'Attestazione di Trasparenza — Enti Paritetici e Casse Edili', description: 'Relazione digitale per benessere, sicurezza e sostenibilità dei lavoratori.', requiresSite: false, targetProfile: 'CONSTRUCTION' },
+  STAKEHOLDER_SUMMARY: { title: 'Sintesi Monografica d’Impatto per Stakeholder', description: 'Executive summary digitale entro due pagine.', requiresSite: false, targetProfile: 'ALL' },
 };
 
 function attestationView(db, attestation) {
@@ -242,14 +243,23 @@ area1Router.get('/public/fund/:token', asyncRoute(async (request, response) => {
 area1Router.get('/area1/reports', asyncRoute(async (request, response) => {
   const db = await readDb();
   const orgId = request.query.organizationId || db.organization?.id;
+  const currentOrg = (db.organizations || []).find((o) => o.id === orgId) || db.organization;
+  const profileType = currentOrg?.profileType || 'CONSTRUCTION';
+
   const orgReports = (db.reports || []).filter((rep) => {
     if (!orgId) return true;
     if (rep.organizationId && rep.organizationId !== orgId) return false;
     if (rep.metrics?.organizationIds?.length && !rep.metrics.organizationIds.includes(orgId)) return false;
     return true;
   });
+
   const orgSites = (db.sites || []).filter((s) => !s.organizationId || s.organizationId === orgId);
-  response.json({ meta: db.meta, reports: orgReports, templates: templateDefinitions, sites: orgSites, evidenceDocuments: db.evidenceDocuments });
+
+  const scopedTemplates = Object.fromEntries(
+    Object.entries(templateDefinitions).filter(([_, def]) => def.targetProfile === 'ALL' || def.targetProfile === profileType)
+  );
+
+  response.json({ meta: db.meta, reports: orgReports, templates: scopedTemplates, sites: orgSites, evidenceDocuments: db.evidenceDocuments });
 }));
 
 area1Router.post('/area1/reports', asyncRoute(async (request, response) => {
