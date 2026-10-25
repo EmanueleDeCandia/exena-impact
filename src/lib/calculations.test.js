@@ -59,3 +59,27 @@ test('inputs are constrained and fund uses selectable ratio', () => {
   assert.equal(calculateImpact(1000, 50).fund, 37500);
   assert.equal(calculateImpact(1000, 50).interventions, 15);
 });
+
+test('matching grant calculation: none, match, and custom', () => {
+  const baseResult = calculateImpact(100, 30, 'STANDARD', 'none');
+  assert.equal(baseResult.exenaFund, 2250);
+  assert.equal(baseResult.buyerMatchingFund, 0);
+  assert.equal(baseResult.fund, 2250);
+  assert.equal(baseResult.isPromoter, false);
+  assert.equal(baseResult.partnershipRole, 'Impresa Aderente');
+
+  const matchResult = calculateImpact(100, 30, 'STANDARD', 'match');
+  assert.equal(matchResult.exenaFund, 2250);
+  assert.equal(matchResult.buyerMatchingFund, 2250);
+  assert.equal(matchResult.fund, 4500);
+  assert.equal(matchResult.isPromoter, true);
+  assert.equal(matchResult.partnershipRole, 'Partner Promotore');
+
+  const customResult = calculateImpact(100, 30, 'STANDARD', 'custom', 20);
+  assert.equal(customResult.exenaFund, 2250);
+  assert.equal(customResult.buyerMatchingFund, 1500);
+  assert.equal(customResult.fund, 3750);
+  assert.equal(customResult.isPromoter, true);
+  assert.equal(customResult.partnershipRole, 'Partner Promotore');
+});
+

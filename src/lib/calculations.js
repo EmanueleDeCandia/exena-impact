@@ -33,11 +33,24 @@ export function getServiceValue(addetti, mode = 'STANDARD') {
   return baseValue + increment;
 }
 
-export function calculateImpact(addetti, devolutionRatio, mode = 'STANDARD') {
+export const clampMatchingGrantPercent = (value) => Math.min(100, Math.max(0, Math.round(Number(value) || 0)));
+
+export function calculateImpact(addetti, devolutionRatio, mode = 'STANDARD', matchingGrantMode = 'none', customMatchingPercent = 0) {
   const n = clampAddetti(addetti);
   const ratio = clampRatio(devolutionRatio);
   const orderTotal = n * BASE_PRICE;
-  const fund = orderTotal * (ratio / 100);
+  const exenaFund = orderTotal * (ratio / 100);
+
+  let buyerMatchingRate = 0;
+  if (matchingGrantMode === 'match') {
+    buyerMatchingRate = ratio;
+  } else if (matchingGrantMode === 'custom') {
+    buyerMatchingRate = clampMatchingGrantPercent(customMatchingPercent);
+  }
+  const buyerMatchingFund = orderTotal * (buyerMatchingRate / 100);
+  const fund = exenaFund + buyerMatchingFund;
+  const isPromoter = (matchingGrantMode === 'match') || (matchingGrantMode === 'custom' && buyerMatchingRate > 0);
+
   const interventions = Math.floor(fund / 2500);
   const co2 = n * 4.25;
   const welfareTickets = (n >= 50 ? 5 : 0) + (n >= 100 ? Math.floor(n / 10) : 0);
@@ -55,7 +68,13 @@ export function calculateImpact(addetti, devolutionRatio, mode = 'STANDARD') {
     addetti: n,
     ratio,
     orderTotal,
+    exenaFund,
+    buyerMatchingRate,
+    buyerMatchingFund,
     fund,
+    matchingGrantMode,
+    isPromoter,
+    partnershipRole: isPromoter ? 'Partner Promotore' : 'Impresa Aderente',
     interventions,
     co2,
     welfareTickets,
@@ -66,3 +85,4 @@ export function calculateImpact(addetti, devolutionRatio, mode = 'STANDARD') {
     unlockedCount: thresholds.filter((threshold) => threshold.unlocked).length,
   };
 }
+

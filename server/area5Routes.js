@@ -118,19 +118,25 @@ area5Router.post('/area5/orders', asyncRoute(async (request, response) => {
       return { order: orderView(existing), idempotent: true };
     }
     if (!['ONE_OFF', 'MONTHLY', 'QUARTERLY'].includes(request.body?.recurrence || 'ONE_OFF')) throw httpError(400, 'Ricorrenza non valida');
-    const timestamp = now();
+    const matchingGrantMode = ['match', 'custom'].includes(request.body?.matchingGrantMode) ? request.body.matchingGrantMode : 'none';
+    const matchingGrantRate = matchingGrantMode === 'match' ? 30 : matchingGrantMode === 'custom' ? Math.min(100, Math.max(0, Number(request.body?.matchingGrantRate) || 0)) : 0;
+    const exenaFundCents = Math.round(calculation.totalCents * 30 / 100);
+    const matchingGrantCents = Math.round(calculation.totalCents * matchingGrantRate / 100);
+
     const order = {
       id: `BULK-${randomUUID()}`, organizationId, organizationName: member.organizationName, siteId: address.siteId,
       pairs: calculation.pairs, totalCents: calculation.totalCents, devolutionRate: 30, status: 'SUBMITTED', version: 1,
       submittedAt: timestamp, confirmedAt: null, source: 'BULK_PORTAL', items: calculation.lines,
       listTotalCents: calculation.listTotalCents, contractDiscountCents: calculation.contractDiscountCents,
+      exenaFundCents, matchingGrantMode, matchingGrantRate, matchingGrantCents,
       paymentStatus: 'NOT_INTEGRATED', fulfilmentStatus: calculation.stockWarnings.length ? 'STOCK_REVIEW_REQUIRED' : 'SENT_TO_EXTERNAL_FULFILMENT',
       stockWarnings: calculation.stockWarnings, recurrence: request.body?.recurrence || 'ONE_OFF', addressSnapshot: { ...address },
       idempotency: { key, fingerprint }, rectifications: [],
-      events: [{ at: timestamp, actor: member.displayName, event: `Ordine inviato: ${calculation.pairs} paia; pagamento non integrato` }],
+      events: [{ at: timestamp, actor: member.displayName, event: `Ordine inviato: ${calculation.pairs} paia; matching grant: ${matchingGrantMode} (${matchingGrantRate}%); pagamento non integrato` }],
     };
     db.orders.push(order);
     return { order: orderView(order), idempotent: false };
+
   });
   response.status(result.idempotent ? 200 : 201).json({ ...result, notice: 'Ordine inviato, non pagato. Il ledger cambierà solo dopo una conferma esterna registrata.' });
 }));

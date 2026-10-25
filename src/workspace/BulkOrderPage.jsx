@@ -42,10 +42,23 @@ export function BulkOrderPage() {
     return () => { active = false; window.clearTimeout(timer); };
   }, [items, session, operations.authorized]);
 
+  const [matchingGrantMode, setMatchingGrantMode] = useState('none');
+  const [matchingGrantRate, setMatchingGrantRate] = useState(30);
+
   const submitOrder = async () => {
     setBusy(true); setActionError(null);
     try {
-      const result = await operations.authorized('/area5/orders', { method: 'POST', body: JSON.stringify({ items, addressId, recurrence, idempotencyKey: idempotencyKey.current }) });
+      const result = await operations.authorized('/area5/orders', {
+        method: 'POST',
+        body: JSON.stringify({
+          items,
+          addressId,
+          recurrence,
+          matchingGrantMode,
+          matchingGrantRate: matchingGrantMode === 'match' ? 30 : matchingGrantMode === 'custom' ? matchingGrantRate : 0,
+          idempotencyKey: idempotencyKey.current,
+        }),
+      });
       setReceipt(result.order); setQuantities({}); setQuote(null); setReviewOpen(false); idempotencyKey.current = crypto.randomUUID();
       notify('success', result.idempotent ? 'Ordine già registrato: nessun duplicato creato' : 'Ordine inviato senza duplicati');
       await reload();
@@ -82,21 +95,51 @@ export function BulkOrderPage() {
             <span className="micro-label">RIEPILOGO SERVER-SIDE</span><h2 id="bulk-summary-title">Il tuo ordine</h2>
             <label className="field"><span>Indirizzo di consegna *</span><select value={addressId} onChange={(event) => setAddressId(event.target.value)} required>{data.addresses.map((address) => <option key={address.id} value={address.id}>{address.label}</option>)}</select></label>
             <label className="field"><span>Ricorrenza</span><select value={recurrence} onChange={(event) => setRecurrence(event.target.value)}><option value="ONE_OFF">Ordine singolo</option><option value="MONTHLY">Ricorrenza mensile</option><option value="QUARTERLY">Ricorrenza trimestrale</option></select></label>
+            <label className="field"><span>Matching Grant dell’Acquirente</span>
+              <select value={matchingGrantMode} onChange={(event) => setMatchingGrantMode(event.target.value)}>
+                <option value="none">Nessuno — solo quota Exena 30%</option>
+                <option value="match">Pareggia Exena (+30% matching acquirente)</option>
+                <option value="custom">Personalizzato (+% quota aggiuntiva)</option>
+              </select>
+            </label>
+            {matchingGrantMode === 'custom' && (
+              <label className="field"><span>Percentuale aggiuntiva dell’impresa ({matchingGrantRate}%)</span>
+                <input type="range" min="1" max="100" step="1" value={matchingGrantRate} onChange={(event) => setMatchingGrantRate(Number(event.target.value))} />
+              </label>
+            )}
             {quoteLoading && <p className="bulk-quote-loading" role="status"><RefreshCw className="spin" size={16} />Ricalcolo prezzi sul server…</p>}
             {quoteError && <p className="form-error" role="alert">{quoteError}</p>}
             {!items.length && <EmptyState icon={ShoppingCart} title="Matrice vuota" text="Inserisci almeno una quantità. Il carrello non modifica volumi o Fondo." />}
-            {quote && <div className="bulk-quote"><dl><div><dt>Paia</dt><dd>{quote.pairs}</dd></div><div><dt>Listino base</dt><dd>{operationsMoney(quote.listTotalCents)}</dd></div><div><dt>Condizione contrattuale</dt><dd>−{operationsMoney(quote.contractDiscountCents)}</dd></div><div><dt>Totale</dt><dd>{operationsMoney(quote.totalCents)}</dd></div><div className="bulk-quote__fund"><dt>Devoluzione 30%</dt><dd>{operationsMoney(quote.fundCents)}</dd></div></dl>{quote.stockWarnings.length > 0 && <p className="stock-warning"><AlertTriangle size={16} />{quote.stockWarnings.length} riga/righe richiedono verifica stock esterna.</p>}<small>Riepilogo calcolato dal server; verrà verificato nuovamente alla conferma.</small></div>}
+            {quote && (() => {
+              const buyerRate = matchingGrantMode === 'match' ? 30 : matchingGrantMode === 'custom' ? matchingGrantRate : 0;
+              const buyerFundCents = Math.round(quote.totalCents * buyerRate / 100);
+              const totalFundCents = quote.fundCents + buyerFundCents;
+              return <div className="bulk-quote">
+                <dl>
+                  <div><dt>Paia</dt><dd>{quote.pairs}</dd></div>
+                  <div><dt>Listino base</dt><dd>{operationsMoney(quote.listTotalCents)}</dd></div>
+                  <div><dt>Condizione contrattuale</dt><dd>−{operationsMoney(quote.contractDiscountCents)}</dd></div>
+                  <div><dt>Totale</dt><dd>{operationsMoney(quote.totalCents)}</dd></div>
+                  <div className="bulk-quote__fund"><dt>Quota Exena (30%)</dt><dd>{operationsMoney(quote.fundCents)}</dd></div>
+                  {buyerFundCents > 0 && <div className="bulk-quote__fund" style={{ background: '#1c2438', borderTop: '1px solid #334e80' }}><dt>Matching Grant ({buyerRate}%)</dt><dd>+{operationsMoney(buyerFundCents)}</dd></div>}
+                  {buyerFundCents > 0 && <div><dt>Fondo complessivo</dt><dd style={{ fontWeight: 800 }}>{operationsMoney(totalFundCents)}</dd></div>}
+                </dl>
+                {matchingGrantMode !== 'none' && <p style={{ fontSize: '11px', color: '#1947E5', marginTop: '6px', fontWeight: 600 }}>🌟 Confermando con Matching Grant acquisirai la qualifica di Partner Promotore.</p>}
+                {quote.stockWarnings.length > 0 && <p className="stock-warning"><AlertTriangle size={16} />{quote.stockWarnings.length} riga/righe richiedono verifica stock esterna.</p>}
+                <small>Riepilogo calcolato dal server; verrà verificato nuovamente alla conferma.</small>
+              </div>;
+            })()}
             <button className="button button--cobalt button--full" type="button" disabled={!quote || quoteLoading || !addressId} onClick={() => { setActionError(null); setReviewOpen(true); }}>Rivedi ordine <ArrowRight size={17} /></button>
             <p className="bulk-summary__note"><Truck size={15} />Consegna esterna. Pagamento non integrato: l’esito sarà “ordine inviato”, mai “pagato”.</p>
           </aside>
         </div>
-        {receipt && <section className="bulk-receipt" aria-labelledby="receipt-title"><CheckCircle2 size={28} /><div><span className="micro-label">ORDINE REGISTRATO / IDEMPOTENZA VERIFICATA</span><h2 id="receipt-title">{receipt.id}</h2><p>{receipt.pairs} paia · {operationsMoney(receipt.totalCents)} · Fondo calcolato {operationsMoney(receipt.fundCents)}</p><StatusBadge status={receipt.status} label="Ordine inviato · non pagato" /></div><ExportMenu label="Scarica ricevuta" formats={['pdf', 'json']} onExport={(format) => exportReceipt(receipt, format)} notify={notify} /></section>}
+        {receipt && <section className="bulk-receipt" aria-labelledby="receipt-title"><CheckCircle2 size={28} /><div><span className="micro-label">ORDINE REGISTRATO / IDEMPOTENZA VERIFICATA</span><h2 id="receipt-title">{receipt.id}</h2><p>{receipt.pairs} paia · {operationsMoney(receipt.totalCents)} · Fondo calcolato {operationsMoney(receipt.fundCents)} {receipt.matchingGrantMode !== 'none' && `(incluso Matching Grant ${receipt.matchingGrantRate}%)`}</p><StatusBadge status={receipt.status} label="Ordine inviato · non pagato" /></div><ExportMenu label="Scarica ricevuta" formats={['pdf', 'json']} onExport={(format) => exportReceipt(receipt, format)} notify={notify} /></section>}
         <section className="order-history" aria-labelledby="orders-title"><div className="section-heading section-heading--inline"><div><span className="micro-label">CRONOLOGIA / STATO COERENTE CON C13</span><h2 id="orders-title">Ordini e rettifiche</h2></div><FileBox size={23} /></div>
           <div className="order-history__table"><div className="order-history__header"><span>Ordine</span><span>Paia / importo</span><span>Stato</span><span>Azioni</span></div>{data.orders.map((order) => <article key={order.id}><div><b>{order.id}</b><small>{dateTime(order.submittedAt || order.confirmedAt)} · {recurrenceLabel[order.recurrence] || 'Fornitura'}</small></div><div><b>{order.pairs} paia</b><small>{operationsMoney(order.totalCents)} · Fondo {operationsMoney(order.fundCents)}</small></div><StatusBadge status={order.status} label={order.status === 'SUBMITTED' ? 'Inviato · non pagato' : order.status === 'RECTIFIED' ? 'Rettificato · escluso dal ledger' : undefined} /><div className="order-history__actions"><ExportMenu label="Ricevuta" formats={['pdf', 'json']} onExport={(format) => exportReceipt(order, format)} notify={notify} />{order.canRectify && <button className="button button--outline" type="button" onClick={() => { setRectifyOrder(order); setActionError(null); }}>Rettifica</button>}</div></article>)}</div>
         </section>
       </>}
     </OperationsFrame>
-    {reviewOpen && quote && <Dialog title="Conferma l’invio dell’ordine" eyebrow="C12 / SECONDO PASSAGGIO" onClose={() => !busy && setReviewOpen(false)} className="dialog--operations"><div className="stack-form"><div className="binding-warning"><ShoppingCart size={24} /><div><b>{quote.pairs} paia · {operationsMoney(quote.totalCents)}</b><p>Devoluzione calcolata: {operationsMoney(quote.fundCents)}. {recurrenceLabel[recurrence]}.</p></div></div><div className="binding-consequences"><b>Destinazione</b><p>{data.addresses.find((address) => address.id === addressId)?.label}<br />{data.addresses.find((address) => address.id === addressId)?.street}, {data.addresses.find((address) => address.id === addressId)?.city}</p></div>{quote.stockWarnings.length > 0 && <div className="stock-warning"><AlertTriangle size={18} /><span>La disponibilità incerta resta segnalata nella ricevuta e richiede verifica esterna.</span></div>}<DemoNotice compact /><p>Confermi l’invio al fulfilment esterno. Non stai effettuando un pagamento e il carrello non ha ancora modificato il ledger.</p>{actionError && <p className="form-error" role="alert">{actionError}</p>}<div className="dialog__actions"><button className="button button--ghost" type="button" onClick={() => setReviewOpen(false)}>Torna alla matrice</button><button className="button button--cobalt" type="button" disabled={busy} onClick={submitOrder}>{busy ? 'Invio in corso…' : 'Invia ordine una sola volta'}<ArrowRight size={17} /></button></div></div></Dialog>}
+    {reviewOpen && quote && <Dialog title="Conferma l’invio dell’ordine" eyebrow="C12 / SECONDO PASSAGGIO" onClose={() => !busy && setReviewOpen(false)} className="dialog--operations"><div className="stack-form"><div className="binding-warning"><ShoppingCart size={24} /><div><b>{quote.pairs} paia · {operationsMoney(quote.totalCents)}</b><p>Quota Exena: {operationsMoney(quote.fundCents)} · Matching Grant: {matchingGrantMode === 'none' ? 'Nessuno' : `${matchingGrantMode === 'match' ? '30%' : `${matchingGrantRate}%`} (+${operationsMoney(Math.round(quote.totalCents * (matchingGrantMode === 'match' ? 30 : matchingGrantRate) / 100))})`}.</p></div></div><div className="binding-consequences"><b>Destinazione</b><p>{data.addresses.find((address) => address.id === addressId)?.label}<br />{data.addresses.find((address) => address.id === addressId)?.street}, {data.addresses.find((address) => address.id === addressId)?.city}</p></div>{quote.stockWarnings.length > 0 && <div className="stock-warning"><AlertTriangle size={18} /><span>La disponibilità incerta resta segnalata nella ricevuta e richiede verifica esterna.</span></div>}<DemoNotice compact /><p>Confermi l’invio al fulfilment esterno. Non stai effettuando un pagamento e il carrello non ha ancora modificato il ledger.</p>{actionError && <p className="form-error" role="alert">{actionError}</p>}<div className="dialog__actions"><button className="button button--ghost" type="button" onClick={() => setReviewOpen(false)}>Torna alla matrice</button><button className="button button--cobalt" type="button" disabled={busy} onClick={submitOrder}>{busy ? 'Invio in corso…' : 'Invia ordine una sola volta'}<ArrowRight size={17} /></button></div></div></Dialog>}
     {rectifyOrder && <Dialog title={`Retifica ${rectifyOrder.id}`} eyebrow="C12 / MOVIMENTO CONTABILE, NON CANCELLAZIONE" onClose={() => !busy && setRectifyOrder(null)}><form className="stack-form" onSubmit={submitRectification}><p>L’ordine confermato passerà a <strong>RETTIFICATO</strong> e sarà escluso dal ledger. Eventi e importi storici resteranno conservati.</p><label className="field"><span>Motivo della rettifica *</span><textarea rows="4" required minLength="8" value={reason} onChange={(event) => setReason(event.target.value)} /></label><ValidationErrors errors={actionError ? [{ cell: 'Server', message: actionError }] : []} /><div className="dialog__actions"><button className="button button--ghost" type="button" onClick={() => setRectifyOrder(null)}>Annulla</button><button className="button button--cobalt" type="submit" disabled={busy}>Registra rettifica</button></div></form></Dialog>}
   </div>;
 }

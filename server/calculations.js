@@ -1,6 +1,15 @@
 export function calculateFundCents(order) {
-  return Math.round(order.totalCents * order.devolutionRate / 100);
+  const exenaQuota = Math.round(order.totalCents * (order.devolutionRate || 30) / 100);
+  const matchingQuota = typeof order.matchingGrantCents === 'number'
+    ? order.matchingGrantCents
+    : (order.matchingGrantMode === 'match'
+        ? exenaQuota
+        : (order.matchingGrantMode === 'custom' && order.matchingGrantRate
+            ? Math.round(order.totalCents * order.matchingGrantRate / 100)
+            : 0));
+  return exenaQuota + matchingQuota;
 }
+
 
 export function reconcileAttestation(attestation, order) {
   const expectedFundCents = calculateFundCents(order);

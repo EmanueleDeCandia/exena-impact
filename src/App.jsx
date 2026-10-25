@@ -582,21 +582,23 @@ function PerformingArts() {
   );
 }
 
-function Simulator({ addetti, setAddetti, ratio, setRatio, mode, onModeChange }) {
-  const result = useMemo(() => calculateImpact(addetti, ratio, mode), [addetti, ratio, mode]);
+function Simulator({ addetti, setAddetti, ratio, setRatio, mode, onModeChange, matchingMode, setMatchingMode, customPercent, setCustomPercent }) {
+  const result = useMemo(() => calculateImpact(addetti, ratio, mode, matchingMode, customPercent), [addetti, ratio, mode, matchingMode, customPercent]);
 
   const downloadSummary = () => {
     const modeLabel = mode === 'STANDARD' ? 'Percorso Standard' : 'Percorso Standard + Varianti ad Alto Impatto';
     const lines = [
-      'SIBILLINI IMPACT — CONFIGURAZIONE SHARED VALUE',
+      'SIBILLINI IMPACT — CONFIGURAZIONE SHARED VALUE & MATCHING GRANT',
       '',
       `Linea di attuazione: ${modeLabel}`,
       `Addetti / paia: ${result.addetti}`,
       `Prezzo base: ${preciseCurrency.format(BASE_PRICE)} / paio`,
-      `Devoluzione al Fondo: ${result.ratio}%`,
+      `Quota Exena al Fondo: ${result.ratio}% (${preciseCurrency.format(result.exenaFund)})`,
+      `Matching Grant Acquirente: ${result.matchingGrantMode === 'none' ? 'Nessuno (0%)' : result.matchingGrantMode === 'match' ? `Pareggia Exena (${result.buyerMatchingRate}%)` : `Personalizzato (${result.buyerMatchingRate}%)`} (${preciseCurrency.format(result.buyerMatchingFund)})`,
+      `Ruolo di partnership acquisito: ${result.partnershipRole}`,
       '',
-      `Totale ordine: ${preciseCurrency.format(result.orderTotal)}`,
-      `Fondo Aree Interne: ${preciseCurrency.format(result.fund)}`,
+      `Totale fornitura: ${preciseCurrency.format(result.orderTotal)}`,
+      `Fondo complessivo (Exena + Matching): ${preciseCurrency.format(result.fund)}`,
       `Interventi o spettacoli finanziati: ${result.interventions}`,
       `CO2 Scope 3 evitata stimata: ${result.co2.toFixed(2)} kg`,
       `Biglietti welfare totali: ${result.welfareTickets}`,
@@ -623,15 +625,15 @@ function Simulator({ addetti, setAddetti, ratio, setRatio, mode, onModeChange })
       <div className="container">
         <div className="section-heading section-heading--split">
           <div>
-            <div className="eyebrow"><span /> SHARED VALUE CALCULATOR</div>
+            <div className="eyebrow"><span /> SHARED VALUE & MATCHING GRANT CALCULATOR</div>
             <h2 id="simulator-title">IL TUO IMPATTO.<br /><em>IN NUMERI.</em></h2>
           </div>
-          <p>Configura volumi e devoluzione. Il valore dei servizi si aggiorna in tempo reale in base alla linea scelta, senza ricaricare la pagina.</p>
+          <p>Configura volumi, quota Exena e il tuo <strong>Matching Grant</strong>. Puoi devolvere al fondo territoriale per valorizzare lo Shared Value e accedere alla qualifica di <strong>Partner Promotore</strong>.</p>
         </div>
 
         <div className="calculator-shell">
           <div className="calculator-controls">
-            <div className="calculator-controls__heading"><Calculator size={24} /><span>CONFIGURA LA FORNITURA</span><span>01 / 02</span></div>
+            <div className="calculator-controls__heading"><Calculator size={24} /><span>CONFIGURA LA FORNITURA & MATCHING</span><span>01 / 03</span></div>
             <div className="calculator-field">
               <div className="calculator-field__label"><label htmlFor="calculator-addetti">Addetti / paia</label><span>1—5.000</span></div>
               <div className="number-stepper">
@@ -660,8 +662,9 @@ function Simulator({ addetti, setAddetti, ratio, setRatio, mode, onModeChange })
               />
               <small>Ipotesi di calcolo: 1 paio per addetto · prezzo fisso {preciseCurrency.format(BASE_PRICE)}</small>
             </div>
+
             <div className="calculator-field">
-              <div className="calculator-field__label"><label htmlFor="calculator-ratio">Devoluzione al Fondo</label><output htmlFor="calculator-ratio">{ratio}%</output></div>
+              <div className="calculator-field__label"><label htmlFor="calculator-ratio">Quota Exena al Fondo</label><output htmlFor="calculator-ratio">{ratio}%</output></div>
               <input
                 id="calculator-ratio"
                 className="dark-range"
@@ -673,11 +676,63 @@ function Simulator({ addetti, setAddetti, ratio, setRatio, mode, onModeChange })
                 onChange={(event) => setRatio(clampRatio(event.target.value))}
                 style={{ '--range-progress': `${((ratio - 10) / 40) * 100}%` }}
               />
-              <div className="range-endpoints"><span>10%</span><span>30% · BASE</span><span>50%</span></div>
-              <small>Con {ratio}% destini {preciseCurrency.format(BASE_PRICE * ratio / 100)} per paio al Fondo Aree Interne.</small>
+              <div className="range-endpoints"><span>10%</span><span>30% · STANDARD</span><span>50%</span></div>
+              <small>Exena destina {preciseCurrency.format(BASE_PRICE * ratio / 100)} per paio ({ratio}% del ricavo) al Fondo Territoriale.</small>
             </div>
+
+            <div className="calculator-field">
+              <div className="calculator-field__label"><label>Matching Grant dell’Acquirente</label><span className={matchingMode !== 'none' ? 'is-promoter-badge' : ''}>{result.partnershipRole}</span></div>
+              <div className="matching-options" role="radiogroup" aria-label="Modalità Matching Grant">
+                <button
+                  type="button"
+                  className={`matching-chip ${matchingMode === 'none' ? 'is-selected' : ''}`}
+                  onClick={() => setMatchingMode('none')}
+                >
+                  Nessuno (Solo Exena)
+                </button>
+                <button
+                  type="button"
+                  className={`matching-chip ${matchingMode === 'match' ? 'is-selected' : ''}`}
+                  onClick={() => setMatchingMode('match')}
+                >
+                  <Sparkles size={14} /> Pareggia Exena ({ratio}%)
+                </button>
+                <button
+                  type="button"
+                  className={`matching-chip ${matchingMode === 'custom' ? 'is-selected' : ''}`}
+                  onClick={() => setMatchingMode('custom')}
+                >
+                  Personalizzato
+                </button>
+              </div>
+
+              {matchingMode === 'custom' && (
+                <div className="custom-matching-slider">
+                  <div className="calculator-field__label"><label htmlFor="calculator-custom-match">Percentuale aggiuntiva dell’impresa</label><output htmlFor="calculator-custom-match">{customPercent}%</output></div>
+                  <input
+                    id="calculator-custom-match"
+                    className="dark-range"
+                    type="range"
+                    min="1"
+                    max="100"
+                    step="1"
+                    value={customPercent}
+                    onChange={(event) => setCustomPercent(Number(event.target.value))}
+                    style={{ '--range-progress': `${(customPercent / 100) * 100}%` }}
+                  />
+                  <div className="range-endpoints"><span>1%</span><span>50%</span><span>100%</span></div>
+                </div>
+              )}
+
+              <small>
+                {matchingMode === 'none'
+                  ? 'Nessun contributo aggiuntivo. Qualifica: Impresa Aderente.'
+                  : `Contributo aggiuntivo dell’impresa: +${result.buyerMatchingRate}% (${preciseCurrency.format(result.buyerMatchingFund)}). Qualifica: Partner Promotore (diritto di proporre Nuovi Interventi).`}
+              </small>
+            </div>
+
             <div className="calculator-field calculator-field--mode">
-              <div className="calculator-field__label"><span>Linea di attuazione</span><span>02 / 02</span></div>
+              <div className="calculator-field__label"><span>Linea di attuazione</span><span>03 / 03</span></div>
               <ModeSwitch mode={mode} onChange={onModeChange} inverse />
               <p>{mode === 'STANDARD' ? 'Valorizzazione dei soli servizi Standard cumulativi.' : 'Valore Standard + incrementi cumulativi delle varianti attive.'}</p>
             </div>
@@ -690,11 +745,18 @@ function Simulator({ addetti, setAddetti, ratio, setRatio, mode, onModeChange })
               <span className={mode === 'VARIANTI_ALTO_IMPATTO' ? 'is-variant' : ''}>{mode === 'STANDARD' ? 'STANDARD' : 'STANDARD + VARIANTI'}</span>
             </div>
             <div className="result-grid">
-              <div className="result-card"><span>TOTALE ORDINE</span><strong>{currency.format(result.orderTotal)}</strong><small>{result.addetti} × {preciseCurrency.format(BASE_PRICE)}</small></div>
-              <div className="result-card result-card--fund"><span>FONDO AREE INTERNE</span><strong>{currency.format(result.fund)}</strong><small>{ratio}% del valore d’acquisto</small></div>
+              <div className="result-card"><span>TOTALE FORNITURA</span><strong>{currency.format(result.orderTotal)}</strong><small>{result.addetti} × {preciseCurrency.format(BASE_PRICE)}</small></div>
+              <div className="result-card result-card--fund">
+                <span>FONDO COMPLESSIVO</span>
+                <strong>{currency.format(result.fund)}</strong>
+                <small>
+                  {preciseCurrency.format(result.exenaFund)} (Exena {result.ratio}%)
+                  {result.buyerMatchingFund > 0 && ` + ${preciseCurrency.format(result.buyerMatchingFund)} (Matching ${result.buyerMatchingRate}%)`}
+                </small>
+              </div>
+              <div className="result-card"><span>RUOLO GOVERNANCE</span><strong style={{ fontSize: '1.25rem', color: result.isPromoter ? '#1947E5' : 'inherit' }}>{result.partnershipRole}</strong><small>{result.isPromoter ? 'Abilitato a proporre Nuovi Interventi' : 'Diritto di indirizzo territoriale'}</small></div>
               <div className="result-card"><span>INTERVENTI FINANZIATI</span><strong>{number.format(result.interventions)}</strong><small>Intervento o spettacolo ogni 2.500 €</small></div>
               <div className="result-card"><span>CO₂ SCOPE 3 EVITATA</span><strong>{number.format(result.co2)} <i>kg</i></strong><small>{result.addetti} × 4,25 kg</small></div>
-              <div className="result-card"><span>BIGLIETTI WELFARE</span><strong>{number.format(result.welfareTickets)}</strong><small>Base VIP + quota proporzionale</small></div>
               <div className="result-card result-card--value"><span>VALORE SERVIZI COMPLESSIVO</span><strong>{currency.format(result.serviceValue)}</strong><small>{mode === 'STANDARD' ? 'Servizi base cumulativi' : `${currency.format(result.baseServiceValue)} base + ${currency.format(result.variantIncrement)} varianti`}</small></div>
             </div>
             <div className="unlocked-summary">
@@ -708,19 +770,21 @@ function Simulator({ addetti, setAddetti, ratio, setRatio, mode, onModeChange })
             <details className="formula-details">
               <summary>Come calcoliamo questi valori <Plus size={17} /></summary>
               <div>
-                <p><b>Ordine</b> = addetti × 75 € · <b>Fondo</b> = ordine × devoluzione.</p>
+                <p><b>Fornitura</b> = addetti × 75 €.</p>
+                <p><b>Fondo Complessivo</b> = quota Exena ({result.ratio}%) + Matching Grant acquirente ({result.buyerMatchingRate}%).</p>
                 <p><b>Interventi / spettacoli</b> = parte intera di Fondo / 2.500 € · <b>CO₂</b> = addetti × 4,25 kg.</p>
-                <p><b>Welfare</b> = 5 biglietti da 50 paia + 1 ogni 10 addetti da 100 paia.</p>
+                <p><b>Partner Promotore</b> = attivato con opzione Pareggia Exena o Matching Grant personalizzato &gt; 0%.</p>
                 <p>Il valore Standard somma gli scaglioni A/B/C/D e, da 100 paia, la componente proporzionale. Con varianti attive si aggiungono +400 €, +650 €, +1.350 € e +2.200 € alle rispettive soglie.</p>
               </div>
             </details>
-            <p className="calculator-disclaimer">Stima illustrativa, non una valutazione finanziaria o legale. Servizi e varianti dipendono da soglie, disponibilità e accordo quadro. L’applicabilità dei singoli standard va verificata sul tuo perimetro di reporting.</p>
+            <p className="calculator-disclaimer">Stima illustrativa, non una valutazione finanziaria o legale. Il contributo Matching Grant dell’acquirente si affianca alla devoluzione Exena e qualifica l’impresa come Partner Promotore secondo regolamento del Fondo.</p>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 function Comparison() {
   return (
@@ -801,7 +865,7 @@ function Channels() {
   );
 }
 
-function Contact({ addetti, ratio, mode, onModeChange }) {
+function Contact({ addetti, ratio, mode, onModeChange, matchingMode, customPercent }) {
   const [submitted, setSubmitted] = useState(false);
   const [channel, setChannel] = useState('');
 
@@ -811,11 +875,12 @@ function Contact({ addetti, ratio, mode, onModeChange }) {
         <div className="contact-intro">
           <div className="eyebrow eyebrow--light"><span /> AUDIT TECNICO-VALORIALE IN SEDE O IN CANTIERE</div>
           <h2 id="contact-title">PORTA I TUOI<br />OBIETTIVI.<br /><em>COSTRUIAMO IL PIANO.</em></h2>
-          <p>Raccontaci che cosa devi ottenere: compliance, controllo dei cantieri, welfare o posizionamento istituzionale. L’incontro mette a fuoco fabbisogni, soglie e protocolli digitali di rendicontazione.</p>
+          <p>Raccontaci che cosa devi ottenere: compliance, controllo dei cantieri o sedi operative, welfare o posizionamento istituzionale. L’incontro mette a fuoco fabbisogni, soglie e protocolli digitali di rendicontazione.</p>
           <div className="contact-config">
             <span>LA TUA CONFIGURAZIONE ATTUALE</span>
             <div><strong>{number.format(addetti)}</strong><small>paia / addetti</small></div>
-            <div><strong>{ratio}%</strong><small>devoluzione</small></div>
+            <div><strong>{ratio}%</strong><small>quota Exena</small></div>
+            <div><strong>{matchingMode === 'none' ? '0%' : matchingMode === 'match' ? `${ratio}%` : `${customPercent}%`}</strong><small>Matching Grant</small></div>
             <div><strong>{mode === 'STANDARD' ? 'STD' : 'STD+HI'}</strong><small>{mode === 'STANDARD' ? 'Standard' : 'Con varianti'}</small></div>
           </div>
           <div className="contact-promises">
@@ -832,13 +897,16 @@ function Contact({ addetti, ratio, mode, onModeChange }) {
             <label><span>Impresa / Organizzazione *</span><input name="company" type="text" autoComplete="organization" required placeholder="La tua azienda" /></label>
             <label><span>Email di lavoro *</span><input name="email" type="email" autoComplete="email" required placeholder="nome@azienda.it" /></label>
             <label><span>Telefono</span><input name="phone" type="tel" autoComplete="tel" placeholder="+39" /></label>
-            <label><span>Il tuo ruolo *</span><select name="role" required defaultValue=""><option value="" disabled>Seleziona il ruolo</option><option>Procurement / Acquisti</option><option>RSPP / Sicurezza</option><option>Sustainability / ESG</option><option>HR / People</option><option>CEO / CFO / Board</option><option>Altro</option></select></label>
+            <label><span>Profilo Organizzazione *</span><select name="profileType" required defaultValue="CONSTRUCTION"><option value="CONSTRUCTION">General Contractor / Impresa Edile</option><option value="CSR_ORIENTED">Impresa CSR-Oriented (Manifattura, Servizi, Logistics, etc.)</option></select></label>
+            <label><span>Il tuo ruolo *</span><select name="role" required defaultValue=""><option value="" disabled>Seleziona il ruolo</option><option>Procurement / Supply Chain</option><option>RSPP / HSE</option><option>Sustainability / ESG / CSR</option><option>HR / People / Welfare</option><option>CEO / CFO / Board</option><option>Altro</option></select></label>
             <label><span>Canale preferito *</span><select name="channel" required value={channel} onChange={(event) => setChannel(event.target.value)}><option value="" disabled>Seleziona il canale</option><option value="trade">Rivenditore di fiducia / Trade</option><option value="eaas">Portale diretto / EaaS</option><option value="unsure">Da definire insieme</option></select></label>
             <label className="form-grid__full"><span>Linea che vuoi approfondire</span><select name="serviceMode" value={mode} onChange={(event) => onModeChange(event.target.value)}><option value="STANDARD">Percorso Standard</option><option value="VARIANTI_ALTO_IMPATTO">Varianti ad Alto Impatto</option></select></label>
-            <label className="form-grid__full"><span>Obiettivo principale *</span><textarea name="message" required rows="3" placeholder="Es. reporting Scope 3, welfare per 180 addetti, gestione multi-cantiere…" /></label>
+            <label className="form-grid__full"><span>Obiettivo principale *</span><textarea name="message" required rows="3" placeholder="Es. reporting Scope 3, welfare per 180 addetti, gestione multi-cantiere, Matching Grant promotore…" /></label>
           </div>
           <input type="hidden" name="addetti" value={addetti} />
           <input type="hidden" name="devolutionRatio" value={ratio} />
+          <input type="hidden" name="matchingGrantMode" value={matchingMode} />
+          <input type="hidden" name="customMatchingPercent" value={customPercent} />
           <label className="privacy-check"><input type="checkbox" required /><span>Acconsento al trattamento dei dati per essere ricontattato in merito alla richiesta. *</span></label>
           <button className="button button--dark button--full" type="submit">Richiedi l’audit preliminare <ArrowRight /></button>
           <p className="form-demo-note">Anteprima funzionale: il modulo valida i dati localmente e non li trasmette.</p>
@@ -871,6 +939,8 @@ export default function App() {
   const [mode, setMode] = useState('STANDARD');
   const [addetti, setAddetti] = useState(100);
   const [ratio, setRatio] = useState(30);
+  const [matchingMode, setMatchingMode] = useState('none');
+  const [customPercent, setCustomPercent] = useState(30);
 
   return (
     <>
@@ -883,12 +953,31 @@ export default function App() {
         <Pipeline addetti={addetti} setAddetti={setAddetti} mode={mode} onModeChange={setMode} />
         <Territory />
         <PerformingArts />
-        <Simulator addetti={addetti} setAddetti={setAddetti} ratio={ratio} setRatio={setRatio} mode={mode} onModeChange={setMode} />
+        <Simulator
+          addetti={addetti}
+          setAddetti={setAddetti}
+          ratio={ratio}
+          setRatio={setRatio}
+          mode={mode}
+          onModeChange={setMode}
+          matchingMode={matchingMode}
+          setMatchingMode={setMatchingMode}
+          customPercent={customPercent}
+          setCustomPercent={setCustomPercent}
+        />
         <Comparison />
         <Channels />
-        <Contact addetti={addetti} ratio={ratio} mode={mode} onModeChange={setMode} />
+        <Contact
+          addetti={addetti}
+          ratio={ratio}
+          mode={mode}
+          onModeChange={setMode}
+          matchingMode={matchingMode}
+          customPercent={customPercent}
+        />
       </main>
       <Footer />
     </>
   );
 }
+
