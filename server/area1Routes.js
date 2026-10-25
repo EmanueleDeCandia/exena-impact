@@ -48,8 +48,11 @@ function packView(db, pack) {
   };
 }
 
-function reportMetrics(db, siteId) {
-  return finalizeOrderSummary(aggregateOrders(db.orders, siteId ? { siteId } : {}));
+function reportMetrics(db, siteId, organizationId) {
+  return finalizeOrderSummary(aggregateOrders(db.orders, {
+    siteId: siteId || undefined,
+    organizationId: organizationId || undefined,
+  }));
 }
 
 function sendDownload(response, filename, contentType, content) {
@@ -61,10 +64,14 @@ function sendDownload(response, filename, contentType, content) {
 
 area1Router.get('/area1/bootstrap', asyncRoute(async (request, response) => {
   const db = await readDb();
+  const currentOrgId = db.organization?.id;
+  const orgSites = (db.sites || []).filter((s) => !s.organizationId || s.organizationId === currentOrgId);
   response.json({
     meta: db.meta,
+    organizations: db.organizations || [db.organization],
     organization: db.organization,
-    sites: db.sites,
+    sites: orgSites,
+    allSites: db.sites,
     counts: {
       datasets: db.scopeDatasets.length,
       verifiedAttestations: db.attestations.filter((item) => item.status === 'VERIFIED').length,
@@ -72,6 +79,18 @@ area1Router.get('/area1/bootstrap', asyncRoute(async (request, response) => {
       packs: db.packs.length,
     },
   });
+}));
+
+area1Router.post('/area1/organization/switch', asyncRoute(async (request, response) => {
+  const { organizationId } = request.body ?? {};
+  if (!organizationId) throw httpError(400, 'organizationId obbligatorio');
+  const org = await updateDb((db) => {
+    const target = (db.organizations || []).find((item) => item.id === organizationId);
+    if (!target) throw httpError(404, 'Organizzazione non trovata');
+    db.organization = target;
+    return target;
+  });
+  response.json({ success: true, organization: org });
 }));
 
 area1Router.get('/area1/scope3', asyncRoute(async (request, response) => {
@@ -140,7 +159,19 @@ area1Router.get('/area1/scope3/:id/export', asyncRoute(async (request, response)
 
 area1Router.get('/area1/attestations', asyncRoute(async (request, response) => {
   const db = await readDb();
-  response.json({ meta: db.meta, attestations: db.attestations.map((item) => attestationView(db, item)) });
+  const orgId = request.query.organizationId || db.organization?.id;
+  const siteIds = new Set((db.sites || []).filter((s) => s.organizationId === orgId).map((s) => s.id));
+
+  const attestations = (db.attestations || [])
+    .filter((item) => {
+      if (!orgId) return true;
+      const order = (db.orders || []).find((o) => o.id === item.orderId);
+      if (!order) return true;
+      return order.organizationId === orgId || siteIds.has(order.siteId);
+    })
+    .map((item) => attestationView(db, item));
+
+  response.json({ meta: db.meta, attestations });
 }));
 
 area1Router.get('/area1/attestations/:id', asyncRoute(async (request, response) => {
@@ -210,24 +241,34 @@ area1Router.get('/public/fund/:token', asyncRoute(async (request, response) => {
 
 area1Router.get('/area1/reports', asyncRoute(async (request, response) => {
   const db = await readDb();
-  response.json({ meta: db.meta, reports: db.reports, templates: templateDefinitions, sites: db.sites, evidenceDocuments: db.evidenceDocuments });
+  const orgId = request.query.organizationId || db.organization?.id;
+  const orgReports = (db.reports || []).filter((rep) => {
+    if (!orgId) return true;
+    if (rep.organizationId && rep.organizationId !== orgId) return false;
+    if (rep.metrics?.organizationIds?.length && !rep.metrics.organizationIds.includes(orgId)) return false;
+    return true;
+  });
+  const orgSites = (db.sites || []).filter((s) => !s.organizationId || s.organizationId === orgId);
+  response.json({ meta: db.meta, reports: orgReports, templates: templateDefinitions, sites: orgSites, evidenceDocuments: db.evidenceDocuments });
 }));
 
 area1Router.post('/area1/reports', asyncRoute(async (request, response) => {
   const { template, siteId = null, period, narrative = '' } = request.body ?? {};
   const definition = templateDefinitions[template];
   if (!definition) throw httpError(400, 'Template report non valido');
-  if (definition.requiresSite && !siteId) throw httpError(400, 'Seleziona un cantiere per questo report');
+  if (definition.requiresSite && !siteId) throw httpError(400, 'Seleziona una sede / cantiere per questo report');
   const maxLength = template === 'STAKEHOLDER_SUMMARY' ? 900 : 3000;
   if (typeof narrative !== 'string' || narrative.length > maxLength) throw httpError(400, `Il testo deve contenere al massimo ${maxLength} caratteri`);
   const result = await updateDb((db) => {
-    if (siteId && !db.sites.some((site) => site.id === siteId)) throw httpError(400, 'Cantiere non valido');
-    const metrics = reportMetrics(db, siteId);
+    const currentOrgId = db.organization?.id;
+    if (siteId && !db.sites.some((site) => site.id === siteId)) throw httpError(400, 'Unità operativa / cantiere non valido');
+    const metrics = reportMetrics(db, siteId, currentOrgId);
     if (!metrics.orderIds.length) throw httpError(400, 'Nessun ordine confermato nel perimetro selezionato');
     const report = {
       id: `REP-DEMO-${randomUUID().slice(0, 8).toUpperCase()}`,
       template,
       title: definition.title,
+      organizationId: currentOrgId,
       siteId,
       period: { from: period?.from ?? '2026-01-01', to: period?.to ?? '2026-12-31' },
       narrative: narrative.trim(),

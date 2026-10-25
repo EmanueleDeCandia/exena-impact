@@ -17,12 +17,44 @@ export async function initStore() {
   }
   const defaults = createSeed();
   let changed = false;
-  for (const key of ['brandAssets', 'brandTextVersions', 'brandGenerations', 'brandInvitations', 'editorialContents', 'partnerEntries', 'shares', 'downloadEvents', 'hospitalityProperties', 'hospitalityRequests', 'courses', 'courseEnrollments', 'certificates', 'governanceMembers', 'governanceSessions', 'mfaChallenges', 'fundDirectionOptions', 'fundDirectionWindows', 'governancePreferences', 'briefingSessions', 'operationsMembers', 'operationsSessions', 'productCatalog', 'deliveryAddresses', 'serviceEntitlements', 'serviceActivationEvents', 'transparencyProjects', 'logisticsPlans', 'subcontractorLinks']) {
+
+  if (!Array.isArray(db.organizations) || db.organizations.length < defaults.organizations.length) {
+    db.organizations = defaults.organizations;
+    changed = true;
+  }
+  if (!db.organization || !db.organization.profileType) {
+    db.organization = defaults.organization;
+    changed = true;
+  }
+
+  const arrayKeys = [
+    'sites', 'orders', 'attestations', 'reports', 'evidenceDocuments', 'scopeDatasets',
+    'brandAssets', 'brandTextVersions', 'brandGenerations', 'brandInvitations', 'editorialContents',
+    'partnerEntries', 'shares', 'downloadEvents', 'hospitalityProperties', 'hospitalityRequests',
+    'courses', 'courseEnrollments', 'certificates', 'governanceMembers', 'governanceSessions',
+    'mfaChallenges', 'fundDirectionOptions', 'fundDirectionWindows', 'governancePreferences',
+    'briefingSessions', 'operationsMembers', 'operationsSessions', 'productCatalog',
+    'deliveryAddresses', 'serviceEntitlements', 'serviceActivationEvents', 'transparencyProjects',
+    'logisticsPlans', 'subcontractorLinks'
+  ];
+
+  for (const key of arrayKeys) {
     if (!Array.isArray(db[key])) {
-      db[key] = defaults[key];
+      db[key] = defaults[key] || [];
       changed = true;
+    } else if (Array.isArray(defaults[key])) {
+      // Merge in any items from defaults that don't exist by id
+      const existingIds = new Set(db[key].map((item) => item?.id || item?.publicId || item?.sku).filter(Boolean));
+      for (const item of defaults[key]) {
+        const identifier = item?.id || item?.publicId || item?.sku;
+        if (identifier && !existingIds.has(identifier)) {
+          db[key].push(item);
+          changed = true;
+        }
+      }
     }
   }
+
   if ((db.meta?.schemaVersion ?? 1) < defaults.meta.schemaVersion) {
     db.meta.schemaVersion = defaults.meta.schemaVersion;
     changed = true;

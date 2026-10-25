@@ -1,18 +1,20 @@
 {
   "meta": {
-    "schemaVersion": 5,
+    "schemaVersion": 6,
     "demo": true,
     "notice": "Dati sintetici per validazione funzionale. Non utilizzare per reporting, revisione o finalità legali.",
-    "updatedAt": "2026-10-23T09:00:00.000Z"
+    "updatedAt": "2026-10-25T15:59:44.399Z"
   },
   "organization": {
-    "id": "org-gc-demo",
-    "name": "General Contractor Demo S.p.A.",
+    "id": "org-csr-demo",
+    "name": "Manifattura Sibillini S.p.A.",
+    "profileType": "CSR_ORIENTED",
     "role": "ORG_ADMIN",
     "siteIds": [
-      "site-ponte-demo",
-      "site-borgo-demo"
-    ]
+      "unit-stabilimento-marche",
+      "unit-hub-logistica"
+    ],
+    "partnershipRole": "PROMOTER_PARTNER"
   },
   "sites": [
     {
@@ -26,6 +28,24 @@
       "name": "Rigenerazione Borgo Alto",
       "code": "CANT-DEMO-02",
       "municipality": "Borgo Demo — Sibillini"
+    },
+    {
+      "id": "unit-stabilimento-marche",
+      "organizationId": "org-csr-demo",
+      "name": "Stabilimento Produttivo Marche",
+      "code": "STAB-01",
+      "municipality": "Comune Demo — Distretto Industriale",
+      "unitType": "PLANT",
+      "scope": "regional_national"
+    },
+    {
+      "id": "unit-hub-logistica",
+      "organizationId": "org-csr-demo",
+      "name": "Hub Logistico Centro-Nord",
+      "code": "HUB-LOG-02",
+      "municipality": "Area Industriale Valle del Tronto",
+      "unitType": "LOGISTICS_HUB",
+      "scope": "global"
     }
   ],
   "scopeDatasets": [
@@ -154,6 +174,100 @@
       "devolutionRate": 30,
       "status": "CONFIRMED",
       "confirmedAt": "2026-08-30T08:45:00.000Z"
+    },
+    {
+      "id": "BULK-b0fdc174-7b5b-447d-ac41-21f771add747",
+      "organizationId": "org-gc-demo",
+      "organizationName": "General Contractor Demo S.p.A.",
+      "siteId": "site-ponte-demo",
+      "pairs": 10,
+      "totalCents": 75000,
+      "devolutionRate": 30,
+      "status": "SUBMITTED",
+      "version": 1,
+      "submittedAt": "2026-10-25T14:59:13.883Z",
+      "confirmedAt": null,
+      "source": "BULK_PORTAL",
+      "items": [
+        {
+          "productId": "PROD-ECO-S3S",
+          "productName": "Exena Eco S3S — modello demo",
+          "sku": "ECO-S3S-DEMO",
+          "size": "42",
+          "quantity": 10,
+          "listUnitPriceCents": 7900,
+          "unitPriceCents": 7500,
+          "stockStatus": "AVAILABLE",
+          "stockUpdatedAt": "2026-10-24T21:27:33.805Z",
+          "listTotalCents": 79000,
+          "totalCents": 75000
+        }
+      ],
+      "listTotalCents": 79000,
+      "contractDiscountCents": 4000,
+      "exenaFundCents": 22500,
+      "matchingGrantMode": "match",
+      "matchingGrantRate": 30,
+      "matchingGrantCents": 22500,
+      "paymentStatus": "NOT_INTEGRATED",
+      "fulfilmentStatus": "SENT_TO_EXTERNAL_FULFILMENT",
+      "stockWarnings": [],
+      "recurrence": "ONE_OFF",
+      "addressSnapshot": {
+        "id": "ADDR-GC-PONTE",
+        "organizationId": "org-gc-demo",
+        "siteId": "site-ponte-demo",
+        "label": "Ponte Vallone — ingresso materiali demo",
+        "recipient": "Magazzino di cantiere demo",
+        "street": "Via del Cantiere 10",
+        "postalCode": "63000",
+        "city": "Comune Demo",
+        "province": "AP"
+      },
+      "idempotency": {
+        "key": "9d102c4f-b407-437f-9c17-1c1e2c856c7d",
+        "fingerprint": "efb83dbb045105b5ed0d0c73dc28911bf3747eb3a627d16541e4aa01fd29049a"
+      },
+      "rectifications": [],
+      "events": [
+        {
+          "at": "2026-10-25T14:59:13.883Z",
+          "actor": "Procurement General Contractor Demo",
+          "event": "Ordine inviato: 10 paia; matching grant: match (30%); pagamento non integrato"
+        }
+      ]
+    },
+    {
+      "id": "ORD-CSR-0201",
+      "organizationId": "org-csr-demo",
+      "organizationName": "Manifattura Sibillini S.p.A.",
+      "siteId": "unit-stabilimento-marche",
+      "pairs": 150,
+      "totalCents": 1125000,
+      "devolutionRate": 30,
+      "exenaFundCents": 337500,
+      "matchingGrantMode": "match",
+      "matchingGrantRate": 30,
+      "matchingGrantCents": 337500,
+      "totalFundCents": 675000,
+      "status": "CONFIRMED",
+      "confirmedAt": "2026-10-10T10:00:00.000Z"
+    },
+    {
+      "id": "ORD-CSR-0202",
+      "organizationId": "org-csr-demo",
+      "organizationName": "Manifattura Sibillini S.p.A.",
+      "siteId": "unit-hub-logistica",
+      "pairs": 50,
+      "totalCents": 375000,
+      "devolutionRate": 30,
+      "exenaFundCents": 112500,
+      "matchingGrantMode": "custom",
+      "matchingGrantRate": 20,
+      "matchingGrantCents": 75000,
+      "totalFundCents": 187500,
+      "status": "CONFIRMED",
+      "confirmedAt": "2026-10-15T14:30:00.000Z"
     }
   ],
   "attestations": [
@@ -209,6 +323,36 @@
           "at": "2026-09-24T10:00:00.000Z",
           "actor": "Tesoreria demo",
           "event": "Versamento registrato; verifica in attesa"
+        }
+      ]
+    },
+    {
+      "id": "ATT-CSR-0201",
+      "orderId": "ORD-CSR-0201",
+      "pairs": 150,
+      "totalCents": 1125000,
+      "fundCents": 675000,
+      "status": "VERIFIED",
+      "publicToken": "demo_fund_csr_789acde1234567890abcdef123456789",
+      "transferReference": "Bonifico Shared Value •••• 9920",
+      "transferredAt": "2026-10-12T11:00:00.000Z",
+      "verifiedBy": "Startup garante — revisore demo",
+      "version": 1,
+      "auditTrail": [
+        {
+          "at": "2026-10-10T10:00:00.000Z",
+          "actor": "Sistema ordini",
+          "event": "Ordine fornitura CSR confermato: 150 paia con Matching Grant 30% (Partner Promotore)"
+        },
+        {
+          "at": "2026-10-12T11:00:00.000Z",
+          "actor": "Tesoreria demo",
+          "event": "Versamento quota Exena (3.375 €) + Matching Grant Impresa (3.375 €) registrato"
+        },
+        {
+          "at": "2026-10-13T15:00:00.000Z",
+          "actor": "Startup garante — revisore demo",
+          "event": "Riconciliazione completata: totale fondo 6.750 € accreditato per progetti territoriali"
         }
       ]
     }
@@ -289,6 +433,61 @@
   ],
   "reports": [
     {
+      "id": "REP-DEMO-21EE6540",
+      "template": "STAKEHOLDER_SUMMARY",
+      "title": "Sintesi Monografica d’Impatto per Stakeholder",
+      "siteId": null,
+      "period": {
+        "from": "2026-01-01",
+        "to": "2026-12-31"
+      },
+      "narrative": "Il nostro coinvolgimento in Sibillini Impact è stato inizialmente molto scettico. Con una semplicità disarmante creare valore sembra una proposta di marketing. Abbiamo scoperto che creare valore è anche una decisione culturale.",
+      "status": "VERIFIED",
+      "version": 1,
+      "createdAt": "2026-10-25T15:22:01.713Z",
+      "updatedAt": "2026-10-25T15:24:37.909Z",
+      "reviewNote": "Completezza formale e riferimenti controllati in ambiente demo.",
+      "evidenceIds": [
+        "EV-LCA-001",
+        "EV-BANK-0142",
+        "EV-AUDIT-0142"
+      ],
+      "metrics": {
+        "orderIds": [
+          "ORD-DEMO-0142",
+          "ORD-DEMO-0118",
+          "ORD-DEMO-0097",
+          "ORD-DEMO-0088"
+        ],
+        "organizationIds": [
+          "org-gc-demo",
+          "org-sub-demo"
+        ],
+        "pairs": 345,
+        "totalCents": 2587500,
+        "fundCents": 776250,
+        "interventions": 3
+      },
+      "reviewEvents": [
+        {
+          "at": "2026-10-25T15:23:21.834Z",
+          "actor": "Utente demo — ESG Manager",
+          "from": "DRAFT",
+          "to": "PENDING_REVIEW",
+          "note": "Invio alla revisione Startup"
+        },
+        {
+          "at": "2026-10-25T15:24:37.909Z",
+          "actor": "Startup garante — revisore demo",
+          "from": "PENDING_REVIEW",
+          "to": "VERIFIED",
+          "note": "Completezza formale e riferimenti controllati in ambiente demo."
+        }
+      ],
+      "reviewedBy": "Startup garante — revisore demo",
+      "reviewedAt": "2026-10-25T15:24:37.909Z"
+    },
+    {
       "id": "REP-DEMO-001",
       "template": "AREA_SISMA",
       "title": "Rendicontazione di Impatto Sociale — Area Sisma",
@@ -322,6 +521,40 @@
         "organizationIds": [
           "org-gc-demo",
           "org-sub-demo"
+        ]
+      }
+    },
+    {
+      "id": "REP-CSR-001",
+      "template": "AREA_SISMA",
+      "title": "Bilancio di Sostenibilità & Impatto Territoriale — Manifattura Sibillini",
+      "organizationId": "org-csr-demo",
+      "siteId": null,
+      "period": {
+        "from": "2026-09-01",
+        "to": "2026-10-23"
+      },
+      "narrative": "Rendicontazione di impatto integrata con Matching Grant e fornitura DPI sostenibile per stabilimenti e filiera.",
+      "status": "VERIFIED",
+      "version": 1,
+      "createdAt": "2026-10-18T10:00:00.000Z",
+      "updatedAt": "2026-10-18T10:00:00.000Z",
+      "reviewNote": "Rendicontazione validata con Matching Grant paritario al 30% come Partner Promotore.",
+      "evidenceIds": [
+        "EV-LCA-001",
+        "EV-AUDIT-0142"
+      ],
+      "metrics": {
+        "pairs": 200,
+        "totalCents": 1500000,
+        "fundCents": 862500,
+        "interventions": 3,
+        "orderIds": [
+          "ORD-CSR-0201",
+          "ORD-CSR-0202"
+        ],
+        "organizationIds": [
+          "org-csr-demo"
         ]
       }
     }
@@ -438,6 +671,87 @@
   "brandGenerations": [],
   "brandInvitations": [],
   "editorialContents": [
+    {
+      "id": "EDI-DEMO-9F80E878",
+      "type": "CASE_HISTORY",
+      "title": "Quando la fornitura DPI diventa un’infrastruttura di dati per il cantiere",
+      "slug": "fornitura-dpi-infrastruttura-dati-cantiere-demo",
+      "excerpt": "Una case history interamente dimostrativa sul collegamento tra fabbisogno tecnico, dati di filiera e rendicontazione territoriale.",
+      "metaDescription": "Case history demo: fornitura DPI, dati ESG e rendicontazione di cantiere in un percorso tracciato dalla Startup garante.",
+      "image": "/images/hero-worker.jpg",
+      "imageAlt": "Responsabile della sicurezza in un cantiere infrastrutturale tra i monti Sibillini",
+      "sections": [
+        {
+          "heading": "Il punto di partenza",
+          "text": "Nel progetto dimostrativo di Ponte Vallone, il General Contractor parte da un fabbisogno concreto: 200 paia di calzature e la necessità di tenere insieme consegna, dati ambientali e documentazione della commessa."
+        },
+        {
+          "heading": "Dal dato alla relazione di filiera",
+          "text": "Il dataset LCA v2.1 e l’attestazione della devoluzione del 30% sono collegati alla stessa fornitura. Ogni valore numerico di questa pagina deriva dai dati sintetici associati in calce e non descrive una commessa reale."
+        },
+        {
+          "heading": "Un risultato da verificare, non da celebrare",
+          "text": "Il valore editoriale sta nel percorso di controllo: versioni, fonti e revisioni rendono il racconto verificabile. La redazione della Startup conserva il proprio giudizio indipendente; l’impresa verifica i fatti che la riguardano."
+        }
+      ],
+      "linkedData": {
+        "siteId": "site-ponte-demo",
+        "datasetId": "DS-ECO-2026-21",
+        "attestationId": "ATT-DEMO-0142",
+        "reportId": "REP-DEMO-001"
+      },
+      "status": "DRAFT",
+      "version": 3,
+      "author": "Redazione Startup — demo",
+      "factualApprovedVersion": null,
+      "createdAt": "2026-10-25T15:57:16.334Z",
+      "updatedAt": "2026-10-25T15:57:16.334Z",
+      "publishedAt": null,
+      "archivedAt": null,
+      "previousVersions": [
+        {
+          "version": 1,
+          "title": "La fornitura DPI come infrastruttura di dati",
+          "updatedAt": "2026-10-18T09:00:00.000Z"
+        },
+        {
+          "version": 2,
+          "title": "Quando la fornitura DPI diventa un’infrastruttura di dati per il cantiere",
+          "excerpt": "Una case history interamente dimostrativa sul collegamento tra fabbisogno tecnico, dati di filiera e rendicontazione territoriale.",
+          "sections": [
+            {
+              "heading": "Il punto di partenza",
+              "text": "Nel progetto dimostrativo di Ponte Vallone, il General Contractor parte da un fabbisogno concreto: 200 paia di calzature e la necessità di tenere insieme consegna, dati ambientali e documentazione della commessa."
+            },
+            {
+              "heading": "Dal dato alla relazione di filiera",
+              "text": "Il dataset LCA v2.1 e l’attestazione della devoluzione del 30% sono collegati alla stessa fornitura. Ogni valore numerico di questa pagina deriva dai dati sintetici associati in calce e non descrive una commessa reale."
+            },
+            {
+              "heading": "Un risultato da verificare, non da celebrare",
+              "text": "Il valore editoriale sta nel percorso di controllo: versioni, fonti e revisioni rendono il racconto verificabile. La redazione della Startup conserva il proprio giudizio indipendente; l’impresa verifica i fatti che la riguardano."
+            }
+          ],
+          "updatedAt": "2026-10-21T09:00:00.000Z"
+        }
+      ],
+      "reviewEvents": [
+        {
+          "at": "2026-10-25T15:57:16.335Z",
+          "actor": "Redazione Startup — demo",
+          "event": "Nuova versione per correzione: Aggiornamento versionato dei contenuti e delle fonti."
+        }
+      ],
+      "corrections": [
+        {
+          "at": "2026-10-25T15:57:16.335Z",
+          "note": "Aggiornamento versionato dei contenuti e delle fonti.",
+          "status": "IN_REVIEW_DEMO"
+        }
+      ],
+      "correctionOf": "EDI-DEMO-CASE-01",
+      "correctionNote": "Aggiornamento versionato dei contenuti e delle fonti."
+    },
     {
       "id": "EDI-DEMO-CASE-01",
       "type": "CASE_HISTORY",
@@ -620,6 +934,38 @@
       "updatedAt": "2026-10-23T09:00:00.000Z",
       "removedAt": null,
       "reviewEvents": [],
+      "rectifications": []
+    },
+    {
+      "id": "PAR-CSR-001",
+      "publicSlug": "manifattura-sibillini-demo",
+      "organizationName": "Manifattura Sibillini S.p.A.",
+      "consentToPublish": true,
+      "municipalities": [
+        "Comune Demo — Distretto Industriale"
+      ],
+      "joinedAt": "2026-10-10T10:00:00.000Z",
+      "status": "PUBLISHED",
+      "version": 1,
+      "projects": [
+        {
+          "name": "Fornitura DPI e Sostegno Comunità",
+          "municipality": "Comune Demo — Distretto Industriale",
+          "description": "Partecipazione al programma con Matching Grant paritario al 30% come Partner Promotore.",
+          "publicEvidence": "Attestazione Fondo ATT-CSR-0201 verificata"
+        }
+      ],
+      "sourceAttestationId": "ATT-CSR-0201",
+      "publishedAt": "2026-10-12T12:00:00.000Z",
+      "updatedAt": "2026-10-12T12:00:00.000Z",
+      "removedAt": null,
+      "reviewEvents": [
+        {
+          "at": "2026-10-12T12:00:00.000Z",
+          "actor": "Startup garante — revisore demo",
+          "event": "Profilo Partner Promotore CSR verificato"
+        }
+      ],
       "rectifications": []
     }
   ],
@@ -1042,6 +1388,16 @@
       "briefingSpeaker": false,
       "mfaDemoCode": "246810",
       "demoAccessEnabled": true
+    },
+    {
+      "id": "MEM-CSR-BOARD",
+      "organizationId": "org-csr-demo",
+      "displayName": "Consigliere Manifattura Sibillini (CSR)",
+      "role": "BOARD",
+      "boardAuthorized": true,
+      "briefingSpeaker": false,
+      "mfaDemoCode": "246810",
+      "demoAccessEnabled": true
     }
   ],
   "governanceSessions": [],
@@ -1103,6 +1459,18 @@
       ],
       "opensAt": "2025-11-01T08:00:00.000Z",
       "cutoffAt": "2025-12-15T16:00:00.000Z",
+      "timeZone": "Europe/Rome"
+    },
+    {
+      "id": "GOV-WIN-CSR-2026",
+      "organizationId": "org-csr-demo",
+      "title": "Indirizzo territoriale Fondo 2026 — Manifattura Sibillini (CSR)",
+      "ruleVersion": "REG-FONDO-2026.1",
+      "eligibleOrderIds": [
+        "ORD-CSR-0201"
+      ],
+      "opensAt": "2026-10-15T08:00:00.000Z",
+      "cutoffAt": "2026-12-20T16:00:00.000Z",
       "timeZone": "Europe/Rome"
     }
   ],
@@ -1418,9 +1786,67 @@
       "role": "PROCUREMENT",
       "assignedSiteIds": [],
       "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-CSR-PROC",
+      "organizationId": "org-csr-demo",
+      "organizationName": "Manifattura Sibillini S.p.A.",
+      "displayName": "Procurement Manifattura Sibillini (CSR)",
+      "role": "PROCUREMENT",
+      "assignedSiteIds": [
+        "unit-stabilimento-marche",
+        "unit-hub-logistica"
+      ],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-CSR-ESG",
+      "organizationId": "org-csr-demo",
+      "organizationName": "Manifattura Sibillini S.p.A.",
+      "displayName": "ESG Manager Manifattura Sibillini (CSR)",
+      "role": "ESG_MANAGER",
+      "assignedSiteIds": [
+        "unit-stabilimento-marche"
+      ],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-CSR-BOARD",
+      "organizationId": "org-csr-demo",
+      "organizationName": "Manifattura Sibillini S.p.A.",
+      "displayName": "Direzione Sostenibilità (CSR)",
+      "role": "BOARD",
+      "assignedSiteIds": [],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-FORN-GREEN",
+      "organizationId": "org-forn-green",
+      "organizationName": "Fornitore Packaging Verde S.r.l.",
+      "displayName": "Fornitore Packaging Verde (Filiera CSR)",
+      "role": "SUBCONTRACTOR",
+      "assignedSiteIds": [
+        "unit-stabilimento-marche"
+      ],
+      "demoAccessEnabled": true
     }
   ],
-  "operationsSessions": [],
+  "operationsSessions": [
+    {
+      "token": "4862677f9e7f40c38dab0f41a22b3187a14de3fb359e4d10a1c2619fa53ede1f",
+      "memberId": "OP-PROC-001",
+      "organizationId": "org-gc-demo",
+      "createdAt": "2026-10-25T14:55:04.290Z",
+      "expiresAt": "2026-10-25T22:55:04.291Z"
+    },
+    {
+      "token": "8bdbf4f8dd6847148450c1b77485dec0baaad9a26a09474fa729bab51ddf59d2",
+      "memberId": "OP-PROC-001",
+      "organizationId": "org-gc-demo",
+      "createdAt": "2026-10-25T15:35:55.824Z",
+      "expiresAt": "2026-10-25T23:35:55.824Z"
+    }
+  ],
   "productCatalog": [
     {
       "id": "PROD-ECO-S3S",
@@ -1573,6 +1999,28 @@
       "street": "Via di Filiera 4",
       "postalCode": "63000",
       "city": "Comune Demo",
+      "province": "AP"
+    },
+    {
+      "id": "ADDR-CSR-STAB",
+      "organizationId": "org-csr-demo",
+      "siteId": "unit-stabilimento-marche",
+      "label": "Stabilimento Marche — Cancello Nord",
+      "recipient": "Magazzino Centrale Manifattura",
+      "street": "Via dell’Artigianato 12",
+      "postalCode": "63000",
+      "city": "Comune Demo",
+      "province": "AP"
+    },
+    {
+      "id": "ADDR-CSR-HUB",
+      "organizationId": "org-csr-demo",
+      "siteId": "unit-hub-logistica",
+      "label": "Hub Logistica Centro-Nord",
+      "recipient": "Ufficio Ricevimento Merci",
+      "street": "Via della Logistica 8",
+      "postalCode": "63000",
+      "city": "Valle del Tronto",
       "province": "AP"
     }
   ],
@@ -1942,6 +2390,160 @@
       "activationStatus": "ACTIVE",
       "expiresAt": null,
       "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C12-BULK_ORDER",
+      "organizationId": "org-csr-demo",
+      "componentId": "C12",
+      "serviceId": "BULK_ORDER",
+      "title": "Bulk Order Portal",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/ordini",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C13-THRESHOLD_DASHBOARD",
+      "organizationId": "org-csr-demo",
+      "componentId": "C13",
+      "serviceId": "THRESHOLD_DASHBOARD",
+      "title": "Dashboard Soglie e Benefit",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/dashboard",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C14-TRANSPARENCY",
+      "organizationId": "org-csr-demo",
+      "componentId": "C14",
+      "serviceId": "TRANSPARENCY",
+      "title": "Registro Pubblico Trasparente",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/trasparenza",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C05-CO_BRAND",
+      "organizationId": "org-csr-demo",
+      "componentId": "C05",
+      "serviceId": "CO_BRAND",
+      "title": "Kit Digital Co-Branding",
+      "track": "STANDARD",
+      "requiredPairs": 10,
+      "route": "/app/brand-kit",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C06-CASE_HISTORY",
+      "organizationId": "org-csr-demo",
+      "componentId": "C06",
+      "serviceId": "CASE_HISTORY",
+      "title": "Case History ed Executive Page",
+      "track": "STANDARD",
+      "requiredPairs": 25,
+      "route": "/app/editoriale",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C04-ASSURANCE",
+      "organizationId": "org-csr-demo",
+      "componentId": "C04",
+      "serviceId": "ASSURANCE",
+      "title": "Fascicolo Ready for Assurance",
+      "track": "VARIANT",
+      "requiredPairs": 10,
+      "route": "/app/evidence-packs",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C07-PARTNER_REGISTRY",
+      "organizationId": "org-csr-demo",
+      "componentId": "C07",
+      "serviceId": "PARTNER_REGISTRY",
+      "title": "Registro Partner della Ricostruzione",
+      "track": "VARIANT",
+      "requiredPairs": 25,
+      "route": "/app/registro-partner",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C16-SUB_NETWORK",
+      "organizationId": "org-csr-demo",
+      "componentId": "C16",
+      "serviceId": "SUB_NETWORK",
+      "title": "Accordo Quadro di Filiera Fornitori",
+      "track": "VARIANT",
+      "requiredPairs": 25,
+      "route": "/app/filiera",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C10-FUND_DIRECTION",
+      "organizationId": "org-csr-demo",
+      "componentId": "C10",
+      "serviceId": "FUND_DIRECTION",
+      "title": "Diritto di Indirizzo Territoriale",
+      "track": "VARIANT",
+      "requiredPairs": 100,
+      "route": "/app/governance/indirizzo-fondo",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C11-BOARD_BRIEFING",
+      "organizationId": "org-csr-demo",
+      "componentId": "C11",
+      "serviceId": "BOARD_BRIEFING",
+      "title": "Board Briefing annuale",
+      "track": "VARIANT",
+      "requiredPairs": 100,
+      "route": "/app/governance/briefing",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "LIVE_ONLINE"
+    },
+    {
+      "id": "ENT-org-csr-demo-C15-MULTI_SITE",
+      "organizationId": "org-csr-demo",
+      "componentId": "C15",
+      "serviceId": "MULTI_SITE",
+      "title": "Portale Logistico Multi-Sito / Stabilimento",
+      "track": "VARIANT",
+      "requiredPairs": 100,
+      "route": "/app/logistica",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
     }
   ],
   "serviceActivationEvents": [],
@@ -2160,8 +2762,102 @@
           "event": "Invito creato; nessuna associazione attiva"
         }
       ]
+    },
+    {
+      "id": "LINK-CSR-001",
+      "gcOrganizationId": "org-csr-demo",
+      "gcOrganizationName": "Manifattura Sibillini S.p.A.",
+      "subcontractorOrganizationId": "org-forn-green",
+      "subcontractorOrganizationName": "Fornitore Packaging Verde S.r.l.",
+      "vatNumber": "10987654321",
+      "vatFormatValid": true,
+      "verificationStatus": "VERIFIED_DEMO",
+      "verificationNote": "Fornitore di filiera verificato nel perimetro Scope 3 / CSR",
+      "verifiedAt": "2026-09-01T09:00:00.000Z",
+      "status": "ACTIVE",
+      "version": 1,
+      "invitedAt": "2026-08-15T09:00:00.000Z",
+      "acceptedAt": "2026-08-20T09:00:00.000Z",
+      "identityConfirmedAt": "2026-08-20T09:00:00.000Z",
+      "revokedAt": null,
+      "consents": {
+        "volumeAttribution": true,
+        "kitDistribution": true,
+        "registryPublication": true
+      },
+      "requestedConsents": {
+        "volumeAttribution": true,
+        "kitDistribution": true
+      },
+      "proposedSiteIds": [
+        "unit-stabilimento-marche"
+      ],
+      "siteRelations": [
+        {
+          "siteId": "unit-stabilimento-marche",
+          "startAt": "2026-09-01T00:00:00.000Z",
+          "endAt": null
+        }
+      ],
+      "attributionRule": "ORDER_ID_UNIQUE_WITHIN_SITE_PERIOD",
+      "historicalPairsAtRevocation": null,
+      "events": [
+        {
+          "at": "2026-08-20T09:00:00.000Z",
+          "actor": "Fornitore Packaging Verde",
+          "event": "Accordo di fornitura sostenibile sottoscritto"
+        },
+        {
+          "at": "2026-09-01T09:00:00.000Z",
+          "actor": "Startup garante — demo",
+          "event": "Verifica completata: fornitore accreditato nella filiera CSR"
+        }
+      ]
     }
   ],
   "shares": [],
-  "downloadEvents": []
+  "downloadEvents": [
+    {
+      "id": "6a1baf4c-5c09-459a-a1d5-7a5325db2f90",
+      "datasetId": "DS-ECO-2026-21",
+      "datasetVersion": "2.1",
+      "format": "pdf",
+      "at": "2026-10-25T15:05:04.822Z",
+      "actor": "Utente demo — ESG Manager"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "org-gc-demo",
+      "name": "General Contractor Demo S.p.A.",
+      "profileType": "CONSTRUCTION",
+      "role": "ORG_ADMIN",
+      "siteIds": [
+        "site-ponte-demo",
+        "site-borgo-demo"
+      ],
+      "partnershipRole": "PROMOTER_PARTNER"
+    },
+    {
+      "id": "org-csr-demo",
+      "name": "Manifattura Sibillini S.p.A.",
+      "profileType": "CSR_ORIENTED",
+      "role": "ORG_ADMIN",
+      "siteIds": [
+        "unit-stabilimento-marche",
+        "unit-hub-logistica"
+      ],
+      "partnershipRole": "PROMOTER_PARTNER"
+    },
+    {
+      "id": "org-sub-demo",
+      "name": "Subappaltatore Alpi Demo S.r.l.",
+      "profileType": "CONSTRUCTION",
+      "role": "SUBCONTRACTOR",
+      "siteIds": [
+        "site-ponte-demo"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    }
+  ]
 }

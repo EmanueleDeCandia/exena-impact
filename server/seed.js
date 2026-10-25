@@ -7,21 +7,52 @@ export function createSeed() {
   const demoLogoDataUrl = `data:image/svg+xml;base64,${Buffer.from(demoLogoSvg).toString('base64')}`;
   return {
     meta: {
-      schemaVersion: 5,
+      schemaVersion: 6,
       demo: true,
       notice: 'Dati sintetici per validazione funzionale. Non utilizzare per reporting, revisione o finalità legali.',
-      updatedAt: '2026-10-23T09:00:00.000Z',
+      updatedAt: '2026-10-25T16:00:00.000Z',
     },
+    organizations: [
+      {
+        id: 'org-gc-demo',
+        name: 'General Contractor Demo S.p.A.',
+        profileType: 'CONSTRUCTION',
+        role: 'ORG_ADMIN',
+        siteIds: ['site-ponte-demo', 'site-borgo-demo'],
+        partnershipRole: 'PROMOTER_PARTNER',
+      },
+      {
+        id: 'org-csr-demo',
+        name: 'Manifattura Sibillini S.p.A.',
+        profileType: 'CSR_ORIENTED',
+        role: 'ORG_ADMIN',
+        siteIds: ['unit-stabilimento-marche', 'unit-hub-logistica'],
+        partnershipRole: 'PROMOTER_PARTNER',
+      },
+      {
+        id: 'org-sub-demo',
+        name: 'Subappaltatore Alpi Demo S.r.l.',
+        profileType: 'CONSTRUCTION',
+        role: 'SUBCONTRACTOR',
+        siteIds: ['site-ponte-demo'],
+        partnershipRole: 'ADHERING_ENTERPRISE',
+      },
+    ],
     organization: {
       id: 'org-gc-demo',
       name: 'General Contractor Demo S.p.A.',
+      profileType: 'CONSTRUCTION',
       role: 'ORG_ADMIN',
       siteIds: ['site-ponte-demo', 'site-borgo-demo'],
+      partnershipRole: 'PROMOTER_PARTNER',
     },
     sites: [
-      { id: 'site-ponte-demo', name: 'Ponte Vallone', code: 'CANT-DEMO-01', municipality: 'Comune Demo — Area Sisma' },
-      { id: 'site-borgo-demo', name: 'Rigenerazione Borgo Alto', code: 'CANT-DEMO-02', municipality: 'Borgo Demo — Sibillini' },
+      { id: 'site-ponte-demo', organizationId: 'org-gc-demo', name: 'Ponte Vallone', code: 'CANT-DEMO-01', municipality: 'Comune Demo — Area Sisma', unitType: 'CONSTRUCTION_SITE', scope: 'local' },
+      { id: 'site-borgo-demo', organizationId: 'org-gc-demo', name: 'Rigenerazione Borgo Alto', code: 'CANT-DEMO-02', municipality: 'Borgo Demo — Sibillini', unitType: 'CONSTRUCTION_SITE', scope: 'local' },
+      { id: 'unit-stabilimento-marche', organizationId: 'org-csr-demo', name: 'Stabilimento Produttivo Marche', code: 'STAB-01', municipality: 'Comune Demo — Distretto Industriale', unitType: 'PLANT', scope: 'regional_national' },
+      { id: 'unit-hub-logistica', organizationId: 'org-csr-demo', name: 'Hub Logistico Centro-Nord', code: 'HUB-LOG-02', municipality: 'Area Industriale Valle del Tronto', unitType: 'LOGISTICS_HUB', scope: 'global' },
     ],
+
     scopeDatasets: [
       {
         id: 'DS-ECO-2026-21',
@@ -75,10 +106,12 @@ export function createSeed() {
       },
     ],
     orders: [
-      { id: 'ORD-DEMO-0142', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', siteId: 'site-ponte-demo', pairs: 200, totalCents: 1500000, devolutionRate: 30, status: 'CONFIRMED', confirmedAt: '2026-10-12T09:00:00.000Z' },
-      { id: 'ORD-DEMO-0118', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', siteId: 'site-ponte-demo', pairs: 80, totalCents: 600000, devolutionRate: 30, status: 'CONFIRMED', confirmedAt: '2026-09-21T11:00:00.000Z' },
-      { id: 'ORD-DEMO-0097', organizationId: 'org-sub-demo', organizationName: 'Subappaltatore Alpi Demo S.r.l.', siteId: 'site-ponte-demo', pairs: 40, totalCents: 300000, devolutionRate: 30, status: 'CONFIRMED', confirmedAt: '2026-09-18T15:30:00.000Z' },
-      { id: 'ORD-DEMO-0088', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', siteId: 'site-borgo-demo', pairs: 25, totalCents: 187500, devolutionRate: 30, status: 'CONFIRMED', confirmedAt: '2026-08-30T08:45:00.000Z' },
+      { id: 'ORD-DEMO-0142', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', siteId: 'site-ponte-demo', pairs: 200, totalCents: 1500000, devolutionRate: 30, exenaFundCents: 450000, matchingGrantMode: 'none', matchingGrantRate: 0, matchingGrantCents: 0, status: 'CONFIRMED', confirmedAt: '2026-10-12T09:00:00.000Z' },
+      { id: 'ORD-DEMO-0118', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', siteId: 'site-ponte-demo', pairs: 80, totalCents: 600000, devolutionRate: 30, exenaFundCents: 180000, matchingGrantMode: 'none', matchingGrantRate: 0, matchingGrantCents: 0, status: 'CONFIRMED', confirmedAt: '2026-09-21T11:00:00.000Z' },
+      { id: 'ORD-DEMO-0097', organizationId: 'org-sub-demo', organizationName: 'Subappaltatore Alpi Demo S.r.l.', siteId: 'site-ponte-demo', pairs: 40, totalCents: 300000, devolutionRate: 30, exenaFundCents: 90000, matchingGrantMode: 'none', matchingGrantRate: 0, matchingGrantCents: 0, status: 'CONFIRMED', confirmedAt: '2026-09-18T15:30:00.000Z' },
+      { id: 'ORD-DEMO-0088', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', siteId: 'site-borgo-demo', pairs: 25, totalCents: 187500, devolutionRate: 30, exenaFundCents: 56250, matchingGrantMode: 'none', matchingGrantRate: 0, matchingGrantCents: 0, status: 'CONFIRMED', confirmedAt: '2026-08-30T08:45:00.000Z' },
+      { id: 'ORD-CSR-0201', organizationId: 'org-csr-demo', organizationName: 'Manifattura Sibillini S.p.A.', siteId: 'unit-stabilimento-marche', pairs: 150, totalCents: 1125000, devolutionRate: 30, exenaFundCents: 337500, matchingGrantMode: 'match', matchingGrantRate: 30, matchingGrantCents: 337500, totalFundCents: 675000, status: 'CONFIRMED', confirmedAt: '2026-10-10T10:00:00.000Z' },
+      { id: 'ORD-CSR-0202', organizationId: 'org-csr-demo', organizationName: 'Manifattura Sibillini S.p.A.', siteId: 'unit-hub-logistica', pairs: 50, totalCents: 375000, devolutionRate: 30, exenaFundCents: 112500, matchingGrantMode: 'custom', matchingGrantRate: 20, matchingGrantCents: 75000, totalFundCents: 187500, status: 'CONFIRMED', confirmedAt: '2026-10-15T14:30:00.000Z' },
     ],
     attestations: [
       {
@@ -100,7 +133,18 @@ export function createSeed() {
           { at: '2026-09-24T10:00:00.000Z', actor: 'Tesoreria demo', event: 'Versamento registrato; verifica in attesa' },
         ],
       },
+      {
+        id: 'ATT-CSR-0201', orderId: 'ORD-CSR-0201', pairs: 150, totalCents: 1125000, fundCents: 675000,
+        status: 'VERIFIED', publicToken: 'demo_fund_csr_789acde1234567890abcdef123456789', transferReference: 'Bonifico Shared Value •••• 9920', transferredAt: '2026-10-12T11:00:00.000Z',
+        verifiedBy: 'Startup garante — revisore demo', version: 1,
+        auditTrail: [
+          { at: '2026-10-10T10:00:00.000Z', actor: 'Sistema ordini', event: 'Ordine fornitura CSR confermato: 150 paia con Matching Grant 30% (Partner Promotore)' },
+          { at: '2026-10-12T11:00:00.000Z', actor: 'Tesoreria demo', event: 'Versamento quota Exena (3.375 €) + Matching Grant Impresa (3.375 €) registrato' },
+          { at: '2026-10-13T15:00:00.000Z', actor: 'Startup garante — revisore demo', event: 'Riconciliazione completata: totale fondo 6.750 € accreditato per progetti territoriali' },
+        ],
+      },
     ],
+
     evidenceDocuments: [
       { id: 'EV-LCA-001', type: 'LCA_DATASET', title: 'Dataset LCA modello demo v2.1', status: 'VERIFIED', version: '2.1', updatedAt: '2026-10-18T10:30:00.000Z', sourceId: 'DS-ECO-2026-21' },
       { id: 'EV-BANK-0142', type: 'BANK_RECEIPT', title: 'Giustificativo versamento ORD-DEMO-0142', status: 'VERIFIED', version: '1.0', updatedAt: '2026-10-14T10:00:00.000Z', sourceId: 'ATT-DEMO-0142' },
@@ -114,10 +158,19 @@ export function createSeed() {
     reports: [
       {
         id: 'REP-DEMO-001', template: 'AREA_SISMA', title: 'Rendicontazione di Impatto Sociale — Area Sisma',
+        organizationId: 'org-gc-demo',
         siteId: null, period: { from: '2026-08-01', to: '2026-10-23' }, narrative: 'Sintesi dimostrativa del contributo della fornitura alla rigenerazione delle comunità interne.',
         status: 'VERIFIED', version: 1, createdAt: '2026-10-16T09:00:00.000Z', updatedAt: '2026-10-16T09:00:00.000Z', reviewNote: 'Bozza verificata in ambiente demo.',
         evidenceIds: ['EV-LCA-001', 'EV-BANK-0142', 'EV-AUDIT-0142'],
         metrics: { pairs: 345, totalCents: 2587500, fundCents: 776250, interventions: 3, orderIds: ['ORD-DEMO-0142', 'ORD-DEMO-0118', 'ORD-DEMO-0097', 'ORD-DEMO-0088'], organizationIds: ['org-gc-demo', 'org-sub-demo'] },
+      },
+      {
+        id: 'REP-CSR-001', template: 'AREA_SISMA', title: 'Bilancio di Sostenibilità & Impatto Territoriale — Manifattura Sibillini',
+        organizationId: 'org-csr-demo',
+        siteId: null, period: { from: '2026-09-01', to: '2026-10-23' }, narrative: 'Rendicontazione di impatto integrata con Matching Grant e fornitura DPI sostenibile per stabilimenti e filiera.',
+        status: 'VERIFIED', version: 1, createdAt: '2026-10-18T10:00:00.000Z', updatedAt: '2026-10-18T10:00:00.000Z', reviewNote: 'Rendicontazione validata con Matching Grant paritario al 30% come Partner Promotore.',
+        evidenceIds: ['EV-LCA-001', 'EV-AUDIT-0142'],
+        metrics: { pairs: 200, totalCents: 1500000, fundCents: 862500, interventions: 3, orderIds: ['ORD-CSR-0201', 'ORD-CSR-0202'], organizationIds: ['org-csr-demo'] },
       },
     ],
     packs: [
@@ -199,6 +252,13 @@ export function createSeed() {
         projects: [{ name: 'Filiera Ponte Vallone — progetto demo', municipality: 'Comune Demo — Area Sisma', description: 'Partecipazione dimostrativa alla rendicontazione unitaria del cantiere come impresa subappaltatrice.', publicEvidence: 'Relazione pubblica di filiera — demo v1.0' }],
         sourceAttestationId: null, publishedAt: '2026-10-19T09:00:00.000Z', updatedAt: '2026-10-19T09:00:00.000Z', removedAt: null,
         reviewEvents: [{ at: '2026-10-19T09:00:00.000Z', actor: 'Startup garante — revisore demo', event: 'Consenso e perimetro pubblicabile verificati in ambiente demo' }], rectifications: [],
+      },
+      {
+        id: 'PAR-CSR-001', publicSlug: 'manifattura-sibillini-demo', organizationName: 'Manifattura Sibillini S.p.A.', consentToPublish: true,
+        municipalities: ['Comune Demo — Distretto Industriale'], joinedAt: '2026-10-10T10:00:00.000Z', status: 'PUBLISHED', version: 1,
+        projects: [{ name: 'Fornitura DPI e Sostegno Comunità', municipality: 'Comune Demo — Distretto Industriale', description: 'Partecipazione al programma con Matching Grant paritario al 30% come Partner Promotore.', publicEvidence: 'Attestazione Fondo ATT-CSR-0201 verificata' }],
+        sourceAttestationId: 'ATT-CSR-0201', publishedAt: '2026-10-12T12:00:00.000Z', updatedAt: '2026-10-12T12:00:00.000Z', removedAt: null,
+        reviewEvents: [{ at: '2026-10-12T12:00:00.000Z', actor: 'Startup garante — revisore demo', event: 'Profilo Partner Promotore CSR verificato' }], rectifications: [],
       },
       {
         id: 'PAR-DEMO-003', publicSlug: 'impresa-bozza-demo', organizationName: 'Impresa Bozza Demo S.r.l.', consentToPublish: false,

@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import LandingPage from '../App.jsx';
 import { DemoNotice, ErrorState, LoadingState, useApiData } from './ui.jsx';
+import { api } from './api.js';
 import { RouteErrorBoundary } from './RouteErrorBoundary.jsx';
 
 const Scope3Page = lazy(() => import('./Scope3Page.jsx').then((module) => ({ default: module.Scope3Page })));
@@ -118,6 +119,27 @@ function WorkspaceLayout() {
     setToasts((items) => [...items, { id, type, message }]);
     window.setTimeout(() => setToasts((items) => items.filter((item) => item.id !== id)), 4500);
   }, []);
+
+  const [switching, setSwitching] = useState(false);
+  const handleSwitchOrg = async (organizationId) => {
+    if (!organizationId || organizationId === data?.organization?.id) return;
+    setSwitching(true);
+    try {
+      await api('/area1/organization/switch', {
+        method: 'POST',
+        body: JSON.stringify({ organizationId })
+      });
+      const targetOrg = data?.organizations?.find((o) => o.id === organizationId);
+      notify('success', `Profilo attivo: ${targetOrg?.name || organizationId}`);
+      await reload();
+      window.dispatchEvent(new Event('sibillini:org-changed'));
+    } catch (err) {
+      notify('error', 'Impossibile cambiare organizzazione: ' + err.message);
+    } finally {
+      setSwitching(false);
+    }
+  };
+
   const context = useMemo(() => ({ bootstrap: data, notify }), [data, notify]);
 
   return (
@@ -137,7 +159,7 @@ function WorkspaceLayout() {
           <div className="workspace-sidebar__lower">
             <div className="workspace-assurance"><ShieldCheck size={20} /><div><b>Presidio del garante</b><p>Stati di revisione separati dai dati e dalle evidenze.</p></div></div>
             <Link className="workspace-back" to="/"><ArrowLeft size={17} />Torna ai servizi</Link>
-            <div className="workspace-user"><span>{isPublicRegister ? 'C14' : 'ED'}</span><div><b>{isPublicRegister ? 'Accesso pubblico' : 'ESG Manager demo'}</b><small>{isPublicRegister ? 'Nessuna identità richiesta · dati aggregati' : 'Identità non definitiva · RBAC da collegare'}</small></div></div>
+            <div className="workspace-user"><span>{isPublicRegister ? 'C14' : data?.organization?.profileType === 'CSR_ORIENTED' ? 'CSR' : 'GC'}</span><div><b>{isPublicRegister ? 'Accesso pubblico' : data?.organization?.name || 'Utente demo'}</b><small>{isPublicRegister ? 'Nessuna identità richiesta · dati aggregati' : data?.organization?.profileType === 'CSR_ORIENTED' ? 'Impresa CSR-oriented · Partner Promotore' : 'General Contractor · Commessa & Cantiere'}</small></div></div>
           </div>
         </aside>
         {menuOpen && <button className="workspace-scrim" type="button" aria-label="Chiudi navigazione" onClick={() => setMenuOpen(false)} />}
@@ -148,8 +170,30 @@ function WorkspaceLayout() {
             <div className="workspace-breadcrumb"><Home size={15} /><span>Area {Number(currentNavigation?.area || 1)}</span><span>/</span><b>{currentNavigation?.short || 'Workspace'}</b></div>
             <div className="workspace-topbar__actions">
               {isPublicRegister ? <span className="role-chip">REGISTRO PUBBLICO · LETTURA LIBERA</span> : <>
-                <label className="organization-switcher"><Building2 size={18} /><span className="sr-only">Organizzazione corrente</span><select aria-label="Organizzazione corrente" value={data?.organization.id || 'loading'} onChange={() => {}} disabled={!data}><option value={data?.organization.id || 'loading'}>{data?.organization.name || 'Caricamento organizzazione…'}</option></select><ChevronDown size={15} /></label>
-                <span className="role-chip">ORG ADMIN · DEMO</span>
+                <label className="organization-switcher" title="Cambia account / tenant per testare profili diversi">
+                  <Building2 size={18} />
+                  <span className="sr-only">Organizzazione corrente</span>
+                  <select
+                    aria-label="Organizzazione corrente"
+                    value={data?.organization?.id || ''}
+                    onChange={(e) => handleSwitchOrg(e.target.value)}
+                    disabled={!data || switching}
+                  >
+                    {(data?.organizations || [data?.organization]).filter(Boolean).map((org) => (
+                      <option key={org.id} value={org.id}>
+                        {org.name} ({org.profileType === 'CSR_ORIENTED' ? 'Impresa CSR' : org.role === 'SUBCONTRACTOR' ? 'Subappalto' : 'General Contractor'})
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown size={15} />
+                </label>
+                <span className="role-chip">
+                  {data?.organization?.profileType === 'CSR_ORIENTED'
+                    ? 'IMPRESA CSR · DEMO'
+                    : data?.organization?.role === 'SUBCONTRACTOR'
+                    ? 'SUBAPPALTATORE · DEMO'
+                    : 'GENERAL CONTRACTOR · DEMO'}
+                </span>
               </>}
             </div>
           </header>
@@ -157,7 +201,7 @@ function WorkspaceLayout() {
             {isPublicRegister ? <RouteErrorBoundary resetKey={location.pathname}><Suspense fallback={<LoadingState label="Caricamento registro pubblico" />}><Outlet /></Suspense></RouteErrorBoundary> : <>
               {loading && !data && <LoadingState label="Inizializzazione workspace demo" />}
               {error && <ErrorState error={error} onRetry={() => reload().catch(() => {})} />}
-              {data && <RouteErrorBoundary resetKey={location.pathname}><Suspense fallback={<LoadingState label="Caricamento modulo operativo" />}><Outlet /></Suspense></RouteErrorBoundary>}
+              {data && <RouteErrorBoundary resetKey={`${location.pathname}-${data?.organization?.id}`}><Suspense fallback={<LoadingState label="Caricamento modulo operativo" />}><Outlet key={data?.organization?.id} /></Suspense></RouteErrorBoundary>}
             </>}
           </main>
           <footer className="workspace-footer"><span>SIBILLINI IMPACT / AREE 01—05</span><span>Vertical slice C01—C16 · dati persistenti nel workspace demo</span></footer>

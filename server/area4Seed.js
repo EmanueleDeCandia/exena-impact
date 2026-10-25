@@ -8,6 +8,7 @@ export function createArea4Seed() {
     { id: 'MEM-BOARD-001', organizationId: 'org-gc-demo', displayName: 'Consigliere Board Demo', role: 'BOARD', boardAuthorized: true, briefingSpeaker: false, mfaDemoCode: '246810', demoAccessEnabled: true },
     { id: 'MEM-SPEAKER-001', organizationId: 'org-gc-demo', displayName: 'Relatrice Startup Demo', role: 'STARTUP_REVIEWER', boardAuthorized: false, briefingSpeaker: true, mfaDemoCode: '246810', demoAccessEnabled: true },
     { id: 'MEM-ESG-001', organizationId: 'org-gc-demo', displayName: 'ESG Manager non Board Demo', role: 'ESG_MANAGER', boardAuthorized: false, briefingSpeaker: false, mfaDemoCode: '246810', demoAccessEnabled: true },
+    { id: 'MEM-CSR-BOARD', organizationId: 'org-csr-demo', displayName: 'Consigliere Manifattura Sibillini (CSR)', role: 'BOARD', boardAuthorized: true, briefingSpeaker: false, mfaDemoCode: '246810', demoAccessEnabled: true },
     { id: 'MEM-BOARD-OTHER', organizationId: 'org-other-demo', displayName: 'Board Altra Organizzazione Demo', role: 'BOARD', boardAuthorized: true, briefingSpeaker: false, mfaDemoCode: '246810', demoAccessEnabled: true },
   ];
   const agenda = [
@@ -42,6 +43,7 @@ export function createArea4Seed() {
     ],
     fundDirectionWindows: [
       { id: 'GOV-WIN-2026', organizationId: 'org-gc-demo', title: 'Indirizzo territoriale Fondo 2026 — demo', ruleVersion: 'REG-FONDO-2026.1', eligibleOrderIds: ['ORD-DEMO-0142'], opensAt: '2026-10-20T08:00:00.000Z', cutoffAt: '2026-12-15T16:00:00.000Z', timeZone: 'Europe/Rome' },
+      { id: 'GOV-WIN-CSR-2026', organizationId: 'org-csr-demo', title: 'Indirizzo territoriale Fondo 2026 — Manifattura Sibillini (CSR)', ruleVersion: 'REG-FONDO-2026.1', eligibleOrderIds: ['ORD-CSR-0201'], opensAt: '2026-10-15T08:00:00.000Z', cutoffAt: '2026-12-20T16:00:00.000Z', timeZone: 'Europe/Rome' },
       { id: 'GOV-WIN-2025', organizationId: 'org-gc-demo', title: 'Archivio indirizzo Fondo 2025 — demo', ruleVersion: 'REG-FONDO-2025.4', eligibleOrderIds: ['ORD-DEMO-0118'], opensAt: '2025-11-01T08:00:00.000Z', cutoffAt: '2025-12-15T16:00:00.000Z', timeZone: 'Europe/Rome' },
     ],
     governancePreferences: [{
