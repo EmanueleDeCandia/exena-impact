@@ -1,4 +1,4 @@
-import { createContext, lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -175,7 +175,7 @@ function WorkspaceLayout() {
     }
   };
 
-  const context = useMemo(() => ({ bootstrap: data, notify }), [data, notify]);
+  const context = useMemo(() => ({ bootstrap: data, data, notify }), [data, notify]);
 
   const navGroups = [
     { area: '01', label: 'COMPLIANCE ESG' },

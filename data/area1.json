@@ -3,20 +3,18 @@
     "schemaVersion": 6,
     "demo": true,
     "notice": "Dati sintetici per validazione funzionale. Non utilizzare per reporting, revisione o finalità legali.",
-    "updatedAt": "2026-10-25T20:19:52.537Z"
+    "updatedAt": "2026-10-25T20:31:32.715Z"
   },
   "organization": {
-    "id": "org-forn-green",
-    "name": "Packaging Verde S.r.l.",
-    "profileType": "CSR_ORIENTED",
-    "role": "SUBCONTRACTOR",
-    "tierRole": "SUPPLIER",
-    "tierLevel": 1,
-    "tierLabel": "Fornitore 1° Livello (Tier 1 Diretto · Packaging)",
+    "id": "org-gc-demo",
+    "name": "General Contractor Demo S.p.A.",
+    "profileType": "CONSTRUCTION",
+    "role": "ORG_ADMIN",
     "siteIds": [
-      "unit-stabilimento-marche"
+      "site-ponte-demo",
+      "site-borgo-demo"
     ],
-    "partnershipRole": "ADHERING_ENTERPRISE"
+    "partnershipRole": "PROMOTER_PARTNER"
   },
   "sites": [
     {
@@ -1882,11 +1880,11 @@
       "expiresAt": "2026-10-26T00:12:26.983Z"
     },
     {
-      "token": "8372437858344f7690c48b447dd533af669010b8185146adbf56d2fa83f6c677",
-      "memberId": "OP-PROC-001",
-      "organizationId": "org-gc-demo",
-      "createdAt": "2026-10-25T20:19:26.623Z",
-      "expiresAt": "2026-10-26T04:19:26.624Z"
+      "token": "09e7ebf54933460fade3195f436b5ddf649c20b9fabf4907b8e1ecda537a746e",
+      "memberId": "OP-CSR-PROC",
+      "organizationId": "org-csr-demo",
+      "createdAt": "2026-10-25T20:30:40.987Z",
+      "expiresAt": "2026-10-26T04:30:40.987Z"
     }
   ],
   "productCatalog": [
