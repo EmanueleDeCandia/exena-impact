@@ -1,0 +1,2167 @@
+{
+  "meta": {
+    "schemaVersion": 5,
+    "demo": true,
+    "notice": "Dati sintetici per validazione funzionale. Non utilizzare per reporting, revisione o finalità legali.",
+    "updatedAt": "2026-10-23T09:00:00.000Z"
+  },
+  "organization": {
+    "id": "org-gc-demo",
+    "name": "General Contractor Demo S.p.A.",
+    "role": "ORG_ADMIN",
+    "siteIds": [
+      "site-ponte-demo",
+      "site-borgo-demo"
+    ]
+  },
+  "sites": [
+    {
+      "id": "site-ponte-demo",
+      "name": "Ponte Vallone",
+      "code": "CANT-DEMO-01",
+      "municipality": "Comune Demo — Area Sisma"
+    },
+    {
+      "id": "site-borgo-demo",
+      "name": "Rigenerazione Borgo Alto",
+      "code": "CANT-DEMO-02",
+      "municipality": "Borgo Demo — Sibillini"
+    }
+  ],
+  "scopeDatasets": [
+    {
+      "id": "DS-ECO-2026-21",
+      "productModel": "Exena Eco S3S — modello demo",
+      "lot": "LOT-DEMO-A",
+      "version": "2.1",
+      "status": "VERIFIED",
+      "unit": "1 paio di calzature",
+      "carbonFootprintKg": 18.6,
+      "conventionalFootprintKg": 22.85,
+      "avoidedKg": 4.25,
+      "referenceYear": 2026,
+      "methodology": "ISO 14040/14044 — dataset dimostrativo",
+      "boundary": "Cradle-to-grave — perimetro dimostrativo",
+      "source": "LCA-DEMO-2026-V2.1",
+      "reviewedBy": "Startup garante — revisore demo",
+      "updatedAt": "2026-10-18T10:30:00.000Z",
+      "contentHash": "demo-hash-21-7ab9f2",
+      "factors": [
+        {
+          "stage": "Materiali",
+          "kgCo2e": 9.4
+        },
+        {
+          "stage": "Produzione",
+          "kgCo2e": 5.1
+        },
+        {
+          "stage": "Logistica",
+          "kgCo2e": 1.7
+        },
+        {
+          "stage": "Packaging",
+          "kgCo2e": 0.8
+        },
+        {
+          "stage": "Fine vita",
+          "kgCo2e": 1.6
+        }
+      ]
+    },
+    {
+      "id": "DS-ECO-2026-20",
+      "productModel": "Exena Eco S3S — modello demo",
+      "lot": "LOT-DEMO-A",
+      "version": "2.0",
+      "status": "SUPERSEDED",
+      "unit": "1 paio di calzature",
+      "carbonFootprintKg": 18.95,
+      "conventionalFootprintKg": 23.2,
+      "avoidedKg": 4.25,
+      "referenceYear": 2026,
+      "methodology": "ISO 14040/14044 — dataset dimostrativo",
+      "boundary": "Cradle-to-grave — perimetro dimostrativo",
+      "source": "LCA-DEMO-2026-V2.0",
+      "reviewedBy": "Startup garante — revisore demo",
+      "updatedAt": "2026-09-28T14:00:00.000Z",
+      "contentHash": "demo-hash-20-19c4a1",
+      "factors": [
+        {
+          "stage": "Materiali",
+          "kgCo2e": 9.65
+        },
+        {
+          "stage": "Produzione",
+          "kgCo2e": 5.1
+        },
+        {
+          "stage": "Logistica",
+          "kgCo2e": 1.75
+        },
+        {
+          "stage": "Packaging",
+          "kgCo2e": 0.8
+        },
+        {
+          "stage": "Fine vita",
+          "kgCo2e": 1.65
+        }
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-DEMO-0142",
+      "organizationId": "org-gc-demo",
+      "organizationName": "General Contractor Demo S.p.A.",
+      "siteId": "site-ponte-demo",
+      "pairs": 200,
+      "totalCents": 1500000,
+      "devolutionRate": 30,
+      "status": "CONFIRMED",
+      "confirmedAt": "2026-10-12T09:00:00.000Z"
+    },
+    {
+      "id": "ORD-DEMO-0118",
+      "organizationId": "org-gc-demo",
+      "organizationName": "General Contractor Demo S.p.A.",
+      "siteId": "site-ponte-demo",
+      "pairs": 80,
+      "totalCents": 600000,
+      "devolutionRate": 30,
+      "status": "CONFIRMED",
+      "confirmedAt": "2026-09-21T11:00:00.000Z"
+    },
+    {
+      "id": "ORD-DEMO-0097",
+      "organizationId": "org-sub-demo",
+      "organizationName": "Subappaltatore Alpi Demo S.r.l.",
+      "siteId": "site-ponte-demo",
+      "pairs": 40,
+      "totalCents": 300000,
+      "devolutionRate": 30,
+      "status": "CONFIRMED",
+      "confirmedAt": "2026-09-18T15:30:00.000Z"
+    },
+    {
+      "id": "ORD-DEMO-0088",
+      "organizationId": "org-gc-demo",
+      "organizationName": "General Contractor Demo S.p.A.",
+      "siteId": "site-borgo-demo",
+      "pairs": 25,
+      "totalCents": 187500,
+      "devolutionRate": 30,
+      "status": "CONFIRMED",
+      "confirmedAt": "2026-08-30T08:45:00.000Z"
+    }
+  ],
+  "attestations": [
+    {
+      "id": "ATT-DEMO-0142",
+      "orderId": "ORD-DEMO-0142",
+      "pairs": 200,
+      "totalCents": 1500000,
+      "fundCents": 450000,
+      "status": "VERIFIED",
+      "publicToken": "demo_fund_7f9ab42c81e64d3aa10f76c24e98bd01",
+      "transferReference": "Bonifico •••• 4521",
+      "transferredAt": "2026-10-14T10:00:00.000Z",
+      "verifiedBy": "Startup garante — revisore demo",
+      "version": 1,
+      "auditTrail": [
+        {
+          "at": "2026-10-12T09:00:00.000Z",
+          "actor": "Sistema ordini",
+          "event": "Ordine confermato e quota calcolata"
+        },
+        {
+          "at": "2026-10-14T10:00:00.000Z",
+          "actor": "Tesoreria demo",
+          "event": "Versamento registrato con riferimento mascherato"
+        },
+        {
+          "at": "2026-10-15T12:00:00.000Z",
+          "actor": "Startup garante — revisore demo",
+          "event": "Riconciliazione e verifica completate"
+        }
+      ]
+    },
+    {
+      "id": "ATT-DEMO-0118",
+      "orderId": "ORD-DEMO-0118",
+      "pairs": 80,
+      "totalCents": 600000,
+      "fundCents": 180000,
+      "status": "PENDING_REVIEW",
+      "publicToken": "demo_fund_2c68f14a9de74271b83f506ad9c37e55",
+      "transferReference": "Bonifico •••• 4470",
+      "transferredAt": "2026-09-24T10:00:00.000Z",
+      "verifiedBy": null,
+      "version": 1,
+      "auditTrail": [
+        {
+          "at": "2026-09-21T11:00:00.000Z",
+          "actor": "Sistema ordini",
+          "event": "Ordine confermato e quota calcolata"
+        },
+        {
+          "at": "2026-09-24T10:00:00.000Z",
+          "actor": "Tesoreria demo",
+          "event": "Versamento registrato; verifica in attesa"
+        }
+      ]
+    }
+  ],
+  "evidenceDocuments": [
+    {
+      "id": "EV-LCA-001",
+      "type": "LCA_DATASET",
+      "title": "Dataset LCA modello demo v2.1",
+      "status": "VERIFIED",
+      "version": "2.1",
+      "updatedAt": "2026-10-18T10:30:00.000Z",
+      "sourceId": "DS-ECO-2026-21"
+    },
+    {
+      "id": "EV-BANK-0142",
+      "type": "BANK_RECEIPT",
+      "title": "Giustificativo versamento ORD-DEMO-0142",
+      "status": "VERIFIED",
+      "version": "1.0",
+      "updatedAt": "2026-10-14T10:00:00.000Z",
+      "sourceId": "ATT-DEMO-0142"
+    },
+    {
+      "id": "EV-AUDIT-0142",
+      "type": "AUDIT_TRAIL",
+      "title": "Audit trail devoluzione ORD-DEMO-0142",
+      "status": "VERIFIED",
+      "version": "1.0",
+      "updatedAt": "2026-10-15T12:00:00.000Z",
+      "sourceId": "ATT-DEMO-0142"
+    },
+    {
+      "id": "EV-EF-001",
+      "type": "EMISSION_FACTORS",
+      "title": "Fattori di emissione modello demo",
+      "status": "VERIFIED",
+      "version": "2.1",
+      "updatedAt": "2026-10-18T10:30:00.000Z",
+      "sourceId": "DS-ECO-2026-21"
+    },
+    {
+      "id": "EV-SOCIAL-001",
+      "type": "SOCIAL_REPORT",
+      "title": "Sintesi impatto sociale Area Sisma — demo",
+      "status": "VERIFIED",
+      "version": "1.0",
+      "updatedAt": "2026-10-16T09:00:00.000Z",
+      "sourceId": "REP-DEMO-001"
+    },
+    {
+      "id": "EV-PROC-001",
+      "type": "PROCUREMENT_POLICY",
+      "title": "Protocollo acquisti sostenibili — demo",
+      "status": "VERIFIED",
+      "version": "1.2",
+      "updatedAt": "2026-10-01T09:00:00.000Z",
+      "sourceId": null
+    },
+    {
+      "id": "EV-CPT-001",
+      "type": "CPT_STATEMENT",
+      "title": "Relazione benessere e sicurezza lavoratori — demo",
+      "status": "VERIFIED",
+      "version": "1.0",
+      "updatedAt": "2026-10-10T09:00:00.000Z",
+      "sourceId": null
+    },
+    {
+      "id": "EV-MGMT-001",
+      "type": "MANAGEMENT_REPRESENTATION",
+      "title": "Dichiarazione del management — demo",
+      "status": "VERIFIED",
+      "version": "1.0",
+      "updatedAt": "2026-10-17T09:00:00.000Z",
+      "sourceId": null
+    }
+  ],
+  "reports": [
+    {
+      "id": "REP-DEMO-001",
+      "template": "AREA_SISMA",
+      "title": "Rendicontazione di Impatto Sociale — Area Sisma",
+      "siteId": null,
+      "period": {
+        "from": "2026-08-01",
+        "to": "2026-10-23"
+      },
+      "narrative": "Sintesi dimostrativa del contributo della fornitura alla rigenerazione delle comunità interne.",
+      "status": "VERIFIED",
+      "version": 1,
+      "createdAt": "2026-10-16T09:00:00.000Z",
+      "updatedAt": "2026-10-16T09:00:00.000Z",
+      "reviewNote": "Bozza verificata in ambiente demo.",
+      "evidenceIds": [
+        "EV-LCA-001",
+        "EV-BANK-0142",
+        "EV-AUDIT-0142"
+      ],
+      "metrics": {
+        "pairs": 345,
+        "totalCents": 2587500,
+        "fundCents": 776250,
+        "interventions": 3,
+        "orderIds": [
+          "ORD-DEMO-0142",
+          "ORD-DEMO-0118",
+          "ORD-DEMO-0097",
+          "ORD-DEMO-0088"
+        ],
+        "organizationIds": [
+          "org-gc-demo",
+          "org-sub-demo"
+        ]
+      }
+    }
+  ],
+  "packs": [
+    {
+      "id": "PACK-BANK-001",
+      "type": "BANK",
+      "title": "Pacchetto Rating ESG Bancario — demo",
+      "status": "DRAFT",
+      "version": 1,
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "updatedAt": "2026-10-19T09:00:00.000Z",
+      "reviewNote": null,
+      "items": [
+        {
+          "id": "bank-lca",
+          "label": "Sintesi LCA e Carbon Footprint",
+          "evidenceId": "EV-LCA-001",
+          "required": true
+        },
+        {
+          "id": "bank-fund",
+          "label": "Attestazione e giustificativo del Fondo",
+          "evidenceId": "EV-BANK-0142",
+          "required": true
+        },
+        {
+          "id": "bank-social",
+          "label": "Sintesi impatto sociale",
+          "evidenceId": "EV-SOCIAL-001",
+          "required": true
+        },
+        {
+          "id": "bank-policy",
+          "label": "Protocollo di approvvigionamento sostenibile",
+          "evidenceId": null,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "PACK-ASSUR-001",
+      "type": "ASSURANCE",
+      "title": "Fascicolo Ready for Assurance — demo",
+      "status": "VERIFIED",
+      "version": 2,
+      "createdAt": "2026-10-17T09:00:00.000Z",
+      "updatedAt": "2026-10-20T09:00:00.000Z",
+      "reviewNote": "Completezza formale verificata in ambiente demo; non costituisce attestazione CSRD.",
+      "items": [
+        {
+          "id": "ass-receipt",
+          "label": "Pezze giustificative bancarie",
+          "evidenceId": "EV-BANK-0142",
+          "required": true
+        },
+        {
+          "id": "ass-trail",
+          "label": "Audit trail delle devoluzioni",
+          "evidenceId": "EV-AUDIT-0142",
+          "required": true
+        },
+        {
+          "id": "ass-factors",
+          "label": "Fattori di emissione della calzatura",
+          "evidenceId": "EV-EF-001",
+          "required": true
+        },
+        {
+          "id": "ass-lca",
+          "label": "Dataset LCA versionato",
+          "evidenceId": "EV-LCA-001",
+          "required": true
+        },
+        {
+          "id": "ass-management",
+          "label": "Dichiarazione del management",
+          "evidenceId": "EV-MGMT-001",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "brandAssets": [
+    {
+      "id": "LOGO-GC-DEMO",
+      "organizationId": "org-gc-demo",
+      "originalName": "logo-general-contractor-demo.svg",
+      "mime": "image/svg+xml",
+      "dataUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgOTAiPjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iOTAiIGZpbGw9IiNmZmZmZmYiLz48cGF0aCBkPSJNMTggNjUgNDIgMjBsMjQgNDVIMThabTQyIDAgMjQtNDUgMjQgNDVINjBaIiBmaWxsPSIjMTk0N2U1Ii8+PHRleHQgeD0iOTYiIHk9IjY5IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzExMTExMSI+R0M8L3RleHQ+PC9zdmc+",
+      "createdAt": "2026-10-20T09:00:00.000Z",
+      "status": "APPROVED_DEMO"
+    }
+  ],
+  "brandTextVersions": [
+    {
+      "id": "TXT-DEMO-10",
+      "version": "1.0",
+      "status": "APPROVED_DEMO",
+      "text": "Una fornitura DPI collegata a dati ESG, rendicontazione di filiera e rigenerazione delle aree interne. Contenuto e dati dimostrativi.",
+      "approvedBy": "Redazione Startup — demo",
+      "approvedAt": "2026-10-20T09:00:00.000Z"
+    },
+    {
+      "id": "TXT-DEMO-11",
+      "version": "1.1",
+      "status": "APPROVED_DEMO",
+      "text": "Dalla calzatura tecnica a un percorso documentale condiviso con imprese, cantieri e comunità. Asset generato in ambiente demo.",
+      "approvedBy": "Redazione Startup — demo",
+      "approvedAt": "2026-10-21T09:00:00.000Z"
+    }
+  ],
+  "brandGenerations": [],
+  "brandInvitations": [],
+  "editorialContents": [
+    {
+      "id": "EDI-DEMO-CASE-01",
+      "type": "CASE_HISTORY",
+      "title": "Quando la fornitura DPI diventa un’infrastruttura di dati per il cantiere",
+      "slug": "fornitura-dpi-infrastruttura-dati-cantiere-demo",
+      "excerpt": "Una case history interamente dimostrativa sul collegamento tra fabbisogno tecnico, dati di filiera e rendicontazione territoriale.",
+      "metaDescription": "Case history demo: fornitura DPI, dati ESG e rendicontazione di cantiere in un percorso tracciato dalla Startup garante.",
+      "image": "/images/hero-worker.jpg",
+      "imageAlt": "Responsabile della sicurezza in un cantiere infrastrutturale tra i monti Sibillini",
+      "sections": [
+        {
+          "heading": "Il punto di partenza",
+          "text": "Nel progetto dimostrativo di Ponte Vallone, il General Contractor parte da un fabbisogno concreto: 200 paia di calzature e la necessità di tenere insieme consegna, dati ambientali e documentazione della commessa."
+        },
+        {
+          "heading": "Dal dato alla relazione di filiera",
+          "text": "Il dataset LCA v2.1 e l’attestazione della devoluzione del 30% sono collegati alla stessa fornitura. Ogni valore numerico di questa pagina deriva dai dati sintetici associati in calce e non descrive una commessa reale."
+        },
+        {
+          "heading": "Un risultato da verificare, non da celebrare",
+          "text": "Il valore editoriale sta nel percorso di controllo: versioni, fonti e revisioni rendono il racconto verificabile. La redazione della Startup conserva il proprio giudizio indipendente; l’impresa verifica i fatti che la riguardano."
+        }
+      ],
+      "linkedData": {
+        "siteId": "site-ponte-demo",
+        "datasetId": "DS-ECO-2026-21",
+        "attestationId": "ATT-DEMO-0142",
+        "reportId": "REP-DEMO-001"
+      },
+      "status": "PUBLISHED",
+      "version": 2,
+      "author": "Redazione Startup — demo",
+      "factualApprovedVersion": 2,
+      "createdAt": "2026-10-18T09:00:00.000Z",
+      "updatedAt": "2026-10-21T09:00:00.000Z",
+      "publishedAt": "2026-10-21T09:00:00.000Z",
+      "archivedAt": null,
+      "previousVersions": [
+        {
+          "version": 1,
+          "title": "La fornitura DPI come infrastruttura di dati",
+          "updatedAt": "2026-10-18T09:00:00.000Z"
+        }
+      ],
+      "reviewEvents": [
+        {
+          "at": "2026-10-20T09:00:00.000Z",
+          "actor": "Impresa — verifica fatti demo",
+          "event": "Fatti e riferimenti numerici approvati in ambiente demo"
+        },
+        {
+          "at": "2026-10-21T09:00:00.000Z",
+          "actor": "Redazione Startup — demo",
+          "event": "Revisione editoriale finale e pubblicazione demo"
+        }
+      ],
+      "corrections": []
+    },
+    {
+      "id": "EDI-DEMO-BEST-01",
+      "type": "BEST_PRACTICE",
+      "title": "Dal fascicolo di consegna alla rendicontazione continua",
+      "slug": "dal-fascicolo-consegna-rendicontazione-continua-demo",
+      "excerpt": "Bozza demo di una Executive Page sul passaggio da documenti isolati a un percorso di evidenze condivise.",
+      "metaDescription": "Bozza dimostrativa sulle buone pratiche di rendicontazione nella filiera DPI.",
+      "image": "/images/sibillini-territory.jpg",
+      "imageAlt": "Volontari al lavoro su un sentiero vicino a un borgo montano",
+      "sections": [
+        {
+          "heading": "La buona pratica",
+          "text": "Bozza di analisi editoriale da completare con fonti approvate e verifica indipendente."
+        }
+      ],
+      "linkedData": {
+        "siteId": null,
+        "datasetId": "DS-ECO-2026-21",
+        "attestationId": null,
+        "reportId": null
+      },
+      "status": "DRAFT",
+      "version": 1,
+      "author": "Redazione Startup — demo",
+      "factualApprovedVersion": null,
+      "createdAt": "2026-10-22T09:00:00.000Z",
+      "updatedAt": "2026-10-22T09:00:00.000Z",
+      "publishedAt": null,
+      "archivedAt": null,
+      "previousVersions": [],
+      "reviewEvents": [],
+      "corrections": []
+    }
+  ],
+  "partnerEntries": [
+    {
+      "id": "PAR-DEMO-001",
+      "publicSlug": "general-contractor-demo",
+      "organizationName": "General Contractor Demo S.p.A.",
+      "consentToPublish": true,
+      "municipalities": [
+        "Comune Demo — Area Sisma"
+      ],
+      "joinedAt": "2026-10-15T09:00:00.000Z",
+      "status": "PUBLISHED",
+      "version": 1,
+      "projects": [
+        {
+          "name": "Ponte Vallone — progetto demo",
+          "municipality": "Comune Demo — Area Sisma",
+          "description": "Adozione dimostrativa di un percorso DPI collegato a dati ESG e rendicontazione di filiera.",
+          "publicEvidence": "Attestazione Fondo verificata in ambiente demo"
+        }
+      ],
+      "sourceAttestationId": "ATT-DEMO-0142",
+      "publishedAt": "2026-10-16T09:00:00.000Z",
+      "updatedAt": "2026-10-16T09:00:00.000Z",
+      "removedAt": null,
+      "reviewEvents": [
+        {
+          "at": "2026-10-16T09:00:00.000Z",
+          "actor": "Startup garante — revisore demo",
+          "event": "Consenso e progetto pubblico verificati in ambiente demo"
+        }
+      ],
+      "rectifications": []
+    },
+    {
+      "id": "PAR-DEMO-002",
+      "publicSlug": "subappaltatore-alpi-demo",
+      "organizationName": "Subappaltatore Alpi Demo S.r.l.",
+      "consentToPublish": true,
+      "municipalities": [
+        "Comune Demo — Area Sisma",
+        "Borgo Demo — Sibillini"
+      ],
+      "joinedAt": "2026-10-18T09:00:00.000Z",
+      "status": "PUBLISHED",
+      "version": 1,
+      "projects": [
+        {
+          "name": "Filiera Ponte Vallone — progetto demo",
+          "municipality": "Comune Demo — Area Sisma",
+          "description": "Partecipazione dimostrativa alla rendicontazione unitaria del cantiere come impresa subappaltatrice.",
+          "publicEvidence": "Relazione pubblica di filiera — demo v1.0"
+        }
+      ],
+      "sourceAttestationId": null,
+      "publishedAt": "2026-10-19T09:00:00.000Z",
+      "updatedAt": "2026-10-19T09:00:00.000Z",
+      "removedAt": null,
+      "reviewEvents": [
+        {
+          "at": "2026-10-19T09:00:00.000Z",
+          "actor": "Startup garante — revisore demo",
+          "event": "Consenso e perimetro pubblicabile verificati in ambiente demo"
+        }
+      ],
+      "rectifications": []
+    },
+    {
+      "id": "PAR-DEMO-003",
+      "publicSlug": "impresa-bozza-demo",
+      "organizationName": "Impresa Bozza Demo S.r.l.",
+      "consentToPublish": false,
+      "municipalities": [
+        "Borgo Demo — Sibillini"
+      ],
+      "joinedAt": "2026-10-23T09:00:00.000Z",
+      "status": "DRAFT",
+      "version": 1,
+      "projects": [
+        {
+          "name": "Progetto da definire",
+          "municipality": "Borgo Demo — Sibillini",
+          "description": "Bozza non pubblica.",
+          "publicEvidence": ""
+        }
+      ],
+      "sourceAttestationId": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-23T09:00:00.000Z",
+      "removedAt": null,
+      "reviewEvents": [],
+      "rectifications": []
+    }
+  ],
+  "hospitalityProperties": [
+    {
+      "id": "HOTEL-DEMO-01",
+      "name": "Albergo Diffuso Borgo Demo",
+      "municipality": "Borgo Demo — Sibillini",
+      "image": "/images/hospitality-borgo.png",
+      "description": "Camere dimostrative in edifici recuperati nel borgo, con coordinamento esterno della struttura partner.",
+      "amenities": [
+        "Accesso senza scale alla reception",
+        "Wi-Fi",
+        "Colazione convenzionata"
+      ],
+      "cancellationPolicy": "La richiesta può essere annullata senza penali finché la struttura non ha inviato una conferma esterna. Condizioni definitive comunicate dalla struttura prima dell’accettazione.",
+      "rooms": [
+        {
+          "id": "ROOM-BORGO-02",
+          "name": "Camera doppia convenzionata",
+          "capacity": 2,
+          "baseOccupancy": 2,
+          "ratePerNightCents": 7800,
+          "extraGuestPerNightCents": 0,
+          "taxPerPersonNightCents": 150,
+          "availabilityUpdatedAt": "2026-10-23T08:00:00.000Z",
+          "inventoryLive": false
+        }
+      ]
+    },
+    {
+      "id": "HOTEL-DEMO-02",
+      "name": "Agriturismo Valle Demo",
+      "municipality": "Valle Demo — Monti Sibillini",
+      "image": "/images/hospitality-agriturismo.png",
+      "description": "Soluzione dimostrativa per piccoli nuclei o trasferte, circondata da prati e percorsi rurali.",
+      "amenities": [
+        "Parcheggio",
+        "Colazione locale",
+        "Spazio esterno accessibile"
+      ],
+      "cancellationPolicy": "Annullamento della richiesta sempre disponibile nel portale. Eventuali condizioni del soggiorno sono indicate dalla struttura prima della conferma esterna.",
+      "rooms": [
+        {
+          "id": "ROOM-VALLE-04",
+          "name": "Camera famiglia",
+          "capacity": 4,
+          "baseOccupancy": 2,
+          "ratePerNightCents": 9500,
+          "extraGuestPerNightCents": 2000,
+          "taxPerPersonNightCents": 150,
+          "availabilityUpdatedAt": "2026-10-10T08:00:00.000Z",
+          "inventoryLive": false
+        }
+      ]
+    }
+  ],
+  "hospitalityRequests": [
+    {
+      "id": "OSP-DEMO-001",
+      "requestKey": "seed-hospitality-request",
+      "propertyId": "HOTEL-DEMO-01",
+      "roomId": "ROOM-BORGO-02",
+      "checkIn": "2026-11-20",
+      "checkOut": "2026-11-22",
+      "guests": 2,
+      "guestName": "Dipendente Demo",
+      "note": "Richiesta sintetica iniziale",
+      "status": "REQUESTED",
+      "currency": "EUR",
+      "nights": 2,
+      "roomSubtotalCents": 15600,
+      "extraGuestCents": 0,
+      "taxesCents": 600,
+      "totalCents": 16200,
+      "consents": {
+        "termsAccepted": true,
+        "privacyAccepted": true
+      },
+      "receiptId": "RIC-OSP-DEMO-001",
+      "createdAt": "2026-10-22T09:00:00.000Z",
+      "updatedAt": "2026-10-22T09:00:00.000Z",
+      "cancelledAt": null,
+      "events": [
+        {
+          "at": "2026-10-22T09:00:00.000Z",
+          "actor": "Portale hospitality demo",
+          "event": "Richiesta registrata; nessuna conferma di prenotazione"
+        }
+      ]
+    }
+  ],
+  "courses": [
+    {
+      "id": "COURSE-ERG-DEMO",
+      "title": "Ergonomia e uso corretto dei DPI",
+      "provider": "Startup innovativa — ente formativo demo",
+      "accreditationNotice": "Percorso e attestato dimostrativi: nessun accreditamento legale automatico e nessuna sostituzione degli obblighi formativi o della valutazione dei rischi.",
+      "verificationCriteria": "Completamento di video e trascrizione in ogni capitolo, quiz intermedi e test finale con punteggio minimo dell’80%. Il tempo di riproduzione non è l’unica prova.",
+      "durationMinutes": 60,
+      "passScorePercent": 80,
+      "chapters": [
+        {
+          "id": "CH-ERG-01",
+          "title": "Postura, appoggio e prevenzione",
+          "durationMinutes": 15,
+          "videoDurationSeconds": 8,
+          "videoUrl": "/media/ergonomia-capitolo-1.webm",
+          "captionsUrl": "/media/ergonomia-capitolo-1.vtt",
+          "transcript": [
+            "La calzatura tecnica è un dispositivo di protezione individuale e non sostituisce una postura di lavoro corretta. Nel contenuto dimostrativo osserviamo come appoggio, calzata e alternanza delle posizioni contribuiscano al comfort e alla prevenzione.",
+            "Il preposto verifica che il modello sia quello assegnato, che la calzata non ostacoli i movimenti e che eventuali segnali di usura o disagio vengano riportati. Il percorso non fornisce diagnosi mediche."
+          ],
+          "questions": [
+            {
+              "id": "Q-ERG-01A",
+              "prompt": "Quale comportamento è coerente con la prevenzione?",
+              "options": [
+                {
+                  "id": "A",
+                  "text": "Ignorare il disagio se la calzatura è nuova"
+                },
+                {
+                  "id": "B",
+                  "text": "Verificare calzata, appoggio e segnali di usura"
+                },
+                {
+                  "id": "C",
+                  "text": "Modificare autonomamente il DPI"
+                }
+              ],
+              "correctOptionId": "B",
+              "explanation": "Calzata, appoggio e integrità del DPI vanno controllati; il disagio non va normalizzato."
+            }
+          ]
+        },
+        {
+          "id": "CH-ERG-02",
+          "title": "Uso corretto e controllo del DPI",
+          "durationMinutes": 20,
+          "videoDurationSeconds": 8,
+          "videoUrl": "/media/ergonomia-capitolo-2.webm",
+          "captionsUrl": "/media/ergonomia-capitolo-2.vtt",
+          "transcript": [
+            "Prima dell’uso si controllano integrità, allacciatura, suola e pulizia. Una modifica non autorizzata può compromettere le prestazioni previste dal fabbricante e dal percorso di valutazione dei rischi.",
+            "Il lavoratore utilizza il DPI secondo le istruzioni ricevute; il preposto registra le anomalie e attiva la sostituzione secondo la procedura dell’organizzazione. I riferimenti di questo capitolo sono interamente dimostrativi."
+          ],
+          "questions": [
+            {
+              "id": "Q-ERG-02A",
+              "prompt": "Che cosa fare davanti a una suola danneggiata?",
+              "options": [
+                {
+                  "id": "A",
+                  "text": "Continuare fino a fine turno senza segnalare"
+                },
+                {
+                  "id": "B",
+                  "text": "Coprire il danno con nastro adesivo"
+                },
+                {
+                  "id": "C",
+                  "text": "Segnalare l’anomalia e seguire la procedura di sostituzione"
+                }
+              ],
+              "correctOptionId": "C",
+              "explanation": "Il danno viene segnalato e gestito con la procedura prevista, senza riparazioni improvvisate."
+            }
+          ]
+        },
+        {
+          "id": "CH-ERG-03",
+          "title": "Ruolo del preposto e tracciabilità",
+          "durationMinutes": 25,
+          "videoDurationSeconds": 8,
+          "videoUrl": "/media/ergonomia-capitolo-3.webm",
+          "captionsUrl": "/media/ergonomia-capitolo-3.vtt",
+          "transcript": [
+            "Il preposto promuove l’uso corretto del dispositivo, osserva le condizioni operative e favorisce la segnalazione tempestiva. La tracciabilità riguarda consegna, formazione, controlli e azioni successive.",
+            "Un attestato digitale può documentare il completamento di un percorso, ma non sostituisce la valutazione dei rischi, la sorveglianza sanitaria o gli obblighi formativi specifici. Questo attestato è demo e non costituisce accreditamento legale."
+          ],
+          "questions": [
+            {
+              "id": "Q-ERG-03A",
+              "prompt": "Che cosa dimostra l’attestato di questo percorso demo?",
+              "options": [
+                {
+                  "id": "A",
+                  "text": "Il completamento tracciato delle attività e dei test demo"
+                },
+                {
+                  "id": "B",
+                  "text": "Un accreditamento legale automatico"
+                },
+                {
+                  "id": "C",
+                  "text": "La sostituzione della valutazione dei rischi"
+                }
+              ],
+              "correctOptionId": "A",
+              "explanation": "L’attestato registra il completamento demo; non crea accreditamenti e non sostituisce altri obblighi."
+            }
+          ]
+        }
+      ],
+      "finalQuestions": [
+        {
+          "id": "Q-ERG-F01",
+          "chapterId": "CH-ERG-01",
+          "prompt": "Quale affermazione sul disagio è corretta?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Va sempre ignorato nei primi giorni"
+            },
+            {
+              "id": "B",
+              "text": "Va segnalato e valutato secondo procedura"
+            },
+            {
+              "id": "C",
+              "text": "Dimostra che il DPI è adeguato"
+            }
+          ],
+          "correctOptionId": "B",
+          "explanation": "Il disagio è un segnale da non normalizzare."
+        },
+        {
+          "id": "Q-ERG-F02",
+          "chapterId": "CH-ERG-02",
+          "prompt": "Chi definisce come gestire una modifica o sostituzione del DPI?",
+          "options": [
+            {
+              "id": "A",
+              "text": "La procedura dell’organizzazione e le istruzioni applicabili"
+            },
+            {
+              "id": "B",
+              "text": "Il singolo lavoratore senza alcun riferimento"
+            },
+            {
+              "id": "C",
+              "text": "Il portale di e-learning in autonomia"
+            }
+          ],
+          "correctOptionId": "A",
+          "explanation": "Il portale supporta la tracciabilità ma non decide modifiche tecniche."
+        },
+        {
+          "id": "Q-ERG-F03",
+          "chapterId": "CH-ERG-03",
+          "prompt": "Il tempo di riproduzione è sufficiente per il completamento?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Sì, è l’unica prova richiesta"
+            },
+            {
+              "id": "B",
+              "text": "Solo se il video è lungo"
+            },
+            {
+              "id": "C",
+              "text": "No, servono anche attività e verifiche di apprendimento"
+            }
+          ],
+          "correctOptionId": "C",
+          "explanation": "Il completamento combina video, trascrizione, quiz intermedi e test finale."
+        }
+      ]
+    }
+  ],
+  "courseEnrollments": [
+    {
+      "id": "ENR-DEMO-001",
+      "courseId": "COURSE-ERG-DEMO",
+      "organizationId": "org-gc-demo",
+      "learner": {
+        "displayName": "Preposto Demo",
+        "role": "Preposto"
+      },
+      "status": "NOT_STARTED",
+      "acceptedAt": null,
+      "deadlineAt": "2026-12-31T23:59:59.000Z",
+      "progress": {
+        "chapters": {}
+      },
+      "attempts": [],
+      "finalResult": null,
+      "certificateId": null,
+      "createdAt": "2026-10-23T09:00:00.000Z",
+      "updatedAt": "2026-10-23T09:00:00.000Z",
+      "events": []
+    },
+    {
+      "id": "ENR-DEMO-002",
+      "courseId": "COURSE-ERG-DEMO",
+      "organizationId": "org-gc-demo",
+      "learner": {
+        "displayName": "Capocantiere Demo",
+        "role": "Capocantiere"
+      },
+      "status": "COMPLETED",
+      "acceptedAt": "2026-10-20T09:00:00.000Z",
+      "deadlineAt": "2026-12-31T23:59:59.000Z",
+      "progress": {
+        "chapters": {
+          "CH-ERG-01": {
+            "videoCompleted": true,
+            "transcriptRead": true,
+            "quizPassed": true,
+            "completedAt": "2026-10-21T10:00:00.000Z",
+            "quizAttempts": 1
+          },
+          "CH-ERG-02": {
+            "videoCompleted": true,
+            "transcriptRead": true,
+            "quizPassed": true,
+            "completedAt": "2026-10-21T10:00:00.000Z",
+            "quizAttempts": 1
+          },
+          "CH-ERG-03": {
+            "videoCompleted": true,
+            "transcriptRead": true,
+            "quizPassed": true,
+            "completedAt": "2026-10-21T10:00:00.000Z",
+            "quizAttempts": 1
+          }
+        }
+      },
+      "attempts": [
+        {
+          "id": "FIN-DEMO-002",
+          "at": "2026-10-21T10:00:00.000Z",
+          "correct": 3,
+          "total": 3,
+          "percent": 100,
+          "passed": true
+        }
+      ],
+      "finalResult": {
+        "correct": 3,
+        "total": 3,
+        "percent": 100,
+        "passed": true,
+        "at": "2026-10-21T10:00:00.000Z"
+      },
+      "certificateId": "CERT-DEMO-0001",
+      "createdAt": "2026-10-20T09:00:00.000Z",
+      "updatedAt": "2026-10-21T10:00:00.000Z",
+      "events": [
+        {
+          "at": "2026-10-21T10:00:00.000Z",
+          "actor": "Piattaforma formativa demo",
+          "event": "Test finale superato e attestato demo emesso"
+        }
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "id": "CERT-DEMO-0001",
+      "code": "SI-ERGO-DEMO-0001",
+      "enrollmentId": "ENR-DEMO-002",
+      "courseId": "COURSE-ERG-DEMO",
+      "learnerName": "Capocantiere Demo",
+      "learnerRole": "Capocantiere",
+      "organizationId": "org-gc-demo",
+      "publicToken": "demo_learning_8a72f41c9e6b4d2f9a3c7e51b08d6f2a",
+      "status": "ACTIVE_DEMO",
+      "scorePercent": 100,
+      "issuedAt": "2026-10-21T10:00:00.000Z",
+      "revokedAt": null,
+      "events": [
+        {
+          "at": "2026-10-21T10:00:00.000Z",
+          "actor": "Piattaforma formativa demo",
+          "event": "Attestato demo emesso dopo completamento e test"
+        }
+      ]
+    }
+  ],
+  "governanceMembers": [
+    {
+      "id": "MEM-BOARD-001",
+      "organizationId": "org-gc-demo",
+      "displayName": "Consigliere Board Demo",
+      "role": "BOARD",
+      "boardAuthorized": true,
+      "briefingSpeaker": false,
+      "mfaDemoCode": "246810",
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "MEM-SPEAKER-001",
+      "organizationId": "org-gc-demo",
+      "displayName": "Relatrice Startup Demo",
+      "role": "STARTUP_REVIEWER",
+      "boardAuthorized": false,
+      "briefingSpeaker": true,
+      "mfaDemoCode": "246810",
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "MEM-ESG-001",
+      "organizationId": "org-gc-demo",
+      "displayName": "ESG Manager non Board Demo",
+      "role": "ESG_MANAGER",
+      "boardAuthorized": false,
+      "briefingSpeaker": false,
+      "mfaDemoCode": "246810",
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "MEM-BOARD-OTHER",
+      "organizationId": "org-other-demo",
+      "displayName": "Board Altra Organizzazione Demo",
+      "role": "BOARD",
+      "boardAuthorized": true,
+      "briefingSpeaker": false,
+      "mfaDemoCode": "246810",
+      "demoAccessEnabled": true
+    }
+  ],
+  "governanceSessions": [],
+  "mfaChallenges": [],
+  "fundDirectionOptions": [
+    {
+      "id": "OPT-COMUNE-ACCUMOLI",
+      "type": "MUNICIPALITY",
+      "title": "Comune di Accumoli — demo",
+      "subtitle": "Destinazione comunale",
+      "description": "Indirizzo della quota verso progetti da concordare con il comune, senza inventare un progetto già finanziato.",
+      "consequences": "La Startup userà la preferenza come vincolo nella proposta di allocazione; attuazione e documentazione restano tracciate separatamente."
+    },
+    {
+      "id": "OPT-COMUNE-AMATRICE",
+      "type": "MUNICIPALITY",
+      "title": "Comune di Amatrice — demo",
+      "subtitle": "Destinazione comunale",
+      "description": "Preferenza territoriale dimostrativa per future attività di rigenerazione nel comune.",
+      "consequences": "La scelta non certifica un versamento già eseguito: lo stato di attuazione sarà aggiornato dal garante."
+    },
+    {
+      "id": "OPT-OPERA-CENTRO",
+      "type": "PROJECT_TYPE",
+      "title": "Centro aggregativo",
+      "subtitle": "Tipologia di opera sociale",
+      "description": "Indirizzo verso spazi civici e servizi aggregativi da definire con gli enti territoriali.",
+      "consequences": "Il comune resta da determinare nella fase attuativa, nei limiti della versione delle regole registrata."
+    },
+    {
+      "id": "OPT-OPERA-RASSEGNA",
+      "type": "PROJECT_TYPE",
+      "title": "Rassegna culturale diffusa",
+      "subtitle": "Tipologia di opera sociale",
+      "description": "Preferenza per manifestazioni culturali nei borghi, senza attribuire eventi non confermati.",
+      "consequences": "La scelta vincola la tipologia, non costituisce prova di finanziamento o svolgimento dell’evento."
+    }
+  ],
+  "fundDirectionWindows": [
+    {
+      "id": "GOV-WIN-2026",
+      "organizationId": "org-gc-demo",
+      "title": "Indirizzo territoriale Fondo 2026 — demo",
+      "ruleVersion": "REG-FONDO-2026.1",
+      "eligibleOrderIds": [
+        "ORD-DEMO-0142"
+      ],
+      "opensAt": "2026-10-20T08:00:00.000Z",
+      "cutoffAt": "2026-12-15T16:00:00.000Z",
+      "timeZone": "Europe/Rome"
+    },
+    {
+      "id": "GOV-WIN-2025",
+      "organizationId": "org-gc-demo",
+      "title": "Archivio indirizzo Fondo 2025 — demo",
+      "ruleVersion": "REG-FONDO-2025.4",
+      "eligibleOrderIds": [
+        "ORD-DEMO-0118"
+      ],
+      "opensAt": "2025-11-01T08:00:00.000Z",
+      "cutoffAt": "2025-12-15T16:00:00.000Z",
+      "timeZone": "Europe/Rome"
+    }
+  ],
+  "governancePreferences": [
+    {
+      "id": "PREF-2025-DEMO",
+      "windowId": "GOV-WIN-2025",
+      "organizationId": "org-gc-demo",
+      "currentVersion": 1,
+      "status": "LOCKED",
+      "implementationStatus": "IN_PROGRESS",
+      "implementationNote": "Progetto operativo in definizione con il garante demo.",
+      "versions": [
+        {
+          "version": 1,
+          "optionId": "OPT-OPERA-RASSEGNA",
+          "quotaCents": 180000,
+          "ruleVersion": "REG-FONDO-2025.4",
+          "confirmedBy": "MEM-BOARD-001",
+          "confirmedByName": "Consigliere Board Demo",
+          "confirmedAt": "2025-12-10T10:00:00.000Z",
+          "receiptId": "RIC-GOV-2025-001",
+          "conflictDeclaration": "NONE",
+          "mfaChallengeId": null
+        }
+      ],
+      "events": [
+        {
+          "at": "2025-12-10T10:00:00.000Z",
+          "actor": "Consigliere Board Demo",
+          "event": "Preferenza v1 confermata con MFA demo"
+        },
+        {
+          "at": "2025-12-15T16:00:00.000Z",
+          "actor": "Sistema governance",
+          "event": "Cutoff raggiunto; preferenza bloccata"
+        },
+        {
+          "at": "2026-10-20T09:00:00.000Z",
+          "actor": "Relatrice Startup Demo",
+          "event": "Attuazione in corso; nessun esito finanziario attestato"
+        }
+      ]
+    }
+  ],
+  "briefingSessions": [
+    {
+      "id": "BRF-LIVE-DEMO",
+      "organizationId": "org-gc-demo",
+      "title": "Briefing Board — direttive e filiere demo",
+      "startAt": "2026-10-24T23:57:33.804Z",
+      "endAt": "2026-10-25T01:57:33.804Z",
+      "timeZone": "Europe/Rome",
+      "durationMinutes": 120,
+      "status": "SCHEDULED",
+      "agenda": [
+        {
+          "id": "AG-01",
+          "title": "Apertura e perimetro delle decisioni Board",
+          "durationMinutes": 20,
+          "speaker": "Relatrice Startup Demo"
+        },
+        {
+          "id": "AG-02",
+          "title": "Osservatorio normativo europeo — contenuti demo",
+          "durationMinutes": 30,
+          "speaker": "Relatrice Startup Demo"
+        },
+        {
+          "id": "AG-03",
+          "title": "Impatti su filiera, forniture e governance",
+          "durationMinutes": 40,
+          "speaker": "Analisi guidata demo"
+        },
+        {
+          "id": "AG-04",
+          "title": "Domande, punti decisionali e follow-up",
+          "durationMinutes": 30,
+          "speaker": "Board e relatori demo"
+        }
+      ],
+      "preReads": [
+        {
+          "id": "PRE-NORM-01",
+          "title": "Nota di preparazione normativa — demo",
+          "version": "1.0",
+          "reviewStatus": "VERIFIED_DEMO",
+          "source": "Osservatorio Startup — fonte sintetica demo",
+          "updatedAt": "2026-10-20T09:00:00.000Z",
+          "content": "Questo pre-read dimostrativo propone una griglia di lettura per cambiamenti normativi, impatti sulla filiera e decisioni del Board. Non contiene interpretazioni giuridiche e non sostituisce consulenza professionale.\n\nPrima della sessione: individua una decisione di fornitura, un soggetto della filiera e un evidenza documentale da discutere."
+        },
+        {
+          "id": "PRE-GOV-02",
+          "title": "Matrice decisionale per il Board — demo",
+          "version": "1.1",
+          "reviewStatus": "VERIFIED_DEMO",
+          "source": "Startup garante — metodo dimostrativo",
+          "updatedAt": "2026-10-21T09:00:00.000Z",
+          "content": "La matrice collega segno normativo, processo interno, proprietario, evidenza e scadenza. I contenuti sono interamente sintetici.\n\nLa sessione online dura due ore; domande e punti decisionali saranno conservati nel follow-up soltanto se inseriti effettivamente dai partecipanti."
+        }
+      ],
+      "invites": [
+        {
+          "id": "BRF-LIVE-DEMO-INV-BOARD",
+          "memberId": "MEM-BOARD-001",
+          "role": "PARTICIPANT",
+          "status": "INVITED",
+          "acceptedAt": null,
+          "identityVerifiedAt": null
+        },
+        {
+          "id": "BRF-LIVE-DEMO-INV-SPEAKER",
+          "memberId": "MEM-SPEAKER-001",
+          "role": "SPEAKER",
+          "status": "INVITED",
+          "acceptedAt": null,
+          "identityVerifiedAt": null
+        }
+      ],
+      "roomToken": null,
+      "roomTokenGeneratedAt": null,
+      "questions": [],
+      "attendance": [],
+      "recording": {
+        "enabled": false,
+        "consents": {}
+      },
+      "followUp": null,
+      "events": [
+        {
+          "at": "2026-10-25T00:27:33.804Z",
+          "actor": "Startup garante — demo",
+          "event": "Sessione online e inviti nominativi creati; registrazione disattivata"
+        }
+      ]
+    },
+    {
+      "id": "BRF-FUTURE-DEMO",
+      "organizationId": "org-gc-demo",
+      "title": "Briefing Board annuale — sessione programmata demo",
+      "startAt": "2026-11-01T00:27:33.804Z",
+      "endAt": "2026-11-01T02:27:33.804Z",
+      "timeZone": "Europe/Rome",
+      "durationMinutes": 120,
+      "status": "SCHEDULED",
+      "agenda": [
+        {
+          "id": "AG-01",
+          "title": "Apertura e perimetro delle decisioni Board",
+          "durationMinutes": 20,
+          "speaker": "Relatrice Startup Demo"
+        },
+        {
+          "id": "AG-02",
+          "title": "Osservatorio normativo europeo — contenuti demo",
+          "durationMinutes": 30,
+          "speaker": "Relatrice Startup Demo"
+        },
+        {
+          "id": "AG-03",
+          "title": "Impatti su filiera, forniture e governance",
+          "durationMinutes": 40,
+          "speaker": "Analisi guidata demo"
+        },
+        {
+          "id": "AG-04",
+          "title": "Domande, punti decisionali e follow-up",
+          "durationMinutes": 30,
+          "speaker": "Board e relatori demo"
+        }
+      ],
+      "preReads": [
+        {
+          "id": "PRE-NORM-01",
+          "title": "Nota di preparazione normativa — demo",
+          "version": "1.0",
+          "reviewStatus": "VERIFIED_DEMO",
+          "source": "Osservatorio Startup — fonte sintetica demo",
+          "updatedAt": "2026-10-20T09:00:00.000Z",
+          "content": "Questo pre-read dimostrativo propone una griglia di lettura per cambiamenti normativi, impatti sulla filiera e decisioni del Board. Non contiene interpretazioni giuridiche e non sostituisce consulenza professionale.\n\nPrima della sessione: individua una decisione di fornitura, un soggetto della filiera e un evidenza documentale da discutere."
+        },
+        {
+          "id": "PRE-GOV-02",
+          "title": "Matrice decisionale per il Board — demo",
+          "version": "1.1",
+          "reviewStatus": "VERIFIED_DEMO",
+          "source": "Startup garante — metodo dimostrativo",
+          "updatedAt": "2026-10-21T09:00:00.000Z",
+          "content": "La matrice collega segno normativo, processo interno, proprietario, evidenza e scadenza. I contenuti sono interamente sintetici.\n\nLa sessione online dura due ore; domande e punti decisionali saranno conservati nel follow-up soltanto se inseriti effettivamente dai partecipanti."
+        }
+      ],
+      "invites": [
+        {
+          "id": "BRF-FUTURE-DEMO-INV-BOARD",
+          "memberId": "MEM-BOARD-001",
+          "role": "PARTICIPANT",
+          "status": "INVITED",
+          "acceptedAt": null,
+          "identityVerifiedAt": null
+        },
+        {
+          "id": "BRF-FUTURE-DEMO-INV-SPEAKER",
+          "memberId": "MEM-SPEAKER-001",
+          "role": "SPEAKER",
+          "status": "INVITED",
+          "acceptedAt": null,
+          "identityVerifiedAt": null
+        }
+      ],
+      "roomToken": null,
+      "roomTokenGeneratedAt": null,
+      "questions": [],
+      "attendance": [],
+      "recording": {
+        "enabled": false,
+        "consents": {}
+      },
+      "followUp": null,
+      "events": [
+        {
+          "at": "2026-10-25T00:27:33.804Z",
+          "actor": "Startup garante — demo",
+          "event": "Sessione online e inviti nominativi creati; registrazione disattivata"
+        }
+      ]
+    }
+  ],
+  "operationsMembers": [
+    {
+      "id": "OP-PROC-001",
+      "organizationId": "org-gc-demo",
+      "organizationName": "General Contractor Demo S.p.A.",
+      "displayName": "Procurement General Contractor Demo",
+      "role": "PROCUREMENT",
+      "assignedSiteIds": [
+        "site-ponte-demo",
+        "site-borgo-demo"
+      ],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-HR-001",
+      "organizationId": "org-gc-demo",
+      "organizationName": "General Contractor Demo S.p.A.",
+      "displayName": "HR Welfare Demo",
+      "role": "HR_WELFARE",
+      "assignedSiteIds": [],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-BOARD-001",
+      "organizationId": "org-gc-demo",
+      "organizationName": "General Contractor Demo S.p.A.",
+      "displayName": "Board Operations Demo",
+      "role": "BOARD",
+      "assignedSiteIds": [],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-SITE-001",
+      "organizationId": "org-gc-demo",
+      "organizationName": "General Contractor Demo S.p.A.",
+      "displayName": "Capocantiere Ponte Demo",
+      "role": "SITE_MANAGER",
+      "assignedSiteIds": [
+        "site-ponte-demo"
+      ],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-SUB-001",
+      "organizationId": "org-sub-demo",
+      "organizationName": "Subappaltatore Alpi Demo S.r.l.",
+      "displayName": "Procurement Subappaltatore Demo",
+      "role": "SUBCONTRACTOR",
+      "assignedSiteIds": [
+        "site-ponte-demo"
+      ],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-SUB-NEW",
+      "organizationId": "org-sub-new-demo",
+      "organizationName": "Nuova Impresa Filiera Demo S.r.l.",
+      "displayName": "Nuova Impresa Subappaltatrice Demo",
+      "role": "SUBCONTRACTOR",
+      "assignedSiteIds": [],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-SUB-INVITE",
+      "organizationId": "org-sub-invite-demo",
+      "organizationName": "Impresa Invito Demo S.r.l.",
+      "displayName": "Impresa da Invitare Demo",
+      "role": "SUBCONTRACTOR",
+      "assignedSiteIds": [],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-REVIEWER-001",
+      "organizationId": "org-gc-demo",
+      "organizationName": "Startup garante — demo",
+      "displayName": "Revisore Operations Demo",
+      "role": "STARTUP_REVIEWER",
+      "assignedSiteIds": [],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-OTHER-001",
+      "organizationId": "org-other-demo",
+      "organizationName": "Altra Organizzazione Demo",
+      "displayName": "Procurement Altra Organizzazione Demo",
+      "role": "PROCUREMENT",
+      "assignedSiteIds": [],
+      "demoAccessEnabled": true
+    }
+  ],
+  "operationsSessions": [],
+  "productCatalog": [
+    {
+      "id": "PROD-ECO-S3S",
+      "sku": "ECO-S3S-DEMO",
+      "name": "Exena Eco S3S — modello demo",
+      "description": "Calzatura di sicurezza demo con listino contrattuale EaaS.",
+      "listUnitPriceCents": 7900,
+      "contractUnitPriceCents": 7500,
+      "devolutionRate": 30,
+      "sizes": [
+        {
+          "size": "39",
+          "stockStatus": "LOW",
+          "availableQuantity": 12,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "40",
+          "stockStatus": "LOW",
+          "availableQuantity": 12,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "41",
+          "stockStatus": "AVAILABLE",
+          "availableQuantity": 250,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "42",
+          "stockStatus": "AVAILABLE",
+          "availableQuantity": 250,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "43",
+          "stockStatus": "AVAILABLE",
+          "availableQuantity": 250,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "44",
+          "stockStatus": "AVAILABLE",
+          "availableQuantity": 250,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "45",
+          "stockStatus": "UNCERTAIN",
+          "availableQuantity": null,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "46",
+          "stockStatus": "AVAILABLE",
+          "availableQuantity": 250,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        }
+      ]
+    },
+    {
+      "id": "PROD-BOOT-S3",
+      "sku": "BOOT-S3-DEMO",
+      "name": "Sibillini Boot S3 — modello demo",
+      "description": "Modello boot demo per fabbisogni multi-cantiere.",
+      "listUnitPriceCents": 8900,
+      "contractUnitPriceCents": 8400,
+      "devolutionRate": 30,
+      "sizes": [
+        {
+          "size": "39",
+          "stockStatus": "LOW",
+          "availableQuantity": 12,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "40",
+          "stockStatus": "LOW",
+          "availableQuantity": 12,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "41",
+          "stockStatus": "AVAILABLE",
+          "availableQuantity": 250,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "42",
+          "stockStatus": "AVAILABLE",
+          "availableQuantity": 250,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "43",
+          "stockStatus": "AVAILABLE",
+          "availableQuantity": 250,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "44",
+          "stockStatus": "AVAILABLE",
+          "availableQuantity": 250,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "45",
+          "stockStatus": "AVAILABLE",
+          "availableQuantity": 250,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        },
+        {
+          "size": "46",
+          "stockStatus": "AVAILABLE",
+          "availableQuantity": 250,
+          "updatedAt": "2026-10-24T21:27:33.805Z"
+        }
+      ]
+    }
+  ],
+  "deliveryAddresses": [
+    {
+      "id": "ADDR-GC-PONTE",
+      "organizationId": "org-gc-demo",
+      "siteId": "site-ponte-demo",
+      "label": "Ponte Vallone — ingresso materiali demo",
+      "recipient": "Magazzino di cantiere demo",
+      "street": "Via del Cantiere 10",
+      "postalCode": "63000",
+      "city": "Comune Demo",
+      "province": "AP"
+    },
+    {
+      "id": "ADDR-GC-BORGO",
+      "organizationId": "org-gc-demo",
+      "siteId": "site-borgo-demo",
+      "label": "Borgo Alto — area consegne demo",
+      "recipient": "Logistica Borgo Demo",
+      "street": "Piazza del Borgo 2",
+      "postalCode": "63000",
+      "city": "Borgo Demo",
+      "province": "MC"
+    },
+    {
+      "id": "ADDR-SUB-PONTE",
+      "organizationId": "org-sub-demo",
+      "siteId": "site-ponte-demo",
+      "label": "Subappaltatore — punto consegna demo",
+      "recipient": "Subappaltatore Alpi Demo",
+      "street": "Via di Filiera 4",
+      "postalCode": "63000",
+      "city": "Comune Demo",
+      "province": "AP"
+    }
+  ],
+  "serviceEntitlements": [
+    {
+      "id": "ENT-org-gc-demo-C12-BULK_ORDER",
+      "organizationId": "org-gc-demo",
+      "componentId": "C12",
+      "serviceId": "BULK_ORDER",
+      "title": "Bulk Order Portal",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/ordini",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-gc-demo-C13-THRESHOLD_DASHBOARD",
+      "organizationId": "org-gc-demo",
+      "componentId": "C13",
+      "serviceId": "THRESHOLD_DASHBOARD",
+      "title": "Dashboard Soglie e Benefit",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/dashboard",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-gc-demo-C14-TRANSPARENCY",
+      "organizationId": "org-gc-demo",
+      "componentId": "C14",
+      "serviceId": "TRANSPARENCY",
+      "title": "Registro Pubblico Trasparente",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/trasparenza",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-gc-demo-C05-CO_BRAND",
+      "organizationId": "org-gc-demo",
+      "componentId": "C05",
+      "serviceId": "CO_BRAND",
+      "title": "Kit Digital Co-Branding",
+      "track": "STANDARD",
+      "requiredPairs": 10,
+      "route": "/app/brand-kit",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-gc-demo-C06-CASE_HISTORY",
+      "organizationId": "org-gc-demo",
+      "componentId": "C06",
+      "serviceId": "CASE_HISTORY",
+      "title": "Case History ed Executive Page",
+      "track": "STANDARD",
+      "requiredPairs": 25,
+      "route": "/app/editoriale",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-gc-demo-C08-HOSPITALITY",
+      "organizationId": "org-gc-demo",
+      "componentId": "C08",
+      "serviceId": "HOSPITALITY",
+      "title": "Portale Ospitalità Convenzionata",
+      "track": "STANDARD",
+      "requiredPairs": 50,
+      "route": "/app/hospitality",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "EXTERNAL"
+    },
+    {
+      "id": "ENT-org-gc-demo-VIP50-VIP_PASS",
+      "organizationId": "org-gc-demo",
+      "componentId": "VIP50",
+      "serviceId": "VIP_PASS",
+      "title": "5 VIP Pass eventi culturali",
+      "track": "STANDARD",
+      "requiredPairs": 50,
+      "route": null,
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "PHYSICAL",
+      "voucher": true
+    },
+    {
+      "id": "ENT-org-gc-demo-C04-ASSURANCE",
+      "organizationId": "org-gc-demo",
+      "componentId": "C04",
+      "serviceId": "ASSURANCE",
+      "title": "Fascicolo Ready for Assurance",
+      "track": "VARIANT",
+      "requiredPairs": 10,
+      "route": "/app/evidence-packs",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-gc-demo-C07-PARTNER_REGISTRY",
+      "organizationId": "org-gc-demo",
+      "componentId": "C07",
+      "serviceId": "PARTNER_REGISTRY",
+      "title": "Registro Partner della Ricostruzione",
+      "track": "VARIANT",
+      "requiredPairs": 25,
+      "route": "/app/registro-partner",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-gc-demo-C16-SUB_NETWORK",
+      "organizationId": "org-gc-demo",
+      "componentId": "C16",
+      "serviceId": "SUB_NETWORK",
+      "title": "Accordo Quadro di Filiera",
+      "track": "VARIANT",
+      "requiredPairs": 25,
+      "route": "/app/filiera",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-gc-demo-C09-LEARNING",
+      "organizationId": "org-gc-demo",
+      "componentId": "C09",
+      "serviceId": "LEARNING",
+      "title": "Modulo Ergonomia e Sicurezza",
+      "track": "VARIANT",
+      "requiredPairs": 50,
+      "route": "/app/e-learning",
+      "contractStatus": "ACTIVATION_REQUIRED",
+      "activationStatus": "READY",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-gc-demo-C10-FUND_DIRECTION",
+      "organizationId": "org-gc-demo",
+      "componentId": "C10",
+      "serviceId": "FUND_DIRECTION",
+      "title": "Diritto di Indirizzo Territoriale",
+      "track": "VARIANT",
+      "requiredPairs": 100,
+      "route": "/app/governance/indirizzo-fondo",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-gc-demo-C11-BOARD_BRIEFING",
+      "organizationId": "org-gc-demo",
+      "componentId": "C11",
+      "serviceId": "BOARD_BRIEFING",
+      "title": "Board Briefing annuale",
+      "track": "VARIANT",
+      "requiredPairs": 100,
+      "route": "/app/governance/briefing",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "LIVE_ONLINE"
+    },
+    {
+      "id": "ENT-org-gc-demo-C15-MULTI_SITE",
+      "organizationId": "org-gc-demo",
+      "componentId": "C15",
+      "serviceId": "MULTI_SITE",
+      "title": "Portale Logistico Multi-Cantiere",
+      "track": "VARIANT",
+      "requiredPairs": 100,
+      "route": "/app/logistica",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-sub-demo-C12-BULK_ORDER",
+      "organizationId": "org-sub-demo",
+      "componentId": "C12",
+      "serviceId": "BULK_ORDER",
+      "title": "Bulk Order Portal",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/ordini",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-sub-demo-C13-THRESHOLD_DASHBOARD",
+      "organizationId": "org-sub-demo",
+      "componentId": "C13",
+      "serviceId": "THRESHOLD_DASHBOARD",
+      "title": "Dashboard Soglie e Benefit",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/dashboard",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-sub-demo-C05-CO_BRAND",
+      "organizationId": "org-sub-demo",
+      "componentId": "C05",
+      "serviceId": "CO_BRAND",
+      "title": "Kit Digital Co-Branding",
+      "track": "STANDARD",
+      "requiredPairs": 10,
+      "route": "/app/brand-kit",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-sub-demo-C06-CASE_HISTORY",
+      "organizationId": "org-sub-demo",
+      "componentId": "C06",
+      "serviceId": "CASE_HISTORY",
+      "title": "Case History ed Executive Page",
+      "track": "STANDARD",
+      "requiredPairs": 25,
+      "route": "/app/editoriale",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "READY",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-sub-demo-VIP50-VIP_PASS",
+      "organizationId": "org-sub-demo",
+      "componentId": "VIP50",
+      "serviceId": "VIP_PASS",
+      "title": "5 VIP Pass eventi culturali",
+      "track": "STANDARD",
+      "requiredPairs": 50,
+      "route": null,
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "PHYSICAL",
+      "voucher": true
+    },
+    {
+      "id": "ENT-org-sub-demo-C09-LEARNING",
+      "organizationId": "org-sub-demo",
+      "componentId": "C09",
+      "serviceId": "LEARNING",
+      "title": "Modulo Ergonomia e Sicurezza",
+      "track": "VARIANT",
+      "requiredPairs": 50,
+      "route": "/app/e-learning",
+      "contractStatus": "ACTIVATION_REQUIRED",
+      "activationStatus": "READY",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-other-demo-C12-BULK_ORDER",
+      "organizationId": "org-other-demo",
+      "componentId": "C12",
+      "serviceId": "BULK_ORDER",
+      "title": "Bulk Order Portal",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/ordini",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-other-demo-C13-THRESHOLD_DASHBOARD",
+      "organizationId": "org-other-demo",
+      "componentId": "C13",
+      "serviceId": "THRESHOLD_DASHBOARD",
+      "title": "Dashboard Soglie e Benefit",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/dashboard",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-sub-new-demo-C12-BULK_ORDER",
+      "organizationId": "org-sub-new-demo",
+      "componentId": "C12",
+      "serviceId": "BULK_ORDER",
+      "title": "Bulk Order Portal",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/ordini",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-sub-new-demo-C13-THRESHOLD_DASHBOARD",
+      "organizationId": "org-sub-new-demo",
+      "componentId": "C13",
+      "serviceId": "THRESHOLD_DASHBOARD",
+      "title": "Dashboard Soglie e Benefit",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/dashboard",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-sub-invite-demo-C12-BULK_ORDER",
+      "organizationId": "org-sub-invite-demo",
+      "componentId": "C12",
+      "serviceId": "BULK_ORDER",
+      "title": "Bulk Order Portal",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/ordini",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-sub-invite-demo-C13-THRESHOLD_DASHBOARD",
+      "organizationId": "org-sub-invite-demo",
+      "componentId": "C13",
+      "serviceId": "THRESHOLD_DASHBOARD",
+      "title": "Dashboard Soglie e Benefit",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/dashboard",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    }
+  ],
+  "serviceActivationEvents": [],
+  "transparencyProjects": [
+    {
+      "publicId": "TRP-ACCUMOLI-DEMO",
+      "slug": "centro-aggregativo-accumoli-demo",
+      "title": "Centro aggregativo di Accumoli — progetto demo",
+      "municipality": "Accumoli — demo",
+      "village": "Accumoli",
+      "amountCents": 300000,
+      "operationalStatus": "IN_PROGRESS",
+      "publicationStatus": "PUBLISHED",
+      "publicDate": "2026-10-16",
+      "updatedAt": "2026-10-20T10:00:00.000Z",
+      "description": "Allocazione dimostrativa per spazi civici e servizi aggregativi. Il dato pubblico non espone condizioni commerciali o dati personali.",
+      "sourceAttestationIds": [
+        "ATT-DEMO-0142"
+      ],
+      "allocations": [
+        {
+          "attestationId": "ATT-DEMO-0142",
+          "amountCents": 300000
+        }
+      ],
+      "rectifications": [
+        {
+          "at": "2026-10-20T10:00:00.000Z",
+          "reason": "Rettifica demo del perimetro pubblicabile dopo revisione della ripartizione.",
+          "previousAmountCents": 280000,
+          "newAmountCents": 300000
+        }
+      ]
+    },
+    {
+      "publicId": "TRP-RASSEGNA-DEMO",
+      "slug": "rassegna-culturale-diffusa-demo",
+      "title": "Rassegna culturale diffusa — progetto demo",
+      "municipality": "Amatrice — demo",
+      "village": "Borghi del cratere",
+      "amountCents": 150000,
+      "operationalStatus": "SCHEDULED",
+      "publicationStatus": "PUBLISHED",
+      "publicDate": "2026-10-16",
+      "updatedAt": "2026-10-16T09:00:00.000Z",
+      "description": "Allocazione dimostrativa per manifestazioni culturali nei borghi. Date e importi sono sintetici e non attestano un evento reale.",
+      "sourceAttestationIds": [
+        "ATT-DEMO-0142"
+      ],
+      "allocations": [
+        {
+          "attestationId": "ATT-DEMO-0142",
+          "amountCents": 150000
+        }
+      ],
+      "rectifications": []
+    }
+  ],
+  "logisticsPlans": [
+    {
+      "id": "LOG-PONTE-DEMO",
+      "organizationId": "org-gc-demo",
+      "siteId": "site-ponte-demo",
+      "sourceOrderId": "ORD-DEMO-0142",
+      "addressId": "ADDR-GC-PONTE",
+      "managerMemberId": null,
+      "status": "DRAFT",
+      "version": 1,
+      "deadlineAt": "2026-11-08T00:27:33.805Z",
+      "deliveryWindow": {
+        "from": "2026-11-14T00:27:33.805Z",
+        "to": "2026-11-17T00:27:33.805Z"
+      },
+      "needs": [
+        {
+          "productId": "PROD-ECO-S3S",
+          "size": "42",
+          "quantity": 100
+        },
+        {
+          "productId": "PROD-ECO-S3S",
+          "size": "43",
+          "quantity": 100
+        }
+      ],
+      "shipments": [],
+      "events": [
+        {
+          "at": "2026-10-24T00:27:33.805Z",
+          "actor": "Procurement demo",
+          "event": "Piano multi-cantiere creato da ordine confermato demo"
+        }
+      ],
+      "imports": []
+    },
+    {
+      "id": "LOG-BORGO-DEMO",
+      "organizationId": "org-gc-demo",
+      "siteId": "site-borgo-demo",
+      "sourceOrderId": "ORD-DEMO-0088",
+      "addressId": "ADDR-GC-BORGO",
+      "managerMemberId": null,
+      "status": "DRAFT",
+      "version": 1,
+      "deadlineAt": "2026-11-12T00:27:33.805Z",
+      "deliveryWindow": {
+        "from": "2026-11-18T00:27:33.805Z",
+        "to": "2026-11-21T00:27:33.805Z"
+      },
+      "needs": [
+        {
+          "productId": "PROD-BOOT-S3",
+          "size": "42",
+          "quantity": 25
+        }
+      ],
+      "shipments": [],
+      "events": [
+        {
+          "at": "2026-10-24T04:27:33.805Z",
+          "actor": "Procurement demo",
+          "event": "Fabbisogno Borgo Alto associato a ordine confermato demo"
+        }
+      ],
+      "imports": []
+    }
+  ],
+  "subcontractorLinks": [
+    {
+      "id": "LINK-DEMO-001",
+      "gcOrganizationId": "org-gc-demo",
+      "gcOrganizationName": "General Contractor Demo S.p.A.",
+      "subcontractorOrganizationId": "org-sub-demo",
+      "subcontractorOrganizationName": "Subappaltatore Alpi Demo S.r.l.",
+      "vatNumber": "12345678903",
+      "vatFormatValid": true,
+      "verificationStatus": "VERIFIED_DEMO",
+      "verificationNote": "Verifica documentale dimostrativa; non è una certificazione camerale live.",
+      "verifiedAt": "2026-08-02T09:00:00.000Z",
+      "status": "ACTIVE",
+      "version": 1,
+      "invitedAt": "2026-07-28T09:00:00.000Z",
+      "acceptedAt": "2026-08-01T09:00:00.000Z",
+      "identityConfirmedAt": "2026-08-01T09:00:00.000Z",
+      "revokedAt": null,
+      "consents": {
+        "volumeAttribution": true,
+        "kitDistribution": true,
+        "registryPublication": false
+      },
+      "requestedConsents": {
+        "volumeAttribution": true,
+        "kitDistribution": true
+      },
+      "proposedSiteIds": [
+        "site-ponte-demo"
+      ],
+      "siteRelations": [
+        {
+          "siteId": "site-ponte-demo",
+          "startAt": "2026-08-01T00:00:00.000Z",
+          "endAt": null
+        }
+      ],
+      "attributionRule": "ORDER_ID_UNIQUE_WITHIN_SITE_PERIOD",
+      "historicalPairsAtRevocation": null,
+      "events": [
+        {
+          "at": "2026-08-01T09:00:00.000Z",
+          "actor": "Subappaltatore demo",
+          "event": "Invito accettato e consensi registrati"
+        },
+        {
+          "at": "2026-08-02T09:00:00.000Z",
+          "actor": "Startup garante — demo",
+          "event": "Verifica effettiva simulata e relazione attivata"
+        }
+      ]
+    },
+    {
+      "id": "LINK-DEMO-INVITED",
+      "gcOrganizationId": "org-gc-demo",
+      "gcOrganizationName": "General Contractor Demo S.p.A.",
+      "subcontractorOrganizationId": "org-sub-new-demo",
+      "subcontractorOrganizationName": "Nuova Impresa Filiera Demo S.r.l.",
+      "vatNumber": "12345678903",
+      "vatFormatValid": true,
+      "verificationStatus": "FORMAL_CHECK_ONLY",
+      "verificationNote": null,
+      "verifiedAt": null,
+      "status": "INVITED",
+      "version": 1,
+      "invitedAt": "2026-10-24T22:27:33.805Z",
+      "acceptedAt": null,
+      "identityConfirmedAt": null,
+      "revokedAt": null,
+      "consents": {
+        "volumeAttribution": false,
+        "kitDistribution": false,
+        "registryPublication": false
+      },
+      "requestedConsents": {
+        "volumeAttribution": true,
+        "kitDistribution": true
+      },
+      "proposedSiteIds": [
+        "site-ponte-demo"
+      ],
+      "siteRelations": [],
+      "attributionRule": "ORDER_ID_UNIQUE_WITHIN_SITE_PERIOD",
+      "historicalPairsAtRevocation": null,
+      "events": [
+        {
+          "at": "2026-10-24T22:27:33.805Z",
+          "actor": "General Contractor demo",
+          "event": "Invito creato; nessuna associazione attiva"
+        }
+      ]
+    }
+  ],
+  "shares": [],
+  "downloadEvents": []
+}

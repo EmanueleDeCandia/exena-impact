@@ -1,0 +1,114 @@
+const entitlement = (organizationId, componentId, serviceId, title, track, requiredPairs, route, activationStatus = 'ACTIVE', extra = {}) => ({
+  id: `ENT-${organizationId}-${componentId}-${serviceId}`, organizationId, componentId, serviceId, title, track, requiredPairs, route,
+  contractStatus: 'ACTIVE', activationStatus, expiresAt: null, fulfilment: 'DIGITAL', ...extra,
+});
+
+export function createArea5Seed() {
+  const now = Date.now();
+  const iso = (offsetHours) => new Date(now + offsetHours * 3600000).toISOString();
+  const sizes = (uncertainSize = null) => ['39', '40', '41', '42', '43', '44', '45', '46'].map((size) => ({
+    size, stockStatus: size === uncertainSize ? 'UNCERTAIN' : Number(size) <= 40 ? 'LOW' : 'AVAILABLE',
+    availableQuantity: size === uncertainSize ? null : Number(size) <= 40 ? 12 : 250,
+    updatedAt: iso(-3),
+  }));
+  return {
+    operationsMembers: [
+      { id: 'OP-PROC-001', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', displayName: 'Procurement General Contractor Demo', role: 'PROCUREMENT', assignedSiteIds: ['site-ponte-demo', 'site-borgo-demo'], demoAccessEnabled: true },
+      { id: 'OP-HR-001', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', displayName: 'HR Welfare Demo', role: 'HR_WELFARE', assignedSiteIds: [], demoAccessEnabled: true },
+      { id: 'OP-BOARD-001', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', displayName: 'Board Operations Demo', role: 'BOARD', assignedSiteIds: [], demoAccessEnabled: true },
+      { id: 'OP-SITE-001', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', displayName: 'Capocantiere Ponte Demo', role: 'SITE_MANAGER', assignedSiteIds: ['site-ponte-demo'], demoAccessEnabled: true },
+      { id: 'OP-SUB-001', organizationId: 'org-sub-demo', organizationName: 'Subappaltatore Alpi Demo S.r.l.', displayName: 'Procurement Subappaltatore Demo', role: 'SUBCONTRACTOR', assignedSiteIds: ['site-ponte-demo'], demoAccessEnabled: true },
+      { id: 'OP-SUB-NEW', organizationId: 'org-sub-new-demo', organizationName: 'Nuova Impresa Filiera Demo S.r.l.', displayName: 'Nuova Impresa Subappaltatrice Demo', role: 'SUBCONTRACTOR', assignedSiteIds: [], demoAccessEnabled: true },
+      { id: 'OP-SUB-INVITE', organizationId: 'org-sub-invite-demo', organizationName: 'Impresa Invito Demo S.r.l.', displayName: 'Impresa da Invitare Demo', role: 'SUBCONTRACTOR', assignedSiteIds: [], demoAccessEnabled: true },
+      { id: 'OP-REVIEWER-001', organizationId: 'org-gc-demo', organizationName: 'Startup garante — demo', displayName: 'Revisore Operations Demo', role: 'STARTUP_REVIEWER', assignedSiteIds: [], demoAccessEnabled: true },
+      { id: 'OP-OTHER-001', organizationId: 'org-other-demo', organizationName: 'Altra Organizzazione Demo', displayName: 'Procurement Altra Organizzazione Demo', role: 'PROCUREMENT', assignedSiteIds: [], demoAccessEnabled: true },
+    ],
+    operationsSessions: [],
+    productCatalog: [
+      { id: 'PROD-ECO-S3S', sku: 'ECO-S3S-DEMO', name: 'Exena Eco S3S — modello demo', description: 'Calzatura di sicurezza demo con listino contrattuale EaaS.', listUnitPriceCents: 7900, contractUnitPriceCents: 7500, devolutionRate: 30, sizes: sizes('45') },
+      { id: 'PROD-BOOT-S3', sku: 'BOOT-S3-DEMO', name: 'Sibillini Boot S3 — modello demo', description: 'Modello boot demo per fabbisogni multi-cantiere.', listUnitPriceCents: 8900, contractUnitPriceCents: 8400, devolutionRate: 30, sizes: sizes() },
+    ],
+    deliveryAddresses: [
+      { id: 'ADDR-GC-PONTE', organizationId: 'org-gc-demo', siteId: 'site-ponte-demo', label: 'Ponte Vallone — ingresso materiali demo', recipient: 'Magazzino di cantiere demo', street: 'Via del Cantiere 10', postalCode: '63000', city: 'Comune Demo', province: 'AP' },
+      { id: 'ADDR-GC-BORGO', organizationId: 'org-gc-demo', siteId: 'site-borgo-demo', label: 'Borgo Alto — area consegne demo', recipient: 'Logistica Borgo Demo', street: 'Piazza del Borgo 2', postalCode: '63000', city: 'Borgo Demo', province: 'MC' },
+      { id: 'ADDR-SUB-PONTE', organizationId: 'org-sub-demo', siteId: 'site-ponte-demo', label: 'Subappaltatore — punto consegna demo', recipient: 'Subappaltatore Alpi Demo', street: 'Via di Filiera 4', postalCode: '63000', city: 'Comune Demo', province: 'AP' },
+    ],
+    serviceEntitlements: [
+      entitlement('org-gc-demo', 'C12', 'BULK_ORDER', 'Bulk Order Portal', 'STANDARD', 0, '/app/ordini'),
+      entitlement('org-gc-demo', 'C13', 'THRESHOLD_DASHBOARD', 'Dashboard Soglie e Benefit', 'STANDARD', 0, '/app/dashboard'),
+      entitlement('org-gc-demo', 'C14', 'TRANSPARENCY', 'Registro Pubblico Trasparente', 'STANDARD', 0, '/trasparenza'),
+      entitlement('org-gc-demo', 'C05', 'CO_BRAND', 'Kit Digital Co-Branding', 'STANDARD', 10, '/app/brand-kit'),
+      entitlement('org-gc-demo', 'C06', 'CASE_HISTORY', 'Case History ed Executive Page', 'STANDARD', 25, '/app/editoriale'),
+      entitlement('org-gc-demo', 'C08', 'HOSPITALITY', 'Portale Ospitalità Convenzionata', 'STANDARD', 50, '/app/hospitality', 'ACTIVE', { fulfilment: 'EXTERNAL' }),
+      entitlement('org-gc-demo', 'VIP50', 'VIP_PASS', '5 VIP Pass eventi culturali', 'STANDARD', 50, null, 'ACTIVE', { fulfilment: 'PHYSICAL', voucher: true }),
+      entitlement('org-gc-demo', 'C04', 'ASSURANCE', 'Fascicolo Ready for Assurance', 'VARIANT', 10, '/app/evidence-packs'),
+      entitlement('org-gc-demo', 'C07', 'PARTNER_REGISTRY', 'Registro Partner della Ricostruzione', 'VARIANT', 25, '/app/registro-partner'),
+      entitlement('org-gc-demo', 'C16', 'SUB_NETWORK', 'Accordo Quadro di Filiera', 'VARIANT', 25, '/app/filiera'),
+      entitlement('org-gc-demo', 'C09', 'LEARNING', 'Modulo Ergonomia e Sicurezza', 'VARIANT', 50, '/app/e-learning', 'READY', { contractStatus: 'ACTIVATION_REQUIRED' }),
+      entitlement('org-gc-demo', 'C10', 'FUND_DIRECTION', 'Diritto di Indirizzo Territoriale', 'VARIANT', 100, '/app/governance/indirizzo-fondo'),
+      entitlement('org-gc-demo', 'C11', 'BOARD_BRIEFING', 'Board Briefing annuale', 'VARIANT', 100, '/app/governance/briefing', 'ACTIVE', { fulfilment: 'LIVE_ONLINE' }),
+      entitlement('org-gc-demo', 'C15', 'MULTI_SITE', 'Portale Logistico Multi-Cantiere', 'VARIANT', 100, '/app/logistica'),
+      entitlement('org-sub-demo', 'C12', 'BULK_ORDER', 'Bulk Order Portal', 'STANDARD', 0, '/app/ordini'),
+      entitlement('org-sub-demo', 'C13', 'THRESHOLD_DASHBOARD', 'Dashboard Soglie e Benefit', 'STANDARD', 0, '/app/dashboard'),
+      entitlement('org-sub-demo', 'C05', 'CO_BRAND', 'Kit Digital Co-Branding', 'STANDARD', 10, '/app/brand-kit'),
+      entitlement('org-sub-demo', 'C06', 'CASE_HISTORY', 'Case History ed Executive Page', 'STANDARD', 25, '/app/editoriale', 'READY'),
+      entitlement('org-sub-demo', 'VIP50', 'VIP_PASS', '5 VIP Pass eventi culturali', 'STANDARD', 50, null, 'ACTIVE', { fulfilment: 'PHYSICAL', voucher: true }),
+      entitlement('org-sub-demo', 'C09', 'LEARNING', 'Modulo Ergonomia e Sicurezza', 'VARIANT', 50, '/app/e-learning', 'READY', { contractStatus: 'ACTIVATION_REQUIRED' }),
+      entitlement('org-other-demo', 'C12', 'BULK_ORDER', 'Bulk Order Portal', 'STANDARD', 0, '/app/ordini'),
+      entitlement('org-other-demo', 'C13', 'THRESHOLD_DASHBOARD', 'Dashboard Soglie e Benefit', 'STANDARD', 0, '/app/dashboard'),
+      entitlement('org-sub-new-demo', 'C12', 'BULK_ORDER', 'Bulk Order Portal', 'STANDARD', 0, '/app/ordini'),
+      entitlement('org-sub-new-demo', 'C13', 'THRESHOLD_DASHBOARD', 'Dashboard Soglie e Benefit', 'STANDARD', 0, '/app/dashboard'),
+      entitlement('org-sub-invite-demo', 'C12', 'BULK_ORDER', 'Bulk Order Portal', 'STANDARD', 0, '/app/ordini'),
+      entitlement('org-sub-invite-demo', 'C13', 'THRESHOLD_DASHBOARD', 'Dashboard Soglie e Benefit', 'STANDARD', 0, '/app/dashboard'),
+    ],
+    serviceActivationEvents: [],
+    transparencyProjects: [
+      {
+        publicId: 'TRP-ACCUMOLI-DEMO', slug: 'centro-aggregativo-accumoli-demo', title: 'Centro aggregativo di Accumoli — progetto demo',
+        municipality: 'Accumoli — demo', village: 'Accumoli', amountCents: 300000, operationalStatus: 'IN_PROGRESS', publicationStatus: 'PUBLISHED',
+        publicDate: '2026-10-16', updatedAt: '2026-10-20T10:00:00.000Z', description: 'Allocazione dimostrativa per spazi civici e servizi aggregativi. Il dato pubblico non espone condizioni commerciali o dati personali.',
+        sourceAttestationIds: ['ATT-DEMO-0142'], allocations: [{ attestationId: 'ATT-DEMO-0142', amountCents: 300000 }],
+        rectifications: [{ at: '2026-10-20T10:00:00.000Z', reason: 'Rettifica demo del perimetro pubblicabile dopo revisione della ripartizione.', previousAmountCents: 280000, newAmountCents: 300000 }],
+      },
+      {
+        publicId: 'TRP-RASSEGNA-DEMO', slug: 'rassegna-culturale-diffusa-demo', title: 'Rassegna culturale diffusa — progetto demo',
+        municipality: 'Amatrice — demo', village: 'Borghi del cratere', amountCents: 150000, operationalStatus: 'SCHEDULED', publicationStatus: 'PUBLISHED',
+        publicDate: '2026-10-16', updatedAt: '2026-10-16T09:00:00.000Z', description: 'Allocazione dimostrativa per manifestazioni culturali nei borghi. Date e importi sono sintetici e non attestano un evento reale.',
+        sourceAttestationIds: ['ATT-DEMO-0142'], allocations: [{ attestationId: 'ATT-DEMO-0142', amountCents: 150000 }], rectifications: [],
+      },
+    ],
+    logisticsPlans: [
+      {
+        id: 'LOG-PONTE-DEMO', organizationId: 'org-gc-demo', siteId: 'site-ponte-demo', sourceOrderId: 'ORD-DEMO-0142', addressId: 'ADDR-GC-PONTE', managerMemberId: null,
+        status: 'DRAFT', version: 1, deadlineAt: iso(24 * 14), deliveryWindow: { from: iso(24 * 20), to: iso(24 * 23) },
+        needs: [{ productId: 'PROD-ECO-S3S', size: '42', quantity: 100 }, { productId: 'PROD-ECO-S3S', size: '43', quantity: 100 }], shipments: [],
+        events: [{ at: iso(-24), actor: 'Procurement demo', event: 'Piano multi-cantiere creato da ordine confermato demo' }], imports: [],
+      },
+      {
+        id: 'LOG-BORGO-DEMO', organizationId: 'org-gc-demo', siteId: 'site-borgo-demo', sourceOrderId: 'ORD-DEMO-0088', addressId: 'ADDR-GC-BORGO', managerMemberId: null,
+        status: 'DRAFT', version: 1, deadlineAt: iso(24 * 18), deliveryWindow: { from: iso(24 * 24), to: iso(24 * 27) },
+        needs: [{ productId: 'PROD-BOOT-S3', size: '42', quantity: 25 }], shipments: [],
+        events: [{ at: iso(-20), actor: 'Procurement demo', event: 'Fabbisogno Borgo Alto associato a ordine confermato demo' }], imports: [],
+      },
+    ],
+    subcontractorLinks: [
+      {
+        id: 'LINK-DEMO-001', gcOrganizationId: 'org-gc-demo', gcOrganizationName: 'General Contractor Demo S.p.A.', subcontractorOrganizationId: 'org-sub-demo', subcontractorOrganizationName: 'Subappaltatore Alpi Demo S.r.l.',
+        vatNumber: '12345678903', vatFormatValid: true, verificationStatus: 'VERIFIED_DEMO', verificationNote: 'Verifica documentale dimostrativa; non è una certificazione camerale live.', verifiedAt: '2026-08-02T09:00:00.000Z',
+        status: 'ACTIVE', version: 1, invitedAt: '2026-07-28T09:00:00.000Z', acceptedAt: '2026-08-01T09:00:00.000Z', identityConfirmedAt: '2026-08-01T09:00:00.000Z', revokedAt: null,
+        consents: { volumeAttribution: true, kitDistribution: true, registryPublication: false }, requestedConsents: { volumeAttribution: true, kitDistribution: true },
+        proposedSiteIds: ['site-ponte-demo'], siteRelations: [{ siteId: 'site-ponte-demo', startAt: '2026-08-01T00:00:00.000Z', endAt: null }], attributionRule: 'ORDER_ID_UNIQUE_WITHIN_SITE_PERIOD',
+        historicalPairsAtRevocation: null,
+        events: [{ at: '2026-08-01T09:00:00.000Z', actor: 'Subappaltatore demo', event: 'Invito accettato e consensi registrati' }, { at: '2026-08-02T09:00:00.000Z', actor: 'Startup garante — demo', event: 'Verifica effettiva simulata e relazione attivata' }],
+      },
+      {
+        id: 'LINK-DEMO-INVITED', gcOrganizationId: 'org-gc-demo', gcOrganizationName: 'General Contractor Demo S.p.A.', subcontractorOrganizationId: 'org-sub-new-demo', subcontractorOrganizationName: 'Nuova Impresa Filiera Demo S.r.l.',
+        vatNumber: '12345678903', vatFormatValid: true, verificationStatus: 'FORMAL_CHECK_ONLY', verificationNote: null, verifiedAt: null,
+        status: 'INVITED', version: 1, invitedAt: iso(-2), acceptedAt: null, identityConfirmedAt: null, revokedAt: null,
+        consents: { volumeAttribution: false, kitDistribution: false, registryPublication: false }, requestedConsents: { volumeAttribution: true, kitDistribution: true },
+        proposedSiteIds: ['site-ponte-demo'], siteRelations: [], attributionRule: 'ORDER_ID_UNIQUE_WITHIN_SITE_PERIOD', historicalPairsAtRevocation: null,
+        events: [{ at: iso(-2), actor: 'General Contractor demo', event: 'Invito creato; nessuna associazione attiva' }],
+      },
+    ],
+  };
+}
