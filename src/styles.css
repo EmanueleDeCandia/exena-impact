@@ -316,7 +316,7 @@ ol {
   padding-inline: 48px;
   color: var(--white);
   background: var(--ink);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 650;
   letter-spacing: .14em;
 }
@@ -607,7 +607,7 @@ ol {
   padding: 10px 12px;
   color: var(--white);
   background: var(--ink);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: .09em;
 }
@@ -628,7 +628,7 @@ ol {
   padding: 12px 16px;
   border-bottom: 1px solid #3d3d3d;
   color: #a8a8a8;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: .12em;
 }
@@ -691,7 +691,7 @@ ol {
 
 .standards-strip__label {
   margin-right: auto;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: .12em;
   white-space: nowrap;
@@ -701,7 +701,7 @@ ol {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 750;
   letter-spacing: .05em;
   white-space: nowrap;
@@ -844,7 +844,7 @@ ol {
 
 .role-panel__deliverables b {
   color: var(--ink);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: .1em;
   text-transform: uppercase;
 }
@@ -947,7 +947,7 @@ ol {
 }
 
 .commodity-box > span {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: .1em;
 }
@@ -1002,7 +1002,7 @@ ol {
 
 .business-directions article > span {
   color: var(--cobalt);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: .1em;
 }
@@ -1088,7 +1088,7 @@ ol {
 
 .guarantee__points article > span {
   color: var(--volt);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 750;
   letter-spacing: .12em;
 }
@@ -1279,7 +1279,7 @@ ol {
 .service-area__tags span {
   padding: 7px 9px;
   border: 1px solid #a8aaa3;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 750;
   letter-spacing: .08em;
 }
@@ -1331,7 +1331,7 @@ ol {
 
 .service-column__heading small {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .standard-services__list {
@@ -1432,7 +1432,7 @@ ol {
 .variant-services__preview > small {
   margin-top: 12px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.5;
 }
 
@@ -1460,7 +1460,7 @@ ol {
 .variant-item__badges span,
 .variant-item__badges b {
   padding: 6px 8px;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: .07em;
 }
@@ -1483,7 +1483,7 @@ ol {
   display: block;
   margin-top: 12px;
   color: var(--cobalt);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: .08em;
   line-height: 1.5;
@@ -1539,7 +1539,7 @@ ol {
   display: block;
   margin-top: 10px;
   color: #aaa;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 750;
   letter-spacing: .1em;
 }
@@ -1586,7 +1586,7 @@ input[type='range']::-moz-range-thumb {
   display: flex;
   justify-content: space-between;
   color: #888;
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .pipeline-status {
@@ -1594,7 +1594,7 @@ input[type='range']::-moz-range-thumb {
   justify-content: space-between;
   margin-top: 48px;
   color: #aaa;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 750;
   letter-spacing: .1em;
 }
@@ -1658,14 +1658,14 @@ input[type='range']::-moz-range-thumb {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 7px;
+  font-size: 8px;
   font-weight: 800;
   letter-spacing: .08em;
 }
 
 .threshold-card__amount {
   margin-top: 34px;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: .1em;
 }
@@ -1698,7 +1698,7 @@ input[type='range']::-moz-range-thumb {
   color: inherit;
   background: transparent;
   cursor: pointer;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 750;
   text-align: left;
   text-transform: uppercase;
@@ -1711,7 +1711,7 @@ input[type='range']::-moz-range-thumb {
 .pipeline-note {
   margin-top: 24px;
   color: #777;
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.6;
 }
 
@@ -1750,7 +1750,7 @@ input[type='range']::-moz-range-thumb {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 750;
   letter-spacing: .09em;
 }
@@ -1905,7 +1905,7 @@ input[type='range']::-moz-range-thumb {
   padding: 12px 15px;
   color: var(--ink);
   background: var(--volt);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: .1em;
 }
@@ -1987,7 +1987,7 @@ input[type='range']::-moz-range-thumb {
   gap: 10px;
   padding-bottom: 24px;
   border-bottom: 1px solid #444;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: .08em;
 }
@@ -2124,7 +2124,7 @@ input[type='range']::-moz-range-thumb {
   display: block;
   margin-top: 12px;
   color: #888;
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.6;
 }
 
@@ -2134,7 +2134,7 @@ input[type='range']::-moz-range-thumb {
   justify-content: space-between;
   margin-top: 3px;
   color: #777;
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .calculator-field--mode .mode-switch {
@@ -2144,7 +2144,7 @@ input[type='range']::-moz-range-thumb {
 .calculator-field--mode > p {
   margin-top: 12px;
   color: #888;
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.5;
 }
 
@@ -2175,7 +2175,7 @@ input[type='range']::-moz-range-thumb {
 .download-button span {
   margin-left: auto;
   color: #777;
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .calculator-results {
@@ -2191,7 +2191,7 @@ input[type='range']::-moz-range-thumb {
   gap: 16px;
   padding-bottom: 24px;
   border-bottom: 2px solid var(--ink);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: .08em;
 }
@@ -2226,7 +2226,7 @@ input[type='range']::-moz-range-thumb {
 
 .result-card > span {
   display: block;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: .08em;
 }
@@ -2251,7 +2251,7 @@ input[type='range']::-moz-range-thumb {
   display: block;
   margin-top: 13px;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 9px;
   line-height: 1.4;
 }
 
@@ -2353,7 +2353,7 @@ input[type='range']::-moz-range-thumb {
 .calculator-disclaimer {
   margin-top: 16px;
   color: #7b7d77;
-  font-size: 8px;
+  font-size: 9px;
   line-height: 1.65;
 }
 
@@ -2413,7 +2413,7 @@ input[type='range']::-moz-range-thumb {
   color: var(--ink);
   background: var(--paper);
   font-family: var(--font-body);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: .08em;
 }
@@ -2430,7 +2430,7 @@ input[type='range']::-moz-range-thumb {
   margin-top: 10px;
   color: #999;
   font-family: var(--font-body);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 500;
   letter-spacing: .04em;
   text-transform: none;
@@ -2472,7 +2472,7 @@ input[type='range']::-moz-range-thumb {
 .comparison-note {
   margin-top: 14px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.6;
 }
 
@@ -2510,7 +2510,7 @@ input[type='range']::-moz-range-thumb {
   justify-content: space-between;
   padding-bottom: 24px;
   border-bottom: 1px solid currentColor;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: .09em;
 }
@@ -2647,7 +2647,7 @@ input[type='range']::-moz-range-thumb {
   grid-column: 1 / -1;
   margin-bottom: 22px;
   color: #cbd5ff;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 750;
   letter-spacing: .1em;
 }
@@ -2668,7 +2668,7 @@ input[type='range']::-moz-range-thumb {
   display: block;
   margin-top: 8px;
   color: #cbd5ff;
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .contact-promises {
@@ -2710,7 +2710,7 @@ input[type='range']::-moz-range-thumb {
 }
 
 .contact-form__heading span {
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: .1em;
 }
@@ -2738,7 +2738,7 @@ input[type='range']::-moz-range-thumb {
 }
 
 .form-grid label > span {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
 }
 
@@ -2796,14 +2796,14 @@ input[type='range']::-moz-range-thumb {
 
 .privacy-check span {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.6;
 }
 
 .form-demo-note {
   margin-top: 12px;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 9px;
   line-height: 1.5;
   text-align: center;
 }
@@ -2828,7 +2828,7 @@ input[type='range']::-moz-range-thumb {
 
 .form-success p {
   margin-top: 4px;
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.5;
 }
 
@@ -2865,7 +2865,7 @@ input[type='range']::-moz-range-thumb {
 .footer-links > span {
   margin-bottom: 8px;
   color: var(--volt);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: .12em;
 }
@@ -2889,7 +2889,7 @@ input[type='range']::-moz-range-thumb {
   justify-content: center;
   gap: 8px;
   border: 1px solid #555;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 750;
   letter-spacing: .08em;
 }
@@ -2906,7 +2906,7 @@ input[type='range']::-moz-range-thumb {
   padding-block: 20px;
   border-top: 1px solid #333;
   color: #777;
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: .07em;
 }
 
@@ -3020,7 +3020,7 @@ input[type='range']::-moz-range-thumb {
   }
 
   .threshold-card__status {
-    font-size: 6px;
+    font-size: 7px;
   }
 
   .calculator-controls,
@@ -3115,7 +3115,7 @@ input[type='range']::-moz-range-thumb {
   .mobile-nav nav > a > span {
     color: var(--volt);
     font-family: var(--font-body);
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .mobile-nav__cta {
@@ -3179,7 +3179,7 @@ input[type='range']::-moz-range-thumb {
   .role-tabs button {
     flex-direction: column;
     gap: 7px;
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .commodity-shift {
@@ -3252,7 +3252,7 @@ input[type='range']::-moz-range-thumb {
   }
 
   .threshold-card__status {
-    font-size: 7px;
+    font-size: 8px;
   }
 
   .territory__content {
@@ -3369,7 +3369,7 @@ input[type='range']::-moz-range-thumb {
 
   .eyebrow {
     margin-bottom: 20px;
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .topline {
@@ -3454,7 +3454,7 @@ input[type='range']::-moz-range-thumb {
   }
 
   .hero__stats dd {
-    font-size: 8px;
+    font-size: 9px;
   }
 
   .hero__visual {
@@ -3640,7 +3640,7 @@ input[type='range']::-moz-range-thumb {
 
   .mode-switch button {
     padding-inline: 8px;
-    font-size: 8px;
+    font-size: 9px;
   }
 
   .threshold-grid {
@@ -3657,7 +3657,7 @@ input[type='range']::-moz-range-thumb {
 
   .pipeline-status {
     gap: 20px;
-    font-size: 7px;
+    font-size: 8px;
   }
 
   .territory__image {
@@ -3672,7 +3672,7 @@ input[type='range']::-moz-range-thumb {
     right: 20px;
     bottom: 20px;
     left: 20px;
-    font-size: 8px;
+    font-size: 9px;
   }
 
   .territory__content {
@@ -3799,7 +3799,7 @@ input[type='range']::-moz-range-thumb {
   }
 
   .mode-switch button {
-    font-size: 7px;
+    font-size: 8px;
   }
 
   .mode-switch button svg {
@@ -3842,7 +3842,7 @@ input[type='range']::-moz-range-thumb {
   }
 
   .pipeline-slider__labels {
-    font-size: 7px;
+    font-size: 8px;
   }
 
   .result-grid {
@@ -3859,7 +3859,7 @@ input[type='range']::-moz-range-thumb {
 
   .calculator-results__heading {
     align-items: flex-start;
-    font-size: 7px;
+    font-size: 8px;
   }
 
   .territory-flow {
