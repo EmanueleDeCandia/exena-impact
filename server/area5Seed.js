@@ -18,6 +18,8 @@ export function createArea5Seed() {
       { id: 'OP-BOARD-001', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', displayName: 'Board Operations Demo', role: 'BOARD', assignedSiteIds: [], demoAccessEnabled: true },
       { id: 'OP-SITE-001', organizationId: 'org-gc-demo', organizationName: 'General Contractor Demo S.p.A.', displayName: 'Capocantiere Ponte Demo', role: 'SITE_MANAGER', assignedSiteIds: ['site-ponte-demo'], demoAccessEnabled: true },
       { id: 'OP-CSR-PROC', organizationId: 'org-csr-demo', organizationName: 'Manifattura Sibillini S.p.A.', displayName: 'Procurement Manifattura Sibillini (CSR)', role: 'PROCUREMENT', assignedSiteIds: ['unit-stabilimento-marche', 'unit-hub-logistica'], demoAccessEnabled: true },
+      { id: 'OP-CSR-SITE', organizationId: 'org-csr-demo', organizationName: 'Manifattura Sibillini S.p.A.', displayName: 'Resp. Stabilimento Marche (CSR)', role: 'SITE_MANAGER', assignedSiteIds: ['unit-stabilimento-marche'], demoAccessEnabled: true },
+      { id: 'OP-CSR-HUBMGR', organizationId: 'org-csr-demo', organizationName: 'Manifattura Sibillini S.p.A.', displayName: 'Resp. Hub Logistica Centro-Nord', role: 'SITE_MANAGER', assignedSiteIds: ['unit-hub-logistica'], demoAccessEnabled: true },
       { id: 'OP-CSR-ESG', organizationId: 'org-csr-demo', organizationName: 'Manifattura Sibillini S.p.A.', displayName: 'ESG Manager Manifattura Sibillini (CSR)', role: 'ESG_MANAGER', assignedSiteIds: ['unit-stabilimento-marche'], demoAccessEnabled: true },
       { id: 'OP-CSR-BOARD', organizationId: 'org-csr-demo', organizationName: 'Manifattura Sibillini S.p.A.', displayName: 'Direzione Sostenibilità (CSR)', role: 'BOARD', assignedSiteIds: [], demoAccessEnabled: true },
       { id: 'OP-SUB-001', organizationId: 'org-sub-demo', organizationName: 'Alpi Strutture Demo S.r.l.', displayName: 'Alpi Strutture (Subappalto 1° Livello)', role: 'SUBCONTRACTOR', assignedSiteIds: ['site-ponte-demo'], demoAccessEnabled: true },
@@ -110,6 +112,18 @@ export function createArea5Seed() {
         status: 'DRAFT', version: 1, deadlineAt: iso(24 * 18), deliveryWindow: { from: iso(24 * 24), to: iso(24 * 27) },
         needs: [{ productId: 'PROD-BOOT-S3', size: '42', quantity: 25 }], shipments: [],
         events: [{ at: iso(-20), actor: 'Procurement demo', event: 'Fabbisogno Borgo Alto associato a ordine confermato demo' }], imports: [],
+      },
+      {
+        id: 'LOG-CSR-STAB', organizationId: 'org-csr-demo', siteId: 'unit-stabilimento-marche', sourceOrderId: 'ORD-CSR-0201', addressId: 'ADDR-CSR-STAB', managerMemberId: 'OP-CSR-SITE',
+        status: 'VALIDATED', version: 1, deadlineAt: iso(24 * 14), deliveryWindow: { from: iso(24 * 20), to: iso(24 * 23) },
+        needs: [{ productId: 'PROD-ECO-S3S', size: '42', quantity: 75 }, { productId: 'PROD-ECO-S3S', size: '43', quantity: 75 }], shipments: [],
+        events: [{ at: iso(-24), actor: 'Procurement Manifattura Sibillini', event: 'Piano logistico stabilimento creato da ordine confermato demo' }, { at: iso(-12), actor: 'Resp. Stabilimento Marche (CSR)', event: 'Fabbisogno taglie validato dal presidio produttivo' }], imports: [],
+      },
+      {
+        id: 'LOG-CSR-HUB', organizationId: 'org-csr-demo', siteId: 'unit-hub-logistica', sourceOrderId: 'ORD-CSR-0202', addressId: 'ADDR-CSR-HUB', managerMemberId: 'OP-CSR-HUBMGR',
+        status: 'DRAFT', version: 1, deadlineAt: iso(24 * 18), deliveryWindow: { from: iso(24 * 24), to: iso(24 * 27) },
+        needs: [{ productId: 'PROD-BOOT-S3', size: '42', quantity: 25 }, { productId: 'PROD-BOOT-S3', size: '44', quantity: 25 }], shipments: [],
+        events: [{ at: iso(-16), actor: 'Procurement Manifattura Sibillini', event: 'Fabbisogno hub logistico associato a ordine confermato' }], imports: [],
       },
     ],
     subcontractorLinks: [

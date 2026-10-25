@@ -12,7 +12,7 @@ const linkStatus = { INVITED: 'Invitata · non attiva', PENDING_VERIFICATION: 'I
 export function SubcontractorNetworkPage() {
   const { notify, bootstrap } = useContext(WorkspaceContext);
   const t = getTerminology(bootstrap?.organization?.profileType);
-  const operations = useOperationsSession();
+  const operations = useOperationsSession(bootstrap?.organization?.id);
   const session = operations.session && roles.includes(operations.session?.member?.role) ? operations.session : null;
   const { data, error, loading, reload } = useOperationsData('/area5/network', session);
   const [linkId, setLinkId] = useState('');

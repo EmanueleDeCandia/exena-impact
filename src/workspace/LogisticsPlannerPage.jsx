@@ -18,7 +18,7 @@ export function LogisticsPlannerPage() {
     APPROVED: 'Approvato centralmente',
     SHIPMENT_PLANNED: 'Spedizione pianificata'
   };
-  const operations = useOperationsSession();
+  const operations = useOperationsSession(bootstrap?.organization?.id);
   const session = operations.session && roles.includes(operations.session?.member?.role) ? operations.session : null;
   const { data, error, loading, reload } = useOperationsData('/area5/logistics', session);
   const [planId, setPlanId] = useState('');

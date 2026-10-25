@@ -8,8 +8,8 @@ const roles = ['PROCUREMENT', 'SUBCONTRACTOR'];
 const recurrenceLabel = { ONE_OFF: 'Ordine singolo', MONTHLY: 'Ricorrenza mensile', QUARTERLY: 'Ricorrenza trimestrale' };
 
 export function BulkOrderPage() {
-  const { notify } = useContext(WorkspaceContext);
-  const operations = useOperationsSession();
+  const { notify, bootstrap } = useContext(WorkspaceContext);
+  const operations = useOperationsSession(bootstrap?.organization?.id);
   const session = operations.session && roles.includes(operations.session.member.role) ? operations.session : null;
   const { data, error, loading, reload } = useOperationsData('/area5/orders', session);
   const [productId, setProductId] = useState('');
