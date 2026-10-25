@@ -223,7 +223,7 @@ export function createSeed() {
         metrics: { pairs: 345, totalCents: 2587500, fundCents: 776250, interventions: 3, orderIds: ['ORD-DEMO-0142', 'ORD-DEMO-0118', 'ORD-DEMO-0097', 'ORD-DEMO-0088'], organizationIds: ['org-gc-demo', 'org-sub-demo'] },
       },
       {
-        id: 'REP-CSR-001', template: 'AREA_SISMA', title: 'Bilancio di Sostenibilità & Impatto Territoriale — Manifattura Sibillini',
+        id: 'REP-CSR-001', template: 'CSR_BILANCIO', title: 'Bilancio di Sostenibilità & Impatto Territoriale — Manifattura Sibillini',
         organizationId: 'org-csr-demo',
         siteId: null, period: { from: '2026-09-01', to: '2026-10-23' }, narrative: 'Rendicontazione di impatto integrata con Matching Grant e fornitura DPI sostenibile per stabilimenti e filiera.',
         status: 'VERIFIED', version: 1, createdAt: '2026-10-18T10:00:00.000Z', updatedAt: '2026-10-18T10:00:00.000Z', reviewNote: 'Rendicontazione validata con Matching Grant paritario al 30% come Partner Promotore.',

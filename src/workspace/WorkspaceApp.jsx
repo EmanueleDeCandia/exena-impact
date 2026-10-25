@@ -22,13 +22,14 @@ import {
   Palette,
   Presentation,
   ShoppingCart,
+  RotateCcw,
   ShieldCheck,
   Truck,
   WalletCards,
   X,
 } from 'lucide-react';
 import LandingPage from '../App.jsx';
-import { BlockedState, DemoNotice, ErrorState, LoadingState, useApiData } from './ui.jsx';
+import { BlockedState, DemoNotice, Dialog, ErrorState, LoadingState, useApiData } from './ui.jsx';
 import { api } from './api.js';
 import { RouteErrorBoundary } from './RouteErrorBoundary.jsx';
 import { getTerminology } from '../lib/terminology.js';
@@ -175,6 +176,24 @@ function WorkspaceLayout() {
     }
   };
 
+  const [resetting, setResetting] = useState(false);
+  const [resetDialogOpen, setResetDialogOpen] = useState(false);
+  const handleResetSeed = async () => {
+    setResetting(true);
+    try {
+      await api('/area1/reset', { method: 'POST' });
+      sessionStorage.removeItem('sibillini-operations-demo-session');
+      notify('success', 'Dati dimostrativi ripristinati con successo al seed iniziale');
+      setResetDialogOpen(false);
+      await reload();
+      window.dispatchEvent(new Event('sibillini:org-changed'));
+    } catch (err) {
+      notify('error', 'Impossibile ripristinare i dati demo: ' + err.message);
+    } finally {
+      setResetting(false);
+    }
+  };
+
   const context = useMemo(() => ({ bootstrap: data, data, notify }), [data, notify]);
 
   const navGroups = [
@@ -304,9 +323,41 @@ function WorkspaceLayout() {
                     ? `SUBAPPALTO ${data?.organization?.tierLevel || 1}° LIV · APPALTO`
                     : 'GENERAL CONTRACTOR · DEMO'}
                 </span>
+                <button
+                  className="reset-seed-button"
+                  type="button"
+                  onClick={() => setResetDialogOpen(true)}
+                  title="Ripristina i dati demo allo stato iniziale del seed"
+                  disabled={resetting}
+                >
+                  <RotateCcw size={14} className={resetting ? 'spin' : ''} />
+                  <span>Reset Seed</span>
+                </button>
               </>}
             </div>
           </header>
+          {resetDialogOpen && (
+            <Dialog
+              title="Ripristinare i dati demo?"
+              eyebrow="RIPRISTINO AMBIENTE DI TEST"
+              onClose={() => !resetting && setResetDialogOpen(false)}
+            >
+              <div className="confirm-dialog">
+                <RotateCcw size={28} style={{ color: 'var(--cobalt)' }} />
+                <p>
+                  Tutti i dati dimostrativi (ordini, relazioni di filiera, piani logistici, attestazioni e report) verranno riportati allo stato iniziale del seed predefinito.
+                </p>
+                <div className="dialog__actions">
+                  <button className="button button--ghost" type="button" onClick={() => setResetDialogOpen(false)} disabled={resetting}>
+                    Annulla
+                  </button>
+                  <button className="button button--cobalt" type="button" onClick={handleResetSeed} disabled={resetting}>
+                    {resetting ? 'Ripristino in corso…' : 'Conferma e Ripristina'}
+                  </button>
+                </div>
+              </div>
+            </Dialog>
+          )}
           <main id="workspace-main" className="workspace-main" tabIndex="-1">
             {isPublicRegister ? <RouteErrorBoundary resetKey={location.pathname}><Suspense fallback={<LoadingState label="Caricamento registro pubblico" />}><Outlet /></Suspense></RouteErrorBoundary> : <>
               {loading && !data && <LoadingState label="Inizializzazione workspace demo" />}

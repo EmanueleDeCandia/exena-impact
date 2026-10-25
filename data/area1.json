@@ -3,8 +3,110 @@
     "schemaVersion": 6,
     "demo": true,
     "notice": "Dati sintetici per validazione funzionale. Non utilizzare per reporting, revisione o finalità legali.",
-    "updatedAt": "2026-10-25T21:12:02.171Z"
+    "updatedAt": "2026-10-25T21:32:40.820Z"
   },
+  "organizations": [
+    {
+      "id": "org-gc-demo",
+      "name": "General Contractor Demo S.p.A.",
+      "profileType": "CONSTRUCTION",
+      "role": "ORG_ADMIN",
+      "siteIds": [
+        "site-ponte-demo",
+        "site-borgo-demo"
+      ],
+      "partnershipRole": "PROMOTER_PARTNER"
+    },
+    {
+      "id": "org-sub-demo",
+      "name": "Alpi Strutture Demo S.r.l.",
+      "profileType": "CONSTRUCTION",
+      "role": "SUBCONTRACTOR",
+      "tierRole": "SUBCONTRACTOR",
+      "tierLevel": 1,
+      "tierLabel": "Subappalto 1° Livello (Opere Strutturali)",
+      "siteIds": [
+        "site-ponte-demo"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    },
+    {
+      "id": "org-sub-tier2",
+      "name": "Impianti Sibillini Tech S.r.l.",
+      "profileType": "CONSTRUCTION",
+      "role": "SUBCONTRACTOR",
+      "tierRole": "SUBCONTRACTOR",
+      "tierLevel": 2,
+      "tierLabel": "Subappalto 2° Livello (Impianti & Reti)",
+      "siteIds": [
+        "site-ponte-demo"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    },
+    {
+      "id": "org-sub-tier3",
+      "name": "Posa & Finiture Speciali S.r.l.",
+      "profileType": "CONSTRUCTION",
+      "role": "SUBCONTRACTOR",
+      "tierRole": "SUBCONTRACTOR",
+      "tierLevel": 3,
+      "tierLabel": "Subappalto 3° Livello (Posa & Finiture)",
+      "siteIds": [
+        "site-ponte-demo"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    },
+    {
+      "id": "org-csr-demo",
+      "name": "Manifattura Sibillini S.p.A.",
+      "profileType": "CSR_ORIENTED",
+      "role": "ORG_ADMIN",
+      "siteIds": [
+        "unit-stabilimento-marche",
+        "unit-hub-logistica"
+      ],
+      "partnershipRole": "PROMOTER_PARTNER"
+    },
+    {
+      "id": "org-forn-green",
+      "name": "Packaging Verde S.r.l.",
+      "profileType": "CSR_ORIENTED",
+      "role": "SUBCONTRACTOR",
+      "tierRole": "SUPPLIER",
+      "tierLevel": 1,
+      "tierLabel": "Fornitore 1° Livello (Tier 1 Diretto · Packaging)",
+      "siteIds": [
+        "unit-stabilimento-marche"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    },
+    {
+      "id": "org-forn-tier2",
+      "name": "Cartiere Appennino S.p.A.",
+      "profileType": "CSR_ORIENTED",
+      "role": "SUBCONTRACTOR",
+      "tierRole": "SUPPLIER",
+      "tierLevel": 2,
+      "tierLabel": "Sub-Fornitore 2° Livello (Tier 2 · Cellulosa & Cartone)",
+      "siteIds": [
+        "unit-stabilimento-marche"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    },
+    {
+      "id": "org-forn-tier3",
+      "name": "Eco-Fibre Riciclo Territoriale S.r.l.",
+      "profileType": "CSR_ORIENTED",
+      "role": "SUBCONTRACTOR",
+      "tierRole": "SUPPLIER",
+      "tierLevel": 3,
+      "tierLabel": "Sub-Fornitore 3° Livello (Tier 3 · Materie Prime Seconde)",
+      "siteIds": [
+        "unit-stabilimento-marche"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    }
+  ],
   "organization": {
     "id": "org-gc-demo",
     "name": "General Contractor Demo S.p.A.",
@@ -19,15 +121,21 @@
   "sites": [
     {
       "id": "site-ponte-demo",
+      "organizationId": "org-gc-demo",
       "name": "Ponte Vallone",
       "code": "CANT-DEMO-01",
-      "municipality": "Comune Demo — Area Sisma"
+      "municipality": "Comune Demo — Area Sisma",
+      "unitType": "CONSTRUCTION_SITE",
+      "scope": "local"
     },
     {
       "id": "site-borgo-demo",
+      "organizationId": "org-gc-demo",
       "name": "Rigenerazione Borgo Alto",
       "code": "CANT-DEMO-02",
-      "municipality": "Borgo Demo — Sibillini"
+      "municipality": "Borgo Demo — Sibillini",
+      "unitType": "CONSTRUCTION_SITE",
+      "scope": "local"
     },
     {
       "id": "unit-stabilimento-marche",
@@ -139,6 +247,10 @@
       "pairs": 200,
       "totalCents": 1500000,
       "devolutionRate": 30,
+      "exenaFundCents": 450000,
+      "matchingGrantMode": "none",
+      "matchingGrantRate": 0,
+      "matchingGrantCents": 0,
       "status": "CONFIRMED",
       "confirmedAt": "2026-10-12T09:00:00.000Z"
     },
@@ -150,6 +262,10 @@
       "pairs": 80,
       "totalCents": 600000,
       "devolutionRate": 30,
+      "exenaFundCents": 180000,
+      "matchingGrantMode": "none",
+      "matchingGrantRate": 0,
+      "matchingGrantCents": 0,
       "status": "CONFIRMED",
       "confirmedAt": "2026-09-21T11:00:00.000Z"
     },
@@ -161,6 +277,10 @@
       "pairs": 40,
       "totalCents": 300000,
       "devolutionRate": 30,
+      "exenaFundCents": 90000,
+      "matchingGrantMode": "none",
+      "matchingGrantRate": 0,
+      "matchingGrantCents": 0,
       "status": "CONFIRMED",
       "confirmedAt": "2026-09-18T15:30:00.000Z"
     },
@@ -172,70 +292,12 @@
       "pairs": 25,
       "totalCents": 187500,
       "devolutionRate": 30,
+      "exenaFundCents": 56250,
+      "matchingGrantMode": "none",
+      "matchingGrantRate": 0,
+      "matchingGrantCents": 0,
       "status": "CONFIRMED",
       "confirmedAt": "2026-08-30T08:45:00.000Z"
-    },
-    {
-      "id": "BULK-b0fdc174-7b5b-447d-ac41-21f771add747",
-      "organizationId": "org-gc-demo",
-      "organizationName": "General Contractor Demo S.p.A.",
-      "siteId": "site-ponte-demo",
-      "pairs": 10,
-      "totalCents": 75000,
-      "devolutionRate": 30,
-      "status": "SUBMITTED",
-      "version": 1,
-      "submittedAt": "2026-10-25T14:59:13.883Z",
-      "confirmedAt": null,
-      "source": "BULK_PORTAL",
-      "items": [
-        {
-          "productId": "PROD-ECO-S3S",
-          "productName": "Exena Eco S3S — modello demo",
-          "sku": "ECO-S3S-DEMO",
-          "size": "42",
-          "quantity": 10,
-          "listUnitPriceCents": 7900,
-          "unitPriceCents": 7500,
-          "stockStatus": "AVAILABLE",
-          "stockUpdatedAt": "2026-10-24T21:27:33.805Z",
-          "listTotalCents": 79000,
-          "totalCents": 75000
-        }
-      ],
-      "listTotalCents": 79000,
-      "contractDiscountCents": 4000,
-      "exenaFundCents": 22500,
-      "matchingGrantMode": "match",
-      "matchingGrantRate": 30,
-      "matchingGrantCents": 22500,
-      "paymentStatus": "NOT_INTEGRATED",
-      "fulfilmentStatus": "SENT_TO_EXTERNAL_FULFILMENT",
-      "stockWarnings": [],
-      "recurrence": "ONE_OFF",
-      "addressSnapshot": {
-        "id": "ADDR-GC-PONTE",
-        "organizationId": "org-gc-demo",
-        "siteId": "site-ponte-demo",
-        "label": "Ponte Vallone — ingresso materiali demo",
-        "recipient": "Magazzino di cantiere demo",
-        "street": "Via del Cantiere 10",
-        "postalCode": "63000",
-        "city": "Comune Demo",
-        "province": "AP"
-      },
-      "idempotency": {
-        "key": "9d102c4f-b407-437f-9c17-1c1e2c856c7d",
-        "fingerprint": "efb83dbb045105b5ed0d0c73dc28911bf3747eb3a627d16541e4aa01fd29049a"
-      },
-      "rectifications": [],
-      "events": [
-        {
-          "at": "2026-10-25T14:59:13.883Z",
-          "actor": "Procurement General Contractor Demo",
-          "event": "Ordine inviato: 10 paia; matching grant: match (30%); pagamento non integrato"
-        }
-      ]
     },
     {
       "id": "ORD-CSR-0201",
@@ -433,64 +495,10 @@
   ],
   "reports": [
     {
-      "id": "REP-DEMO-21EE6540",
-      "template": "STAKEHOLDER_SUMMARY",
-      "title": "Sintesi Monografica d’Impatto per Stakeholder",
-      "siteId": null,
-      "period": {
-        "from": "2026-01-01",
-        "to": "2026-12-31"
-      },
-      "narrative": "Il nostro coinvolgimento in Sibillini Impact è stato inizialmente molto scettico. Con una semplicità disarmante creare valore sembra una proposta di marketing. Abbiamo scoperto che creare valore è anche una decisione culturale.",
-      "status": "VERIFIED",
-      "version": 1,
-      "createdAt": "2026-10-25T15:22:01.713Z",
-      "updatedAt": "2026-10-25T15:24:37.909Z",
-      "reviewNote": "Completezza formale e riferimenti controllati in ambiente demo.",
-      "evidenceIds": [
-        "EV-LCA-001",
-        "EV-BANK-0142",
-        "EV-AUDIT-0142"
-      ],
-      "metrics": {
-        "orderIds": [
-          "ORD-DEMO-0142",
-          "ORD-DEMO-0118",
-          "ORD-DEMO-0097",
-          "ORD-DEMO-0088"
-        ],
-        "organizationIds": [
-          "org-gc-demo",
-          "org-sub-demo"
-        ],
-        "pairs": 345,
-        "totalCents": 2587500,
-        "fundCents": 776250,
-        "interventions": 3
-      },
-      "reviewEvents": [
-        {
-          "at": "2026-10-25T15:23:21.834Z",
-          "actor": "Utente demo — ESG Manager",
-          "from": "DRAFT",
-          "to": "PENDING_REVIEW",
-          "note": "Invio alla revisione Startup"
-        },
-        {
-          "at": "2026-10-25T15:24:37.909Z",
-          "actor": "Startup garante — revisore demo",
-          "from": "PENDING_REVIEW",
-          "to": "VERIFIED",
-          "note": "Completezza formale e riferimenti controllati in ambiente demo."
-        }
-      ],
-      "reviewedBy": "Startup garante — revisore demo",
-      "reviewedAt": "2026-10-25T15:24:37.909Z"
-    },
-    {
       "id": "REP-DEMO-001",
       "template": "AREA_SISMA",
       "title": "Rendicontazione di Impatto Sociale — Area Sisma",
+      "organizationId": "org-gc-demo",
       "siteId": null,
       "period": {
         "from": "2026-08-01",
@@ -526,7 +534,7 @@
     },
     {
       "id": "REP-CSR-001",
-      "template": "AREA_SISMA",
+      "template": "CSR_BILANCIO",
       "title": "Bilancio di Sostenibilità & Impatto Territoriale — Manifattura Sibillini",
       "organizationId": "org-csr-demo",
       "siteId": null,
@@ -648,15 +656,6 @@
       "dataUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgOTAiPjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iOTAiIGZpbGw9IiNmZmZmZmYiLz48cGF0aCBkPSJNMTggNjUgNDIgMjBsMjQgNDVIMThabTQyIDAgMjQtNDUgMjQgNDVINjBaIiBmaWxsPSIjMTk0N2U1Ii8+PHRleHQgeD0iOTYiIHk9IjY5IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzExMTExMSI+R0M8L3RleHQ+PC9zdmc+",
       "createdAt": "2026-10-20T09:00:00.000Z",
       "status": "APPROVED_DEMO"
-    },
-    {
-      "id": "LOGO-DEMO-302BDAEF",
-      "organizationId": "org-sub-demo",
-      "originalName": "Illiria-logo.png",
-      "mime": "image/png",
-      "dataUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbAAAABzCAYAAAD5RVeEAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ1IDc5LjE2MzQ5OSwgMjAxOC8wOC8xMy0xNjo0MDoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjMwRkQzQjA0NzNGMTFFOTlBQUFBODMwMDAzRjMzOUYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjMwRkQzQjE0NzNGMTFFOTlBQUFBODMwMDAzRjMzOUYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2MzBGRDNBRTQ3M0YxMUU5OUFBQUE4MzAwMDNGMzM5RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2MzBGRDNBRjQ3M0YxMUU5OUFBQUE4MzAwMDNGMzM5RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtGnTmcAACc+SURBVHja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",
-      "createdAt": "2026-10-25T20:48:53.828Z",
-      "status": "APPROVED_DEMO"
     }
   ],
   "brandTextVersions": [
@@ -680,87 +679,6 @@
   "brandGenerations": [],
   "brandInvitations": [],
   "editorialContents": [
-    {
-      "id": "EDI-DEMO-9F80E878",
-      "type": "CASE_HISTORY",
-      "title": "Quando la fornitura DPI diventa un’infrastruttura di dati per il cantiere",
-      "slug": "fornitura-dpi-infrastruttura-dati-cantiere-demo",
-      "excerpt": "Una case history interamente dimostrativa sul collegamento tra fabbisogno tecnico, dati di filiera e rendicontazione territoriale.",
-      "metaDescription": "Case history demo: fornitura DPI, dati ESG e rendicontazione di cantiere in un percorso tracciato dalla Startup garante.",
-      "image": "/images/hero-worker.jpg",
-      "imageAlt": "Responsabile della sicurezza in un cantiere infrastrutturale tra i monti Sibillini",
-      "sections": [
-        {
-          "heading": "Il punto di partenza",
-          "text": "Nel progetto dimostrativo di Ponte Vallone, il General Contractor parte da un fabbisogno concreto: 200 paia di calzature e la necessità di tenere insieme consegna, dati ambientali e documentazione della commessa."
-        },
-        {
-          "heading": "Dal dato alla relazione di filiera",
-          "text": "Il dataset LCA v2.1 e l’attestazione della devoluzione del 30% sono collegati alla stessa fornitura. Ogni valore numerico di questa pagina deriva dai dati sintetici associati in calce e non descrive una commessa reale."
-        },
-        {
-          "heading": "Un risultato da verificare, non da celebrare",
-          "text": "Il valore editoriale sta nel percorso di controllo: versioni, fonti e revisioni rendono il racconto verificabile. La redazione della Startup conserva il proprio giudizio indipendente; l’impresa verifica i fatti che la riguardano."
-        }
-      ],
-      "linkedData": {
-        "siteId": "site-ponte-demo",
-        "datasetId": "DS-ECO-2026-21",
-        "attestationId": "ATT-DEMO-0142",
-        "reportId": "REP-DEMO-001"
-      },
-      "status": "DRAFT",
-      "version": 3,
-      "author": "Redazione Startup — demo",
-      "factualApprovedVersion": null,
-      "createdAt": "2026-10-25T15:57:16.334Z",
-      "updatedAt": "2026-10-25T15:57:16.334Z",
-      "publishedAt": null,
-      "archivedAt": null,
-      "previousVersions": [
-        {
-          "version": 1,
-          "title": "La fornitura DPI come infrastruttura di dati",
-          "updatedAt": "2026-10-18T09:00:00.000Z"
-        },
-        {
-          "version": 2,
-          "title": "Quando la fornitura DPI diventa un’infrastruttura di dati per il cantiere",
-          "excerpt": "Una case history interamente dimostrativa sul collegamento tra fabbisogno tecnico, dati di filiera e rendicontazione territoriale.",
-          "sections": [
-            {
-              "heading": "Il punto di partenza",
-              "text": "Nel progetto dimostrativo di Ponte Vallone, il General Contractor parte da un fabbisogno concreto: 200 paia di calzature e la necessità di tenere insieme consegna, dati ambientali e documentazione della commessa."
-            },
-            {
-              "heading": "Dal dato alla relazione di filiera",
-              "text": "Il dataset LCA v2.1 e l’attestazione della devoluzione del 30% sono collegati alla stessa fornitura. Ogni valore numerico di questa pagina deriva dai dati sintetici associati in calce e non descrive una commessa reale."
-            },
-            {
-              "heading": "Un risultato da verificare, non da celebrare",
-              "text": "Il valore editoriale sta nel percorso di controllo: versioni, fonti e revisioni rendono il racconto verificabile. La redazione della Startup conserva il proprio giudizio indipendente; l’impresa verifica i fatti che la riguardano."
-            }
-          ],
-          "updatedAt": "2026-10-21T09:00:00.000Z"
-        }
-      ],
-      "reviewEvents": [
-        {
-          "at": "2026-10-25T15:57:16.335Z",
-          "actor": "Redazione Startup — demo",
-          "event": "Nuova versione per correzione: Aggiornamento versionato dei contenuti e delle fonti."
-        }
-      ],
-      "corrections": [
-        {
-          "at": "2026-10-25T15:57:16.335Z",
-          "note": "Aggiornamento versionato dei contenuti e delle fonti.",
-          "status": "IN_REVIEW_DEMO"
-        }
-      ],
-      "correctionOf": "EDI-DEMO-CASE-01",
-      "correctionNote": "Aggiornamento versionato dei contenuti e delle fonti."
-    },
     {
       "id": "EDI-DEMO-CASE-01",
       "type": "CASE_HISTORY",
@@ -920,32 +838,6 @@
       "rectifications": []
     },
     {
-      "id": "PAR-DEMO-003",
-      "publicSlug": "impresa-bozza-demo",
-      "organizationName": "Impresa Bozza Demo S.r.l.",
-      "consentToPublish": false,
-      "municipalities": [
-        "Borgo Demo — Sibillini"
-      ],
-      "joinedAt": "2026-10-23T09:00:00.000Z",
-      "status": "DRAFT",
-      "version": 1,
-      "projects": [
-        {
-          "name": "Progetto da definire",
-          "municipality": "Borgo Demo — Sibillini",
-          "description": "Bozza non pubblica.",
-          "publicEvidence": ""
-        }
-      ],
-      "sourceAttestationId": null,
-      "publishedAt": null,
-      "updatedAt": "2026-10-23T09:00:00.000Z",
-      "removedAt": null,
-      "reviewEvents": [],
-      "rectifications": []
-    },
-    {
       "id": "PAR-CSR-001",
       "publicSlug": "manifattura-sibillini-demo",
       "organizationName": "Manifattura Sibillini S.p.A.",
@@ -975,6 +867,32 @@
           "event": "Profilo Partner Promotore CSR verificato"
         }
       ],
+      "rectifications": []
+    },
+    {
+      "id": "PAR-DEMO-003",
+      "publicSlug": "impresa-bozza-demo",
+      "organizationName": "Impresa Bozza Demo S.r.l.",
+      "consentToPublish": false,
+      "municipalities": [
+        "Borgo Demo — Sibillini"
+      ],
+      "joinedAt": "2026-10-23T09:00:00.000Z",
+      "status": "DRAFT",
+      "version": 1,
+      "projects": [
+        {
+          "name": "Progetto da definire",
+          "municipality": "Borgo Demo — Sibillini",
+          "description": "Bozza non pubblica.",
+          "publicEvidence": ""
+        }
+      ],
+      "sourceAttestationId": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-23T09:00:00.000Z",
+      "removedAt": null,
+      "reviewEvents": [],
       "rectifications": []
     }
   ],
@@ -1389,16 +1307,6 @@
       "demoAccessEnabled": true
     },
     {
-      "id": "MEM-BOARD-OTHER",
-      "organizationId": "org-other-demo",
-      "displayName": "Board Altra Organizzazione Demo",
-      "role": "BOARD",
-      "boardAuthorized": true,
-      "briefingSpeaker": false,
-      "mfaDemoCode": "246810",
-      "demoAccessEnabled": true
-    },
-    {
       "id": "MEM-CSR-BOARD",
       "organizationId": "org-csr-demo",
       "displayName": "Consigliere Manifattura Sibillini (CSR)",
@@ -1407,17 +1315,19 @@
       "briefingSpeaker": false,
       "mfaDemoCode": "246810",
       "demoAccessEnabled": true
-    }
-  ],
-  "governanceSessions": [
+    },
     {
-      "token": "b7289ad902cc453287e8967c772ee1854a12abcea2b94fbc87730ab177a7fc8f",
-      "memberId": "MEM-BOARD-001",
-      "organizationId": "org-gc-demo",
-      "createdAt": "2026-10-25T20:53:42.876Z",
-      "expiresAt": "2026-10-26T04:53:42.877Z"
+      "id": "MEM-BOARD-OTHER",
+      "organizationId": "org-other-demo",
+      "displayName": "Board Altra Organizzazione Demo",
+      "role": "BOARD",
+      "boardAuthorized": true,
+      "briefingSpeaker": false,
+      "mfaDemoCode": "246810",
+      "demoAccessEnabled": true
     }
   ],
+  "governanceSessions": [],
   "mfaChallenges": [],
   "fundDirectionOptions": [
     {
@@ -1467,18 +1377,6 @@
       "timeZone": "Europe/Rome"
     },
     {
-      "id": "GOV-WIN-2025",
-      "organizationId": "org-gc-demo",
-      "title": "Archivio indirizzo Fondo 2025 — demo",
-      "ruleVersion": "REG-FONDO-2025.4",
-      "eligibleOrderIds": [
-        "ORD-DEMO-0118"
-      ],
-      "opensAt": "2025-11-01T08:00:00.000Z",
-      "cutoffAt": "2025-12-15T16:00:00.000Z",
-      "timeZone": "Europe/Rome"
-    },
-    {
       "id": "GOV-WIN-CSR-2026",
       "organizationId": "org-csr-demo",
       "title": "Indirizzo territoriale Fondo 2026 — Manifattura Sibillini (CSR)",
@@ -1488,6 +1386,18 @@
       ],
       "opensAt": "2026-10-15T08:00:00.000Z",
       "cutoffAt": "2026-12-20T16:00:00.000Z",
+      "timeZone": "Europe/Rome"
+    },
+    {
+      "id": "GOV-WIN-2025",
+      "organizationId": "org-gc-demo",
+      "title": "Archivio indirizzo Fondo 2025 — demo",
+      "ruleVersion": "REG-FONDO-2025.4",
+      "eligibleOrderIds": [
+        "ORD-DEMO-0118"
+      ],
+      "opensAt": "2025-11-01T08:00:00.000Z",
+      "cutoffAt": "2025-12-15T16:00:00.000Z",
       "timeZone": "Europe/Rome"
     }
   ],
@@ -1538,8 +1448,8 @@
       "id": "BRF-LIVE-DEMO",
       "organizationId": "org-gc-demo",
       "title": "Briefing Board — direttive e filiere demo",
-      "startAt": "2026-10-24T23:57:33.804Z",
-      "endAt": "2026-10-25T01:57:33.804Z",
+      "startAt": "2026-10-25T21:02:40.470Z",
+      "endAt": "2026-10-25T23:02:40.470Z",
       "timeZone": "Europe/Rome",
       "durationMinutes": 120,
       "status": "SCHEDULED",
@@ -1594,11 +1504,9 @@
           "id": "BRF-LIVE-DEMO-INV-BOARD",
           "memberId": "MEM-BOARD-001",
           "role": "PARTICIPANT",
-          "status": "ACCEPTED",
-          "acceptedAt": "2026-10-25T20:54:28.711Z",
-          "identityVerifiedAt": "2026-10-25T20:54:28.711Z",
-          "roomToken": "a9ee1722497941b89660cf2522fa54c789e086d003814d239ad418a555459d26",
-          "roomTokenGeneratedAt": "2026-10-25T20:54:28.711Z"
+          "status": "INVITED",
+          "acceptedAt": null,
+          "identityVerifiedAt": null
         },
         {
           "id": "BRF-LIVE-DEMO-INV-SPEAKER",
@@ -1620,14 +1528,9 @@
       "followUp": null,
       "events": [
         {
-          "at": "2026-10-25T00:27:33.804Z",
+          "at": "2026-10-25T21:32:40.470Z",
           "actor": "Startup garante — demo",
           "event": "Sessione online e inviti nominativi creati; registrazione disattivata"
-        },
-        {
-          "at": "2026-10-25T20:54:28.711Z",
-          "actor": "Consigliere Board Demo",
-          "event": "Invito accettato e identità demo confermata"
         }
       ]
     },
@@ -1635,8 +1538,8 @@
       "id": "BRF-FUTURE-DEMO",
       "organizationId": "org-gc-demo",
       "title": "Briefing Board annuale — sessione programmata demo",
-      "startAt": "2026-11-01T00:27:33.804Z",
-      "endAt": "2026-11-01T02:27:33.804Z",
+      "startAt": "2026-11-01T21:32:40.470Z",
+      "endAt": "2026-11-01T23:32:40.470Z",
       "timeZone": "Europe/Rome",
       "durationMinutes": 120,
       "status": "SCHEDULED",
@@ -1691,11 +1594,9 @@
           "id": "BRF-FUTURE-DEMO-INV-BOARD",
           "memberId": "MEM-BOARD-001",
           "role": "PARTICIPANT",
-          "status": "ACCEPTED",
-          "acceptedAt": "2026-10-25T20:55:19.404Z",
-          "identityVerifiedAt": "2026-10-25T20:55:19.404Z",
-          "roomToken": "7553d3c121d04c5497f927eea5fe53e303aa1008e9064d5e80b0e8b07f3433e3",
-          "roomTokenGeneratedAt": "2026-10-25T20:55:19.404Z"
+          "status": "INVITED",
+          "acceptedAt": null,
+          "identityVerifiedAt": null
         },
         {
           "id": "BRF-FUTURE-DEMO-INV-SPEAKER",
@@ -1717,14 +1618,9 @@
       "followUp": null,
       "events": [
         {
-          "at": "2026-10-25T00:27:33.804Z",
+          "at": "2026-10-25T21:32:40.470Z",
           "actor": "Startup garante — demo",
           "event": "Sessione online e inviti nominativi creati; registrazione disattivata"
-        },
-        {
-          "at": "2026-10-25T20:55:19.404Z",
-          "actor": "Consigliere Board Demo",
-          "event": "Invito accettato e identità demo confermata"
         }
       ]
     }
@@ -1912,53 +1808,11 @@
   ],
   "operationsSessions": [
     {
-      "token": "4862677f9e7f40c38dab0f41a22b3187a14de3fb359e4d10a1c2619fa53ede1f",
+      "token": "4c64bd42af8a468ebb01a4cb110f736301f98c96a2ca484c8fd2c920d398f2a8",
       "memberId": "OP-PROC-001",
       "organizationId": "org-gc-demo",
-      "createdAt": "2026-10-25T14:55:04.290Z",
-      "expiresAt": "2026-10-25T22:55:04.291Z"
-    },
-    {
-      "token": "8bdbf4f8dd6847148450c1b77485dec0baaad9a26a09474fa729bab51ddf59d2",
-      "memberId": "OP-PROC-001",
-      "organizationId": "org-gc-demo",
-      "createdAt": "2026-10-25T15:35:55.824Z",
-      "expiresAt": "2026-10-25T23:35:55.824Z"
-    },
-    {
-      "token": "15151b0585484d6d816c69d60c63db008b1287cfaa024f2cb6ea8a93e74b5440",
-      "memberId": "OP-PROC-001",
-      "organizationId": "org-gc-demo",
-      "createdAt": "2026-10-25T16:12:26.982Z",
-      "expiresAt": "2026-10-26T00:12:26.983Z"
-    },
-    {
-      "token": "09e7ebf54933460fade3195f436b5ddf649c20b9fabf4907b8e1ecda537a746e",
-      "memberId": "OP-CSR-PROC",
-      "organizationId": "org-csr-demo",
-      "createdAt": "2026-10-25T20:30:40.987Z",
-      "expiresAt": "2026-10-26T04:30:40.987Z"
-    },
-    {
-      "token": "029c7b7ef2dd4801a7f06070708fae0c874029249ee64dcd99597e5f58fd738a",
-      "memberId": "OP-PROC-001",
-      "organizationId": "org-gc-demo",
-      "createdAt": "2026-10-25T21:10:22.803Z",
-      "expiresAt": "2026-10-26T05:10:22.804Z"
-    },
-    {
-      "token": "fdcd4efbd75143efb6310f19f6c94c9c4aa5fb7335af415caeea33850884a70b",
-      "memberId": "OP-CSR-PROC",
-      "organizationId": "org-csr-demo",
-      "createdAt": "2026-10-25T21:11:48.580Z",
-      "expiresAt": "2026-10-26T05:11:48.581Z"
-    },
-    {
-      "token": "81f3c38c1a0b429ea9a3f411c6e73ac8eff655926dc84868abc9c280b90da867",
-      "memberId": "OP-PROC-001",
-      "organizationId": "org-gc-demo",
-      "createdAt": "2026-10-25T21:12:02.171Z",
-      "expiresAt": "2026-10-26T05:12:02.171Z"
+      "createdAt": "2026-10-25T21:32:40.820Z",
+      "expiresAt": "2026-10-26T05:32:40.820Z"
     }
   ],
   "productCatalog": [
@@ -1975,49 +1829,49 @@
           "size": "39",
           "stockStatus": "LOW",
           "availableQuantity": 12,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "40",
           "stockStatus": "LOW",
           "availableQuantity": 12,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "41",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "42",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "43",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "44",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "45",
           "stockStatus": "UNCERTAIN",
           "availableQuantity": null,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "46",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         }
       ]
     },
@@ -2034,49 +1888,49 @@
           "size": "39",
           "stockStatus": "LOW",
           "availableQuantity": 12,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "40",
           "stockStatus": "LOW",
           "availableQuantity": 12,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "41",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "42",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "43",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "44",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "45",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         },
         {
           "size": "46",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-24T21:27:33.805Z"
+          "updatedAt": "2026-10-25T18:32:40.471Z"
         }
       ]
     }
@@ -2359,6 +2213,160 @@
       "fulfilment": "DIGITAL"
     },
     {
+      "id": "ENT-org-csr-demo-C12-BULK_ORDER",
+      "organizationId": "org-csr-demo",
+      "componentId": "C12",
+      "serviceId": "BULK_ORDER",
+      "title": "Bulk Order Portal",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/ordini",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C13-THRESHOLD_DASHBOARD",
+      "organizationId": "org-csr-demo",
+      "componentId": "C13",
+      "serviceId": "THRESHOLD_DASHBOARD",
+      "title": "Dashboard Soglie e Benefit",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/app/dashboard",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C14-TRANSPARENCY",
+      "organizationId": "org-csr-demo",
+      "componentId": "C14",
+      "serviceId": "TRANSPARENCY",
+      "title": "Registro Pubblico Trasparente",
+      "track": "STANDARD",
+      "requiredPairs": 0,
+      "route": "/trasparenza",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C05-CO_BRAND",
+      "organizationId": "org-csr-demo",
+      "componentId": "C05",
+      "serviceId": "CO_BRAND",
+      "title": "Kit Digital Co-Branding",
+      "track": "STANDARD",
+      "requiredPairs": 10,
+      "route": "/app/brand-kit",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C06-CASE_HISTORY",
+      "organizationId": "org-csr-demo",
+      "componentId": "C06",
+      "serviceId": "CASE_HISTORY",
+      "title": "Case History ed Executive Page",
+      "track": "STANDARD",
+      "requiredPairs": 25,
+      "route": "/app/editoriale",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C04-ASSURANCE",
+      "organizationId": "org-csr-demo",
+      "componentId": "C04",
+      "serviceId": "ASSURANCE",
+      "title": "Fascicolo Ready for Assurance",
+      "track": "VARIANT",
+      "requiredPairs": 10,
+      "route": "/app/evidence-packs",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C07-PARTNER_REGISTRY",
+      "organizationId": "org-csr-demo",
+      "componentId": "C07",
+      "serviceId": "PARTNER_REGISTRY",
+      "title": "Registro Partner della Ricostruzione",
+      "track": "VARIANT",
+      "requiredPairs": 25,
+      "route": "/app/registro-partner",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C16-SUB_NETWORK",
+      "organizationId": "org-csr-demo",
+      "componentId": "C16",
+      "serviceId": "SUB_NETWORK",
+      "title": "Accordo Quadro di Filiera Fornitori",
+      "track": "VARIANT",
+      "requiredPairs": 25,
+      "route": "/app/filiera",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C10-FUND_DIRECTION",
+      "organizationId": "org-csr-demo",
+      "componentId": "C10",
+      "serviceId": "FUND_DIRECTION",
+      "title": "Diritto di Indirizzo Territoriale",
+      "track": "VARIANT",
+      "requiredPairs": 100,
+      "route": "/app/governance/indirizzo-fondo",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
+      "id": "ENT-org-csr-demo-C11-BOARD_BRIEFING",
+      "organizationId": "org-csr-demo",
+      "componentId": "C11",
+      "serviceId": "BOARD_BRIEFING",
+      "title": "Board Briefing annuale",
+      "track": "VARIANT",
+      "requiredPairs": 100,
+      "route": "/app/governance/briefing",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "LIVE_ONLINE"
+    },
+    {
+      "id": "ENT-org-csr-demo-C15-MULTI_SITE",
+      "organizationId": "org-csr-demo",
+      "componentId": "C15",
+      "serviceId": "MULTI_SITE",
+      "title": "Portale Logistico Multi-Sito / Stabilimento",
+      "track": "VARIANT",
+      "requiredPairs": 100,
+      "route": "/app/logistica",
+      "contractStatus": "ACTIVE",
+      "activationStatus": "ACTIVE",
+      "expiresAt": null,
+      "fulfilment": "DIGITAL"
+    },
+    {
       "id": "ENT-org-sub-demo-C12-BULK_ORDER",
       "organizationId": "org-sub-demo",
       "componentId": "C12",
@@ -2526,160 +2534,6 @@
       "activationStatus": "ACTIVE",
       "expiresAt": null,
       "fulfilment": "DIGITAL"
-    },
-    {
-      "id": "ENT-org-csr-demo-C12-BULK_ORDER",
-      "organizationId": "org-csr-demo",
-      "componentId": "C12",
-      "serviceId": "BULK_ORDER",
-      "title": "Bulk Order Portal",
-      "track": "STANDARD",
-      "requiredPairs": 0,
-      "route": "/app/ordini",
-      "contractStatus": "ACTIVE",
-      "activationStatus": "ACTIVE",
-      "expiresAt": null,
-      "fulfilment": "DIGITAL"
-    },
-    {
-      "id": "ENT-org-csr-demo-C13-THRESHOLD_DASHBOARD",
-      "organizationId": "org-csr-demo",
-      "componentId": "C13",
-      "serviceId": "THRESHOLD_DASHBOARD",
-      "title": "Dashboard Soglie e Benefit",
-      "track": "STANDARD",
-      "requiredPairs": 0,
-      "route": "/app/dashboard",
-      "contractStatus": "ACTIVE",
-      "activationStatus": "ACTIVE",
-      "expiresAt": null,
-      "fulfilment": "DIGITAL"
-    },
-    {
-      "id": "ENT-org-csr-demo-C14-TRANSPARENCY",
-      "organizationId": "org-csr-demo",
-      "componentId": "C14",
-      "serviceId": "TRANSPARENCY",
-      "title": "Registro Pubblico Trasparente",
-      "track": "STANDARD",
-      "requiredPairs": 0,
-      "route": "/trasparenza",
-      "contractStatus": "ACTIVE",
-      "activationStatus": "ACTIVE",
-      "expiresAt": null,
-      "fulfilment": "DIGITAL"
-    },
-    {
-      "id": "ENT-org-csr-demo-C05-CO_BRAND",
-      "organizationId": "org-csr-demo",
-      "componentId": "C05",
-      "serviceId": "CO_BRAND",
-      "title": "Kit Digital Co-Branding",
-      "track": "STANDARD",
-      "requiredPairs": 10,
-      "route": "/app/brand-kit",
-      "contractStatus": "ACTIVE",
-      "activationStatus": "ACTIVE",
-      "expiresAt": null,
-      "fulfilment": "DIGITAL"
-    },
-    {
-      "id": "ENT-org-csr-demo-C06-CASE_HISTORY",
-      "organizationId": "org-csr-demo",
-      "componentId": "C06",
-      "serviceId": "CASE_HISTORY",
-      "title": "Case History ed Executive Page",
-      "track": "STANDARD",
-      "requiredPairs": 25,
-      "route": "/app/editoriale",
-      "contractStatus": "ACTIVE",
-      "activationStatus": "ACTIVE",
-      "expiresAt": null,
-      "fulfilment": "DIGITAL"
-    },
-    {
-      "id": "ENT-org-csr-demo-C04-ASSURANCE",
-      "organizationId": "org-csr-demo",
-      "componentId": "C04",
-      "serviceId": "ASSURANCE",
-      "title": "Fascicolo Ready for Assurance",
-      "track": "VARIANT",
-      "requiredPairs": 10,
-      "route": "/app/evidence-packs",
-      "contractStatus": "ACTIVE",
-      "activationStatus": "ACTIVE",
-      "expiresAt": null,
-      "fulfilment": "DIGITAL"
-    },
-    {
-      "id": "ENT-org-csr-demo-C07-PARTNER_REGISTRY",
-      "organizationId": "org-csr-demo",
-      "componentId": "C07",
-      "serviceId": "PARTNER_REGISTRY",
-      "title": "Registro Partner della Ricostruzione",
-      "track": "VARIANT",
-      "requiredPairs": 25,
-      "route": "/app/registro-partner",
-      "contractStatus": "ACTIVE",
-      "activationStatus": "ACTIVE",
-      "expiresAt": null,
-      "fulfilment": "DIGITAL"
-    },
-    {
-      "id": "ENT-org-csr-demo-C16-SUB_NETWORK",
-      "organizationId": "org-csr-demo",
-      "componentId": "C16",
-      "serviceId": "SUB_NETWORK",
-      "title": "Accordo Quadro di Filiera Fornitori",
-      "track": "VARIANT",
-      "requiredPairs": 25,
-      "route": "/app/filiera",
-      "contractStatus": "ACTIVE",
-      "activationStatus": "ACTIVE",
-      "expiresAt": null,
-      "fulfilment": "DIGITAL"
-    },
-    {
-      "id": "ENT-org-csr-demo-C10-FUND_DIRECTION",
-      "organizationId": "org-csr-demo",
-      "componentId": "C10",
-      "serviceId": "FUND_DIRECTION",
-      "title": "Diritto di Indirizzo Territoriale",
-      "track": "VARIANT",
-      "requiredPairs": 100,
-      "route": "/app/governance/indirizzo-fondo",
-      "contractStatus": "ACTIVE",
-      "activationStatus": "ACTIVE",
-      "expiresAt": null,
-      "fulfilment": "DIGITAL"
-    },
-    {
-      "id": "ENT-org-csr-demo-C11-BOARD_BRIEFING",
-      "organizationId": "org-csr-demo",
-      "componentId": "C11",
-      "serviceId": "BOARD_BRIEFING",
-      "title": "Board Briefing annuale",
-      "track": "VARIANT",
-      "requiredPairs": 100,
-      "route": "/app/governance/briefing",
-      "contractStatus": "ACTIVE",
-      "activationStatus": "ACTIVE",
-      "expiresAt": null,
-      "fulfilment": "LIVE_ONLINE"
-    },
-    {
-      "id": "ENT-org-csr-demo-C15-MULTI_SITE",
-      "organizationId": "org-csr-demo",
-      "componentId": "C15",
-      "serviceId": "MULTI_SITE",
-      "title": "Portale Logistico Multi-Sito / Stabilimento",
-      "track": "VARIANT",
-      "requiredPairs": 100,
-      "route": "/app/logistica",
-      "contractStatus": "ACTIVE",
-      "activationStatus": "ACTIVE",
-      "expiresAt": null,
-      "fulfilment": "DIGITAL"
     }
   ],
   "serviceActivationEvents": [],
@@ -2748,10 +2602,10 @@
       "managerMemberId": null,
       "status": "DRAFT",
       "version": 1,
-      "deadlineAt": "2026-11-08T21:09:21.440Z",
+      "deadlineAt": "2026-11-08T21:32:40.471Z",
       "deliveryWindow": {
-        "from": "2026-11-14T21:09:21.440Z",
-        "to": "2026-11-17T21:09:21.440Z"
+        "from": "2026-11-14T21:32:40.471Z",
+        "to": "2026-11-17T21:32:40.471Z"
       },
       "needs": [
         {
@@ -2768,7 +2622,7 @@
       "shipments": [],
       "events": [
         {
-          "at": "2026-10-24T21:09:21.440Z",
+          "at": "2026-10-24T21:32:40.471Z",
           "actor": "Procurement demo",
           "event": "Piano multi-cantiere creato da ordine confermato demo"
         }
@@ -2784,10 +2638,10 @@
       "managerMemberId": null,
       "status": "DRAFT",
       "version": 1,
-      "deadlineAt": "2026-11-12T21:09:21.440Z",
+      "deadlineAt": "2026-11-12T21:32:40.471Z",
       "deliveryWindow": {
-        "from": "2026-11-18T21:09:21.440Z",
-        "to": "2026-11-21T21:09:21.440Z"
+        "from": "2026-11-18T21:32:40.471Z",
+        "to": "2026-11-21T21:32:40.471Z"
       },
       "needs": [
         {
@@ -2799,7 +2653,7 @@
       "shipments": [],
       "events": [
         {
-          "at": "2026-10-25T01:09:21.440Z",
+          "at": "2026-10-25T01:32:40.471Z",
           "actor": "Procurement demo",
           "event": "Fabbisogno Borgo Alto associato a ordine confermato demo"
         }
@@ -2815,10 +2669,10 @@
       "managerMemberId": "OP-CSR-SITE",
       "status": "VALIDATED",
       "version": 1,
-      "deadlineAt": "2026-11-08T21:09:21.440Z",
+      "deadlineAt": "2026-11-08T21:32:40.471Z",
       "deliveryWindow": {
-        "from": "2026-11-14T21:09:21.440Z",
-        "to": "2026-11-17T21:09:21.440Z"
+        "from": "2026-11-14T21:32:40.471Z",
+        "to": "2026-11-17T21:32:40.471Z"
       },
       "needs": [
         {
@@ -2835,12 +2689,12 @@
       "shipments": [],
       "events": [
         {
-          "at": "2026-10-24T21:09:21.440Z",
+          "at": "2026-10-24T21:32:40.471Z",
           "actor": "Procurement Manifattura Sibillini",
           "event": "Piano logistico stabilimento creato da ordine confermato demo"
         },
         {
-          "at": "2026-10-25T09:09:21.440Z",
+          "at": "2026-10-25T09:32:40.471Z",
           "actor": "Resp. Stabilimento Marche (CSR)",
           "event": "Fabbisogno taglie validato dal presidio produttivo"
         }
@@ -2856,10 +2710,10 @@
       "managerMemberId": "OP-CSR-HUBMGR",
       "status": "DRAFT",
       "version": 1,
-      "deadlineAt": "2026-11-12T21:09:21.440Z",
+      "deadlineAt": "2026-11-12T21:32:40.471Z",
       "deliveryWindow": {
-        "from": "2026-11-18T21:09:21.440Z",
-        "to": "2026-11-21T21:09:21.440Z"
+        "from": "2026-11-18T21:32:40.471Z",
+        "to": "2026-11-21T21:32:40.471Z"
       },
       "needs": [
         {
@@ -2876,7 +2730,7 @@
       "shipments": [],
       "events": [
         {
-          "at": "2026-10-25T05:09:21.440Z",
+          "at": "2026-10-25T05:32:40.471Z",
           "actor": "Procurement Manifattura Sibillini",
           "event": "Fabbisogno hub logistico associato a ordine confermato"
         }
@@ -2957,7 +2811,7 @@
       "tierSpecialty": "Posa Pavimentazioni, Cartongessi & Finiture",
       "status": "INVITED",
       "version": 1,
-      "invitedAt": "2026-10-25T18:18:47.382Z",
+      "invitedAt": "2026-10-25T19:32:40.471Z",
       "acceptedAt": null,
       "identityConfirmedAt": null,
       "revokedAt": null,
@@ -2978,7 +2832,7 @@
       "historicalPairsAtRevocation": null,
       "events": [
         {
-          "at": "2026-10-25T18:18:47.382Z",
+          "at": "2026-10-25T19:32:40.471Z",
           "actor": "General Contractor demo",
           "event": "Invito subappalto 3° livello registrato in attesa di accettazione"
         }
@@ -3206,116 +3060,5 @@
     }
   ],
   "shares": [],
-  "downloadEvents": [
-    {
-      "id": "6a1baf4c-5c09-459a-a1d5-7a5325db2f90",
-      "datasetId": "DS-ECO-2026-21",
-      "datasetVersion": "2.1",
-      "format": "pdf",
-      "at": "2026-10-25T15:05:04.822Z",
-      "actor": "Utente demo — ESG Manager"
-    }
-  ],
-  "organizations": [
-    {
-      "id": "org-gc-demo",
-      "name": "General Contractor Demo S.p.A.",
-      "profileType": "CONSTRUCTION",
-      "role": "ORG_ADMIN",
-      "siteIds": [
-        "site-ponte-demo",
-        "site-borgo-demo"
-      ],
-      "partnershipRole": "PROMOTER_PARTNER"
-    },
-    {
-      "id": "org-sub-demo",
-      "name": "Alpi Strutture Demo S.r.l.",
-      "profileType": "CONSTRUCTION",
-      "role": "SUBCONTRACTOR",
-      "tierRole": "SUBCONTRACTOR",
-      "tierLevel": 1,
-      "tierLabel": "Subappalto 1° Livello (Opere Strutturali)",
-      "siteIds": [
-        "site-ponte-demo"
-      ],
-      "partnershipRole": "ADHERING_ENTERPRISE"
-    },
-    {
-      "id": "org-sub-tier2",
-      "name": "Impianti Sibillini Tech S.r.l.",
-      "profileType": "CONSTRUCTION",
-      "role": "SUBCONTRACTOR",
-      "tierRole": "SUBCONTRACTOR",
-      "tierLevel": 2,
-      "tierLabel": "Subappalto 2° Livello (Impianti & Reti)",
-      "siteIds": [
-        "site-ponte-demo"
-      ],
-      "partnershipRole": "ADHERING_ENTERPRISE"
-    },
-    {
-      "id": "org-sub-tier3",
-      "name": "Posa & Finiture Speciali S.r.l.",
-      "profileType": "CONSTRUCTION",
-      "role": "SUBCONTRACTOR",
-      "tierRole": "SUBCONTRACTOR",
-      "tierLevel": 3,
-      "tierLabel": "Subappalto 3° Livello (Posa & Finiture)",
-      "siteIds": [
-        "site-ponte-demo"
-      ],
-      "partnershipRole": "ADHERING_ENTERPRISE"
-    },
-    {
-      "id": "org-csr-demo",
-      "name": "Manifattura Sibillini S.p.A.",
-      "profileType": "CSR_ORIENTED",
-      "role": "ORG_ADMIN",
-      "siteIds": [
-        "unit-stabilimento-marche",
-        "unit-hub-logistica"
-      ],
-      "partnershipRole": "PROMOTER_PARTNER"
-    },
-    {
-      "id": "org-forn-green",
-      "name": "Packaging Verde S.r.l.",
-      "profileType": "CSR_ORIENTED",
-      "role": "SUBCONTRACTOR",
-      "tierRole": "SUPPLIER",
-      "tierLevel": 1,
-      "tierLabel": "Fornitore 1° Livello (Tier 1 Diretto · Packaging)",
-      "siteIds": [
-        "unit-stabilimento-marche"
-      ],
-      "partnershipRole": "ADHERING_ENTERPRISE"
-    },
-    {
-      "id": "org-forn-tier2",
-      "name": "Cartiere Appennino S.p.A.",
-      "profileType": "CSR_ORIENTED",
-      "role": "SUBCONTRACTOR",
-      "tierRole": "SUPPLIER",
-      "tierLevel": 2,
-      "tierLabel": "Sub-Fornitore 2° Livello (Tier 2 · Cellulosa & Cartone)",
-      "siteIds": [
-        "unit-stabilimento-marche"
-      ],
-      "partnershipRole": "ADHERING_ENTERPRISE"
-    },
-    {
-      "id": "org-forn-tier3",
-      "name": "Eco-Fibre Riciclo Territoriale S.r.l.",
-      "profileType": "CSR_ORIENTED",
-      "role": "SUBCONTRACTOR",
-      "tierRole": "SUPPLIER",
-      "tierLevel": 3,
-      "tierLabel": "Sub-Fornitore 3° Livello (Tier 3 · Materie Prime Seconde)",
-      "siteIds": [
-        "unit-stabilimento-marche"
-      ],
-      "partnershipRole": "ADHERING_ENTERPRISE"
-    }
-  ]
+  "downloadEvents": []
 }

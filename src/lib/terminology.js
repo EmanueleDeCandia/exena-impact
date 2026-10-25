@@ -12,8 +12,8 @@ export function getTerminology(profileType = 'CONSTRUCTION') {
   return {
     isCsr,
     // Unità operative
-    siteSingular: isCsr ? 'Sede / Stabilimento' : 'Cantiere',
-    sitePlural: isCsr ? 'Sedi / Stabilimenti' : 'Cantieri',
+    siteSingular: isCsr ? 'Stabilimento' : 'Cantiere',
+    sitePlural: isCsr ? 'Stabilimenti' : 'Cantieri',
     siteCodePrefix: isCsr ? 'STAB' : 'CANT',
     siteScopeLabel: isCsr ? 'Perimetro stabilimenti e filiera' : 'Perimetro commessa e cantieri',
 

@@ -432,6 +432,33 @@
   white-space: nowrap;
 }
 
+.reset-seed-button {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--workspace-line);
+  background: #fff;
+  color: var(--ink);
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s ease;
+}
+.reset-seed-button:hover {
+  border-color: var(--cobalt);
+  color: var(--cobalt);
+  background: #f0f4ff;
+}
+.reset-seed-button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
 .workspace-main {
   width: 100%;
   max-width: 1720px;
@@ -1632,9 +1659,9 @@
 
 .composer-layout {
   display: grid;
-  grid-template-columns: 190px minmax(0, 1fr) 250px;
+  grid-template-columns: minmax(0, 1fr) 260px;
   align-items: start;
-  gap: 15px;
+  gap: 16px;
 }
 
 .composer-outline,

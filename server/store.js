@@ -79,6 +79,16 @@ export function updateDb(mutator) {
   return operation;
 }
 
+export function resetDb() {
+  const operation = writeQueue.then(async () => {
+    const seed = createSeed();
+    await atomicWrite(seed);
+    return seed;
+  });
+  writeQueue = operation.catch(() => undefined);
+  return operation;
+}
+
 async function atomicWrite(db) {
   const temporary = `${dataFile}.${process.pid}.tmp`;
   await fs.writeFile(temporary, `${JSON.stringify(db, null, 2)}\n`, 'utf8');

@@ -175,15 +175,26 @@ export function ReportsPage() {
       {!report && <EmptyState title="Nessun report nel workspace" text="Crea il primo documento scegliendo uno dei quattro template. Il perimetro e le fonti verranno collegati automaticamente." action={<button className="button button--cobalt" type="button" onClick={() => openCreate()}><FilePlus2 size={17} />Crea report</button>} />}
 
       {report && <div className="composer-layout">
-        <aside className="composer-outline" aria-label="Struttura del report">
-          <div className="composer-outline__template"><span>{meta.code} / TEMPLATE</span><b>{meta.short}</b><small>{report.id}</small></div>
-          <nav aria-label="Sezioni del documento">{[['report-perimetro', '01', 'Perimetro'], ['report-dati', '02', 'Dati approvati'], ['report-narrazione', '03', 'Narrazione'], ['report-fonti', '04', 'Indice fonti']].map(([id, index, label]) => <button key={id} type="button" onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}><span>{index}</span>{label}<ChevronRight size={15} /></button>)}</nav>
-          <div className="composer-outline__version"><span>VERSIONE CORRENTE</span><strong>v{report.version}</strong><small>{dateTime(report.updatedAt)}</small>{previousVersions.length > 0 && <button type="button" onClick={() => setVersionOpen((value) => !value)}><GitCompareArrows size={16} />{versionOpen ? 'Chiudi diff' : `Confronta ${previousVersions.length} versioni`}</button>}</div>
-          <div className="composer-outline__rule"><LockKeyhole size={17} /><p>Template e perimetro sono bloccati dopo la creazione. Per cambiarli crea un nuovo report.</p></div>
-        </aside>
-
         <article className="report-canvas" aria-labelledby="report-title">
-          <header className="report-canvas__header"><div><span className="micro-label">{definition.title}</span><h2 id="report-title">{meta.short}</h2><p>{definition.description}</p></div><StatusBadge status={report.status} /></header>
+          <header className="report-canvas__header">
+            <div>
+              <span className="micro-label">{definition.title} · v{report.version}</span>
+              <h2 id="report-title">{meta.short}</h2>
+              <p>{definition.description}</p>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              {previousVersions.length > 0 && (
+                <button className="button button--ghost" type="button" onClick={() => setVersionOpen((value) => !value)}>
+                  <GitCompareArrows size={16} />{versionOpen ? 'Chiudi confronto' : `Confronta versioni (${previousVersions.length})`}
+                </button>
+              )}
+              <StatusBadge status={report.status} />
+            </div>
+          </header>
+          <div className="composer-outline__rule" style={{ marginBottom: '18px' }}>
+            <LockKeyhole size={17} />
+            <p>Template e perimetro sono bloccati dopo la creazione. Per cambiarli crea un nuovo report.</p>
+          </div>
           {report.status === 'PENDING_REVIEW' && <BlockedState title="Documento bloccato durante la revisione" text="Puoi consultare ed esportare questa versione. Per modificarla attendi l’esito del revisore demo." />}
           {report.status === 'VERIFIED' && <div className="verified-note"><CheckCircle2 size={19} /><p>Versione verificata in ambiente demo. Il testo è bloccato; l’export conserva stato, fonti e avviso dati sintetici.</p></div>}
           {report.status === 'REJECTED_WITH_REASON' && <div className="changes-requested"><CircleDashed size={20} /><div><b>Il revisore demo ha richiesto integrazioni</b><p>{report.reviewNote}</p></div></div>}

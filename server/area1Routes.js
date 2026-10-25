@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { randomUUID } from 'node:crypto';
-import { readDb, updateDb } from './store.js';
+import { readDb, resetDb, updateDb } from './store.js';
 import { aggregateOrders, calculateFundCents, computePackCompleteness, finalizeOrderSummary, isShareActive, reconcileAttestation } from './calculations.js';
 import { createDigitalDocument, createZip, formatDate, formatMoney } from './documents.js';
 
@@ -92,6 +92,11 @@ area1Router.post('/area1/organization/switch', asyncRoute(async (request, respon
     return target;
   });
   response.json({ success: true, organization: org });
+}));
+
+area1Router.post('/area1/reset', asyncRoute(async (request, response) => {
+  const seed = await resetDb();
+  response.json({ success: true, message: 'Dati ripristinati al seed iniziale', meta: seed.meta });
 }));
 
 area1Router.get('/area1/scope3', asyncRoute(async (request, response) => {
