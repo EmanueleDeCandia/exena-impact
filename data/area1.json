@@ -3,18 +3,20 @@
     "schemaVersion": 6,
     "demo": true,
     "notice": "Dati sintetici per validazione funzionale. Non utilizzare per reporting, revisione o finalità legali.",
-    "updatedAt": "2026-10-25T16:13:52.349Z"
+    "updatedAt": "2026-10-25T20:19:52.537Z"
   },
   "organization": {
-    "id": "org-csr-demo",
-    "name": "Manifattura Sibillini S.p.A.",
+    "id": "org-forn-green",
+    "name": "Packaging Verde S.r.l.",
     "profileType": "CSR_ORIENTED",
-    "role": "ORG_ADMIN",
+    "role": "SUBCONTRACTOR",
+    "tierRole": "SUPPLIER",
+    "tierLevel": 1,
+    "tierLabel": "Fornitore 1° Livello (Tier 1 Diretto · Packaging)",
     "siteIds": [
-      "unit-stabilimento-marche",
-      "unit-hub-logistica"
+      "unit-stabilimento-marche"
     ],
-    "partnershipRole": "PROMOTER_PARTNER"
+    "partnershipRole": "ADHERING_ENTERPRISE"
   },
   "sites": [
     {
@@ -1741,53 +1743,6 @@
       "demoAccessEnabled": true
     },
     {
-      "id": "OP-SUB-001",
-      "organizationId": "org-sub-demo",
-      "organizationName": "Subappaltatore Alpi Demo S.r.l.",
-      "displayName": "Procurement Subappaltatore Demo",
-      "role": "SUBCONTRACTOR",
-      "assignedSiteIds": [
-        "site-ponte-demo"
-      ],
-      "demoAccessEnabled": true
-    },
-    {
-      "id": "OP-SUB-NEW",
-      "organizationId": "org-sub-new-demo",
-      "organizationName": "Nuova Impresa Filiera Demo S.r.l.",
-      "displayName": "Nuova Impresa Subappaltatrice Demo",
-      "role": "SUBCONTRACTOR",
-      "assignedSiteIds": [],
-      "demoAccessEnabled": true
-    },
-    {
-      "id": "OP-SUB-INVITE",
-      "organizationId": "org-sub-invite-demo",
-      "organizationName": "Impresa Invito Demo S.r.l.",
-      "displayName": "Impresa da Invitare Demo",
-      "role": "SUBCONTRACTOR",
-      "assignedSiteIds": [],
-      "demoAccessEnabled": true
-    },
-    {
-      "id": "OP-REVIEWER-001",
-      "organizationId": "org-gc-demo",
-      "organizationName": "Startup garante — demo",
-      "displayName": "Revisore Operations Demo",
-      "role": "STARTUP_REVIEWER",
-      "assignedSiteIds": [],
-      "demoAccessEnabled": true
-    },
-    {
-      "id": "OP-OTHER-001",
-      "organizationId": "org-other-demo",
-      "organizationName": "Altra Organizzazione Demo",
-      "displayName": "Procurement Altra Organizzazione Demo",
-      "role": "PROCUREMENT",
-      "assignedSiteIds": [],
-      "demoAccessEnabled": true
-    },
-    {
       "id": "OP-CSR-PROC",
       "organizationId": "org-csr-demo",
       "organizationName": "Manifattura Sibillini S.p.A.",
@@ -1820,14 +1775,87 @@
       "demoAccessEnabled": true
     },
     {
+      "id": "OP-SUB-001",
+      "organizationId": "org-sub-demo",
+      "organizationName": "Alpi Strutture Demo S.r.l.",
+      "displayName": "Alpi Strutture (Subappalto 1° Livello)",
+      "role": "SUBCONTRACTOR",
+      "assignedSiteIds": [
+        "site-ponte-demo"
+      ],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-SUB-TIER2",
+      "organizationId": "org-sub-tier2",
+      "organizationName": "Impianti Sibillini Tech S.r.l.",
+      "displayName": "Impianti Sibillini (Subappalto 2° Livello)",
+      "role": "SUBCONTRACTOR",
+      "assignedSiteIds": [
+        "site-ponte-demo"
+      ],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-SUB-TIER3",
+      "organizationId": "org-sub-tier3",
+      "organizationName": "Posa & Finiture Speciali S.r.l.",
+      "displayName": "Posa Specializzata (Subappalto 3° Livello)",
+      "role": "SUBCONTRACTOR",
+      "assignedSiteIds": [
+        "site-ponte-demo"
+      ],
+      "demoAccessEnabled": true
+    },
+    {
       "id": "OP-FORN-GREEN",
       "organizationId": "org-forn-green",
-      "organizationName": "Fornitore Packaging Verde S.r.l.",
-      "displayName": "Fornitore Packaging Verde (Filiera CSR)",
+      "organizationName": "Packaging Verde S.r.l.",
+      "displayName": "Packaging Verde (Fornitore 1° Livello Tier 1)",
       "role": "SUBCONTRACTOR",
       "assignedSiteIds": [
         "unit-stabilimento-marche"
       ],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-FORN-TIER2",
+      "organizationId": "org-forn-tier2",
+      "organizationName": "Cartiere Appennino S.p.A.",
+      "displayName": "Cartiere Appennino (Sub-Fornitore 2° Livello Tier 2)",
+      "role": "SUBCONTRACTOR",
+      "assignedSiteIds": [
+        "unit-stabilimento-marche"
+      ],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-FORN-TIER3",
+      "organizationId": "org-forn-tier3",
+      "organizationName": "Eco-Fibre Riciclo Territoriale S.r.l.",
+      "displayName": "Eco-Fibre (Sub-Fornitore 3° Livello Tier 3)",
+      "role": "SUBCONTRACTOR",
+      "assignedSiteIds": [
+        "unit-stabilimento-marche"
+      ],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-REVIEWER-001",
+      "organizationId": "org-gc-demo",
+      "organizationName": "Startup garante — demo",
+      "displayName": "Revisore Operations Demo",
+      "role": "STARTUP_REVIEWER",
+      "assignedSiteIds": [],
+      "demoAccessEnabled": true
+    },
+    {
+      "id": "OP-OTHER-001",
+      "organizationId": "org-other-demo",
+      "organizationName": "Altra Organizzazione Demo",
+      "displayName": "Procurement Altra Organizzazione Demo",
+      "role": "PROCUREMENT",
+      "assignedSiteIds": [],
       "demoAccessEnabled": true
     }
   ],
@@ -1852,6 +1880,13 @@
       "organizationId": "org-gc-demo",
       "createdAt": "2026-10-25T16:12:26.982Z",
       "expiresAt": "2026-10-26T00:12:26.983Z"
+    },
+    {
+      "token": "8372437858344f7690c48b447dd533af669010b8185146adbf56d2fa83f6c677",
+      "memberId": "OP-PROC-001",
+      "organizationId": "org-gc-demo",
+      "createdAt": "2026-10-25T20:19:26.623Z",
+      "expiresAt": "2026-10-26T04:19:26.624Z"
     }
   ],
   "productCatalog": [
@@ -2001,9 +2036,20 @@
       "id": "ADDR-SUB-PONTE",
       "organizationId": "org-sub-demo",
       "siteId": "site-ponte-demo",
-      "label": "Subappaltatore — punto consegna demo",
-      "recipient": "Subappaltatore Alpi Demo",
+      "label": "Alpi Strutture (Sub 1°) — cantiere",
+      "recipient": "Alpi Strutture Demo",
       "street": "Via di Filiera 4",
+      "postalCode": "63000",
+      "city": "Comune Demo",
+      "province": "AP"
+    },
+    {
+      "id": "ADDR-SUB2-PONTE",
+      "organizationId": "org-sub-tier2",
+      "siteId": "site-ponte-demo",
+      "label": "Impianti Sibillini (Sub 2°) — area impianti",
+      "recipient": "Impianti Sibillini Tech",
+      "street": "Via del Cantiere 12",
       "postalCode": "63000",
       "city": "Comune Demo",
       "province": "AP"
@@ -2028,6 +2074,17 @@
       "street": "Via della Logistica 8",
       "postalCode": "63000",
       "city": "Valle del Tronto",
+      "province": "AP"
+    },
+    {
+      "id": "ADDR-FORN-GREEN",
+      "organizationId": "org-forn-green",
+      "siteId": "unit-stabilimento-marche",
+      "label": "Packaging Verde (Tier 1) — punto fornitura",
+      "recipient": "Packaging Verde Ricevimento",
+      "street": "Zona Industriale 3",
+      "postalCode": "63000",
+      "city": "Comune Demo",
       "province": "AP"
     }
   ],
@@ -2684,12 +2741,16 @@
       "gcOrganizationId": "org-gc-demo",
       "gcOrganizationName": "General Contractor Demo S.p.A.",
       "subcontractorOrganizationId": "org-sub-demo",
-      "subcontractorOrganizationName": "Subappaltatore Alpi Demo S.r.l.",
+      "subcontractorOrganizationName": "Alpi Strutture Demo S.r.l.",
       "vatNumber": "12345678903",
       "vatFormatValid": true,
       "verificationStatus": "VERIFIED_DEMO",
       "verificationNote": "Verifica documentale dimostrativa; non è una certificazione camerale live.",
       "verifiedAt": "2026-08-02T09:00:00.000Z",
+      "tierLevel": 1,
+      "tierRole": "SUBCONTRACTOR",
+      "tierLabel": "Subappalto 1° Livello",
+      "tierSpecialty": "Opere Strutturali & Carpenteria",
       "status": "ACTIVE",
       "version": 1,
       "invitedAt": "2026-07-28T09:00:00.000Z",
@@ -2720,7 +2781,7 @@
       "events": [
         {
           "at": "2026-08-01T09:00:00.000Z",
-          "actor": "Subappaltatore demo",
+          "actor": "Alpi Strutture (Sub 1°)",
           "event": "Invito accettato e consensi registrati"
         },
         {
@@ -2731,19 +2792,23 @@
       ]
     },
     {
-      "id": "LINK-DEMO-INVITED",
+      "id": "LINK-GC-SUB3",
       "gcOrganizationId": "org-gc-demo",
       "gcOrganizationName": "General Contractor Demo S.p.A.",
-      "subcontractorOrganizationId": "org-sub-new-demo",
-      "subcontractorOrganizationName": "Nuova Impresa Filiera Demo S.r.l.",
+      "subcontractorOrganizationId": "org-sub-tier3",
+      "subcontractorOrganizationName": "Posa & Finiture Speciali S.r.l.",
       "vatNumber": "12345678903",
       "vatFormatValid": true,
       "verificationStatus": "FORMAL_CHECK_ONLY",
       "verificationNote": null,
       "verifiedAt": null,
+      "tierLevel": 3,
+      "tierRole": "SUBCONTRACTOR",
+      "tierLabel": "Subappalto 3° Livello",
+      "tierSpecialty": "Posa Pavimentazioni, Cartongessi & Finiture",
       "status": "INVITED",
       "version": 1,
-      "invitedAt": "2026-10-24T22:27:33.805Z",
+      "invitedAt": "2026-10-25T18:18:47.382Z",
       "acceptedAt": null,
       "identityConfirmedAt": null,
       "revokedAt": null,
@@ -2764,9 +2829,64 @@
       "historicalPairsAtRevocation": null,
       "events": [
         {
-          "at": "2026-10-24T22:27:33.805Z",
+          "at": "2026-10-25T18:18:47.382Z",
           "actor": "General Contractor demo",
-          "event": "Invito creato; nessuna associazione attiva"
+          "event": "Invito subappalto 3° livello registrato in attesa di accettazione"
+        }
+      ]
+    },
+    {
+      "id": "LINK-GC-SUB2",
+      "gcOrganizationId": "org-gc-demo",
+      "gcOrganizationName": "General Contractor Demo S.p.A.",
+      "subcontractorOrganizationId": "org-sub-tier2",
+      "subcontractorOrganizationName": "Impianti Sibillini Tech S.r.l.",
+      "vatNumber": "12345678903",
+      "vatFormatValid": true,
+      "verificationStatus": "VERIFIED_DEMO",
+      "verificationNote": "Verifica tecnica subappalto a cascata di 2° livello per impianti.",
+      "verifiedAt": "2026-08-10T09:00:00.000Z",
+      "tierLevel": 2,
+      "tierRole": "SUBCONTRACTOR",
+      "tierLabel": "Subappalto 2° Livello",
+      "tierSpecialty": "Impianti Elettrici & Termoidraulici",
+      "status": "ACTIVE",
+      "version": 1,
+      "invitedAt": "2026-08-05T09:00:00.000Z",
+      "acceptedAt": "2026-08-08T09:00:00.000Z",
+      "identityConfirmedAt": "2026-08-08T09:00:00.000Z",
+      "revokedAt": null,
+      "consents": {
+        "volumeAttribution": true,
+        "kitDistribution": true,
+        "registryPublication": true
+      },
+      "requestedConsents": {
+        "volumeAttribution": true,
+        "kitDistribution": true
+      },
+      "proposedSiteIds": [
+        "site-ponte-demo"
+      ],
+      "siteRelations": [
+        {
+          "siteId": "site-ponte-demo",
+          "startAt": "2026-08-10T00:00:00.000Z",
+          "endAt": null
+        }
+      ],
+      "attributionRule": "ORDER_ID_UNIQUE_WITHIN_SITE_PERIOD",
+      "historicalPairsAtRevocation": null,
+      "events": [
+        {
+          "at": "2026-08-08T09:00:00.000Z",
+          "actor": "Impianti Sibillini (Sub 2°)",
+          "event": "Accordo subappalto 2° livello sottoscritto con consensi"
+        },
+        {
+          "at": "2026-08-10T09:00:00.000Z",
+          "actor": "Startup garante — demo",
+          "event": "Verifica requisiti subappalto 2° livello completata"
         }
       ]
     },
@@ -2775,12 +2895,16 @@
       "gcOrganizationId": "org-csr-demo",
       "gcOrganizationName": "Manifattura Sibillini S.p.A.",
       "subcontractorOrganizationId": "org-forn-green",
-      "subcontractorOrganizationName": "Fornitore Packaging Verde S.r.l.",
+      "subcontractorOrganizationName": "Packaging Verde S.r.l.",
       "vatNumber": "10987654321",
       "vatFormatValid": true,
       "verificationStatus": "VERIFIED_DEMO",
-      "verificationNote": "Fornitore di filiera verificato nel perimetro Scope 3 / CSR",
+      "verificationNote": "Fornitore di 1° livello verificato nel perimetro Scope 3 / CSR",
       "verifiedAt": "2026-09-01T09:00:00.000Z",
+      "tierLevel": 1,
+      "tierRole": "SUPPLIER",
+      "tierLabel": "Fornitore 1° Livello (Tier 1 Diretto)",
+      "tierSpecialty": "Packaging Primario & Scatole Eco-compatibili",
       "status": "ACTIVE",
       "version": 1,
       "invitedAt": "2026-08-15T09:00:00.000Z",
@@ -2811,13 +2935,123 @@
       "events": [
         {
           "at": "2026-08-20T09:00:00.000Z",
-          "actor": "Fornitore Packaging Verde",
-          "event": "Accordo di fornitura sostenibile sottoscritto"
+          "actor": "Packaging Verde (Tier 1)",
+          "event": "Accordo di fornitura sostenibile Tier 1 sottoscritto"
         },
         {
           "at": "2026-09-01T09:00:00.000Z",
           "actor": "Startup garante — demo",
           "event": "Verifica completata: fornitore accreditato nella filiera CSR"
+        }
+      ]
+    },
+    {
+      "id": "LINK-CSR-002",
+      "gcOrganizationId": "org-csr-demo",
+      "gcOrganizationName": "Manifattura Sibillini S.p.A.",
+      "subcontractorOrganizationId": "org-forn-tier2",
+      "subcontractorOrganizationName": "Cartiere Appennino S.p.A.",
+      "vatNumber": "10987654321",
+      "vatFormatValid": true,
+      "verificationStatus": "VERIFIED_DEMO",
+      "verificationNote": "Sub-fornitore Tier 2: cellulosa vergine certificata FSC e cartone rigenerato",
+      "verifiedAt": "2026-09-05T09:00:00.000Z",
+      "tierLevel": 2,
+      "tierRole": "SUPPLIER",
+      "tierLabel": "Sub-Fornitore 2° Livello (Tier 2)",
+      "tierSpecialty": "Cellulosa FSC & Cartone Ondulato Rigenerato",
+      "status": "ACTIVE",
+      "version": 1,
+      "invitedAt": "2026-08-25T09:00:00.000Z",
+      "acceptedAt": "2026-09-01T09:00:00.000Z",
+      "identityConfirmedAt": "2026-09-01T09:00:00.000Z",
+      "revokedAt": null,
+      "consents": {
+        "volumeAttribution": true,
+        "kitDistribution": true,
+        "registryPublication": true
+      },
+      "requestedConsents": {
+        "volumeAttribution": true,
+        "kitDistribution": true
+      },
+      "proposedSiteIds": [
+        "unit-stabilimento-marche"
+      ],
+      "siteRelations": [
+        {
+          "siteId": "unit-stabilimento-marche",
+          "startAt": "2026-09-05T00:00:00.000Z",
+          "endAt": null
+        }
+      ],
+      "attributionRule": "ORDER_ID_UNIQUE_WITHIN_SITE_PERIOD",
+      "historicalPairsAtRevocation": null,
+      "events": [
+        {
+          "at": "2026-09-01T09:00:00.000Z",
+          "actor": "Cartiere Appennino (Tier 2)",
+          "event": "Accordo di sub-fornitura Tier 2 sottoscritto"
+        },
+        {
+          "at": "2026-09-05T09:00:00.000Z",
+          "actor": "Startup garante — demo",
+          "event": "Verifica filiera cartaria sostenibile completata"
+        }
+      ]
+    },
+    {
+      "id": "LINK-CSR-003",
+      "gcOrganizationId": "org-csr-demo",
+      "gcOrganizationName": "Manifattura Sibillini S.p.A.",
+      "subcontractorOrganizationId": "org-forn-tier3",
+      "subcontractorOrganizationName": "Eco-Fibre Riciclo Territoriale S.r.l.",
+      "vatNumber": "10987654321",
+      "vatFormatValid": true,
+      "verificationStatus": "VERIFIED_DEMO",
+      "verificationNote": "Sub-fornitore Tier 3: tracciabilità materie prime seconde da raccolta cratere",
+      "verifiedAt": "2026-09-12T09:00:00.000Z",
+      "tierLevel": 3,
+      "tierRole": "SUPPLIER",
+      "tierLabel": "Sub-Fornitore 3° Livello (Tier 3)",
+      "tierSpecialty": "Recupero & Rigenerazione Fibre Post-Consumo",
+      "status": "ACTIVE",
+      "version": 1,
+      "invitedAt": "2026-09-05T09:00:00.000Z",
+      "acceptedAt": "2026-09-10T09:00:00.000Z",
+      "identityConfirmedAt": "2026-09-10T09:00:00.000Z",
+      "revokedAt": null,
+      "consents": {
+        "volumeAttribution": true,
+        "kitDistribution": true,
+        "registryPublication": true
+      },
+      "requestedConsents": {
+        "volumeAttribution": true,
+        "kitDistribution": true
+      },
+      "proposedSiteIds": [
+        "unit-stabilimento-marche"
+      ],
+      "siteRelations": [
+        {
+          "siteId": "unit-stabilimento-marche",
+          "startAt": "2026-09-12T00:00:00.000Z",
+          "endAt": null
+        }
+      ],
+      "attributionRule": "ORDER_ID_UNIQUE_WITHIN_SITE_PERIOD",
+      "historicalPairsAtRevocation": null,
+      "events": [
+        {
+          "at": "2026-09-10T09:00:00.000Z",
+          "actor": "Eco-Fibre Riciclo (Tier 3)",
+          "event": "Accordo filiera a monte materie prime seconde sottoscritto"
+        },
+        {
+          "at": "2026-09-12T09:00:00.000Z",
+          "actor": "Startup garante — demo",
+          "event": "Verifica conformità circolare Tier 3 registrata"
         }
       ]
     }
@@ -2846,6 +3080,45 @@
       "partnershipRole": "PROMOTER_PARTNER"
     },
     {
+      "id": "org-sub-demo",
+      "name": "Alpi Strutture Demo S.r.l.",
+      "profileType": "CONSTRUCTION",
+      "role": "SUBCONTRACTOR",
+      "tierRole": "SUBCONTRACTOR",
+      "tierLevel": 1,
+      "tierLabel": "Subappalto 1° Livello (Opere Strutturali)",
+      "siteIds": [
+        "site-ponte-demo"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    },
+    {
+      "id": "org-sub-tier2",
+      "name": "Impianti Sibillini Tech S.r.l.",
+      "profileType": "CONSTRUCTION",
+      "role": "SUBCONTRACTOR",
+      "tierRole": "SUBCONTRACTOR",
+      "tierLevel": 2,
+      "tierLabel": "Subappalto 2° Livello (Impianti & Reti)",
+      "siteIds": [
+        "site-ponte-demo"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    },
+    {
+      "id": "org-sub-tier3",
+      "name": "Posa & Finiture Speciali S.r.l.",
+      "profileType": "CONSTRUCTION",
+      "role": "SUBCONTRACTOR",
+      "tierRole": "SUBCONTRACTOR",
+      "tierLevel": 3,
+      "tierLabel": "Subappalto 3° Livello (Posa & Finiture)",
+      "siteIds": [
+        "site-ponte-demo"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    },
+    {
       "id": "org-csr-demo",
       "name": "Manifattura Sibillini S.p.A.",
       "profileType": "CSR_ORIENTED",
@@ -2857,12 +3130,41 @@
       "partnershipRole": "PROMOTER_PARTNER"
     },
     {
-      "id": "org-sub-demo",
-      "name": "Subappaltatore Alpi Demo S.r.l.",
-      "profileType": "CONSTRUCTION",
+      "id": "org-forn-green",
+      "name": "Packaging Verde S.r.l.",
+      "profileType": "CSR_ORIENTED",
       "role": "SUBCONTRACTOR",
+      "tierRole": "SUPPLIER",
+      "tierLevel": 1,
+      "tierLabel": "Fornitore 1° Livello (Tier 1 Diretto · Packaging)",
       "siteIds": [
-        "site-ponte-demo"
+        "unit-stabilimento-marche"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    },
+    {
+      "id": "org-forn-tier2",
+      "name": "Cartiere Appennino S.p.A.",
+      "profileType": "CSR_ORIENTED",
+      "role": "SUBCONTRACTOR",
+      "tierRole": "SUPPLIER",
+      "tierLevel": 2,
+      "tierLabel": "Sub-Fornitore 2° Livello (Tier 2 · Cellulosa & Cartone)",
+      "siteIds": [
+        "unit-stabilimento-marche"
+      ],
+      "partnershipRole": "ADHERING_ENTERPRISE"
+    },
+    {
+      "id": "org-forn-tier3",
+      "name": "Eco-Fibre Riciclo Territoriale S.r.l.",
+      "profileType": "CSR_ORIENTED",
+      "role": "SUBCONTRACTOR",
+      "tierRole": "SUPPLIER",
+      "tierLevel": 3,
+      "tierLabel": "Sub-Fornitore 3° Livello (Tier 3 · Materie Prime Seconde)",
+      "siteIds": [
+        "unit-stabilimento-marche"
       ],
       "partnershipRole": "ADHERING_ENTERPRISE"
     }

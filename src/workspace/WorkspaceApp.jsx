@@ -213,16 +213,26 @@ function WorkspaceLayout() {
             <div className="workspace-assurance"><ShieldCheck size={20} /><div><b>Presidio del garante</b><p>Stati di revisione separati dai dati e dalle evidenze.</p></div></div>
             <Link className="workspace-back" to="/"><ArrowLeft size={17} />Torna ai servizi</Link>
             <div className="workspace-user">
-              <span>{isPublicRegister ? 'C14' : data?.organization?.profileType === 'CSR_ORIENTED' ? 'CSR' : data?.organization?.role === 'SUBCONTRACTOR' ? 'SUB' : 'GC'}</span>
+              <span>
+                {isPublicRegister
+                  ? 'C14'
+                  : data?.organization?.profileType === 'CSR_ORIENTED'
+                  ? (data?.organization?.role === 'SUBCONTRACTOR' ? `T${data?.organization?.tierLevel || 1}` : 'CSR')
+                  : data?.organization?.role === 'SUBCONTRACTOR'
+                  ? `S${data?.organization?.tierLevel || 1}`
+                  : 'GC'}
+              </span>
               <div>
                 <b>{isPublicRegister ? 'Accesso pubblico' : data?.organization?.name || 'Utente demo'}</b>
                 <small>
                   {isPublicRegister
                     ? 'Nessuna identità richiesta · dati aggregati'
                     : data?.organization?.profileType === 'CSR_ORIENTED'
-                    ? 'Impresa CSR-oriented · Partner Promotore'
+                    ? (data?.organization?.role === 'SUBCONTRACTOR'
+                        ? `Fornitore ${data?.organization?.tierLevel || 1}° Livello · Filiera CSR`
+                        : 'Impresa CSR-oriented · Partner Promotore')
                     : data?.organization?.role === 'SUBCONTRACTOR'
-                    ? 'Impresa di Filiera · Subappaltatore Aderente'
+                    ? `Subappaltatore ${data?.organization?.tierLevel || 1}° Livello · Appalti`
                     : 'General Contractor · Commessa & Cantieri'}
                 </small>
               </div>
@@ -246,26 +256,52 @@ function WorkspaceLayout() {
                     onChange={(e) => handleSwitchOrg(e.target.value)}
                     disabled={!data || switching}
                   >
-                    {(data?.organizations || [data?.organization]).filter(Boolean).map((org) => {
-                      const roleDesc = org.profileType === 'CSR_ORIENTED'
-                        ? 'Impresa CSR (Stabilimenti & Filiera)'
-                        : org.role === 'SUBCONTRACTOR'
-                        ? 'Subappaltatore (Filiera Operativa)'
-                        : 'General Contractor (Edilizia & Cantieri)';
+                    {(() => {
+                      const allOrgs = (data?.organizations || [data?.organization]).filter(Boolean);
+                      const constructionOrgs = allOrgs.filter((o) => o.profileType === 'CONSTRUCTION');
+                      const csrOrgs = allOrgs.filter((o) => o.profileType === 'CSR_ORIENTED');
+
+                      const formatOrgOption = (org) => {
+                        if (org.profileType === 'CSR_ORIENTED') {
+                          if (org.role === 'ORG_ADMIN') return `${org.name} · Committente CSR Promotore`;
+                          const tier = org.tierLevel || 1;
+                          const label = tier === 1 ? 'Tier 1 Diretto' : tier === 2 ? 'Tier 2 Componenti' : 'Tier 3 Materie Seconde';
+                          return `${org.name} · Fornitore ${tier}° Livello (${label})`;
+                        }
+                        if (org.role === 'ORG_ADMIN') return `${org.name} · General Contractor (Appaltatore)`;
+                        const tier = org.tierLevel || 1;
+                        return `${org.name} · Subappalto ${tier}° Livello`;
+                      };
+
                       return (
-                        <option key={org.id} value={org.id}>
-                          {org.name} · {roleDesc}
-                        </option>
+                        <>
+                          <optgroup label="FILIERA APPALTI (EDILIZIA & CANTIERI)">
+                            {constructionOrgs.map((org) => (
+                              <option key={org.id} value={org.id}>
+                                {formatOrgOption(org)}
+                              </option>
+                            ))}
+                          </optgroup>
+                          <optgroup label="FILIERA FORNITURA (IMPRESA CSR)">
+                            {csrOrgs.map((org) => (
+                              <option key={org.id} value={org.id}>
+                                {formatOrgOption(org)}
+                              </option>
+                            ))}
+                          </optgroup>
+                        </>
                       );
-                    })}
+                    })()}
                   </select>
                   <ChevronDown size={15} />
                 </label>
                 <span className="role-chip">
                   {data?.organization?.profileType === 'CSR_ORIENTED'
-                    ? 'COMMITTENTE CSR · DEMO'
+                    ? (data?.organization?.role === 'SUBCONTRACTOR'
+                        ? `FORNITORE TIER ${data?.organization?.tierLevel || 1} · FILIERA CSR`
+                        : 'COMMITTENTE CSR · DEMO')
                     : data?.organization?.role === 'SUBCONTRACTOR'
-                    ? 'FILIERA / SUBAPPALTO · DEMO'
+                    ? `SUBAPPALTO ${data?.organization?.tierLevel || 1}° LIV · APPALTO`
                     : 'GENERAL CONTRACTOR · DEMO'}
                 </span>
               </>}
