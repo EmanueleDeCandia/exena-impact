@@ -122,8 +122,10 @@ area5Router.post('/area5/orders', asyncRoute(async (request, response) => {
     const matchingGrantRate = matchingGrantMode === 'match' ? 30 : matchingGrantMode === 'custom' ? Math.min(100, Math.max(0, Number(request.body?.matchingGrantRate) || 0)) : 0;
     const exenaFundCents = Math.round(calculation.totalCents * 30 / 100);
     const matchingGrantCents = Math.round(calculation.totalCents * matchingGrantRate / 100);
+    const timestamp = now();
 
     const order = {
+
       id: `BULK-${randomUUID()}`, organizationId, organizationName: member.organizationName, siteId: address.siteId,
       pairs: calculation.pairs, totalCents: calculation.totalCents, devolutionRate: 30, status: 'SUBMITTED', version: 1,
       submittedAt: timestamp, confirmedAt: null, source: 'BULK_PORTAL', items: calculation.lines,
