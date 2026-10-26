@@ -156,14 +156,14 @@
 
 /* Local Shared Value in Factual Review Dialog */
 .lsv-status-banner { border: 1px solid var(--workspace-line); padding: 16px; margin: 14px 0; background: #fff; }
-.lsv-status-banner.is-complete { border-left: 4px solid var(--volt); background: #fbfdf9; }
-.lsv-status-banner.is-incomplete { border-left: 4px solid #ff3333; background: #fff9f6; }
+.lsv-status-banner.is-complete { border-left: 4px solid var(--volt); background: #ffffff; }
+.lsv-status-banner.is-incomplete { border-left: 4px solid var(--concrete); background: #ffffff; }
 .lsv-status-banner__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
 .lsv-status-banner__top h3 { margin: 4px 0 0; font-family: var(--font-display); font-size: 20px; text-transform: uppercase; }
 .lsv-status-banner__desc { margin: 0 0 12px; font-size: 11px; line-height: 1.5; color: #444; }
 .lsv-status-banner__actions { display: flex; align-items: center; justify-content: flex-end; margin-top: 10px; }
-.lsv-badge-success { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; background: #eafaf1; color: #166534; border: 1px solid #bbf7d0; }
-.lsv-badge-warning { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+.lsv-badge-success { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; background: var(--volt); color: var(--ink); border: 1px solid #c0e835; }
+.lsv-badge-warning { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; background: #F3F3EE; color: var(--ink); border: 1px solid #D9DAD4; }
 .lsv-factual-preview-list { max-height: 220px; overflow-y: auto; border: 1px solid var(--workspace-line); background: #fff; padding: 10px 14px; margin-bottom: 10px; }
 .lsv-factual-preview-item { padding: 9px 0; border-bottom: 1px solid #f0f0ed; }
 .lsv-factual-preview-item:last-child { border-bottom: 0; }
@@ -172,7 +172,7 @@
 .lsv-factual-preview-item__a { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 11px; color: var(--workspace-muted); }
 .lsv-factual-answer-text { flex: 1; color: #333; }
 .lsv-link-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: var(--cobalt); text-decoration: underline; flex-shrink: 0; }
-.lsv-missing-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: #b91c1c; font-weight: 600; }
+.lsv-missing-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); font-weight: 600; }
 
 /* Modern Industrial Public Local Shared Value Layout */
 .lsv-public-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 28px; border: 1px solid var(--workspace-line); background: #111111; color: #ffffff; }
@@ -192,7 +192,7 @@
 .lsv-public-master-card__tags { display: flex; align-items: center; gap: 10px; }
 .lsv-public-idx { font-family: var(--font-display); font-size: 16px; font-weight: 800; color: #ffffff; background: var(--cobalt); padding: 3px 9px; letter-spacing: .08em; }
 .lsv-public-cat { font-family: var(--font-display); font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
-.lsv-public-badge-verified { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; color: #047857; background: #ecfdf5; border: 1px solid #6ee7b7; padding: 4px 12px; text-transform: uppercase; letter-spacing: .06em; }
+.lsv-public-badge-verified { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; color: var(--ink); background: var(--volt); border: 1px solid #c0e835; padding: 4px 10px; text-transform: uppercase; letter-spacing: .06em; }
 
 .lsv-public-master-card h3 { margin: 0 0 12px; font-family: var(--font-display); font-size: 26px; line-height: 1.15; text-transform: uppercase; color: var(--ink); }
 .lsv-public-guide { padding: 12px 16px; background: #fcfcfb; border: 1px solid #f2f2ef; border-left: 3px solid #cbd5e1; font-size: 12px; line-height: 1.55; color: #475569; margin-bottom: 18px; }
@@ -202,7 +202,7 @@
 .lsv-public-options-box > h4 { margin: 0 0 10px 0; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #64748b; }
 .lsv-public-options-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .lsv-public-options-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; line-height: 1.45; color: #1e293b; font-weight: 400; }
-.lsv-public-options-list li svg { flex-shrink: 0; margin-top: 2px; color: #059669; }
+.lsv-public-options-list li svg { flex-shrink: 0; margin-top: 2px; color: var(--cobalt); }
 
 .lsv-public-statement { padding: 16px 20px; background: #fcfcfb; border: 1px solid #f2f2ef; border-left: 4px solid var(--cobalt); margin-bottom: 18px; }
 .lsv-public-statement > span { display: block; font-size: 10px; font-weight: 800; letter-spacing: .1em; color: var(--cobalt); text-transform: uppercase; margin-bottom: 6px; }
