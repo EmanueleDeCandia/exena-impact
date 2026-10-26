@@ -77,7 +77,181 @@ export function EditorialPublicPage({ type }) {
           <Link className="button button--outline" to="/">Torna al portale <ArrowRight size={17} /></Link>
         </div>
       )}
-      {data && (
+      {data && data.type === 'LOCAL_SHARED_VALUE' && (
+        <article className="editorial-public-article lsv-public-dossier">
+          <header>
+            <div className="editorial-public-article__labels">
+              <span>LOCAL SHARED VALUE</span>
+              <span>ATTESTAZIONE ASSEVERATA</span>
+              <span>VERSIONE {data.version}.0</span>
+              <span>RISCONTRI PROBATORI TRACCIATI</span>
+            </div>
+            <h1>{data.title}</h1>
+            <p>{data.excerpt}</p>
+            <div className="editorial-public-article__byline">
+              <span><b>Asseveratore:</b> {data.author}</span>
+              <span><b>Data emissione:</b> {shortDate(data.publishedAt)}</span>
+              <span><b>Aggiornamento:</b> {shortDate(data.updatedAt)}</span>
+              <span><b>Stato:</b> Riscontro Fatti Approvato</span>
+            </div>
+
+            <div className="lsv-public-kpis">
+              <div className="lsv-public-kpi-item">
+                <span className="lsv-public-kpi-label">REQUISITI TERRITORIALI</span>
+                <span className="lsv-public-kpi-val">6 / 6</span>
+                <span className="lsv-public-kpi-sub">100% macro-ambiti asseverati</span>
+              </div>
+              <div className="lsv-public-kpi-item">
+                <span className="lsv-public-kpi-label">RISCONTRI PROBATORI</span>
+                <span className="lsv-public-kpi-val">6 ATTI</span>
+                <span className="lsv-public-kpi-sub">Atti e contratti documentati</span>
+              </div>
+              <div className="lsv-public-kpi-item">
+                <span className="lsv-public-kpi-label">MATCHING GRANT</span>
+                <span className="lsv-public-kpi-val">ATTIVO</span>
+                <span className="lsv-public-kpi-sub">Pareggio paritario donazioni</span>
+              </div>
+              <div className="lsv-public-kpi-item">
+                <span className="lsv-public-kpi-label">AUDIT SIBILLINI</span>
+                <span className="lsv-public-kpi-val">CONFERMATO</span>
+                <span className="lsv-public-kpi-sub">Indipendenza giudizio redazionale</span>
+              </div>
+            </div>
+          </header>
+
+          <div className="editorial-public-article__content">
+            {data.sections.map((section, index) => (
+              <section key={index}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h2>{section.heading}</h2>
+                  <p>{section.text}</p>
+                </div>
+              </section>
+            ))}
+          </div>
+
+          {data.questions && data.questions.length > 0 && (
+            <section className="editorial-public-questions">
+              <div className="panel-heading">
+                <div>
+                  <span className="micro-label">REGISTRO DI VALUTAZIONE E QUESTIONARIO ESTESO</span>
+                  <h2>6 Requisiti Asseverati con Riscontro Probatorio</h2>
+                </div>
+                <ShieldCheck size={26} />
+              </div>
+              <div className="editorial-public-questions__list">
+                {data.questions.map((q, index) => (
+                  <article key={q.id || index} className="lsv-public-master-card">
+                    <div className="lsv-public-master-card__header">
+                      <div className="lsv-public-master-card__tags">
+                        <span className="lsv-public-idx">REQUISITO {String(index + 1).padStart(2, '0')}</span>
+                        <span className="lsv-public-cat">{q.category || 'Valore Condiviso'}</span>
+                      </div>
+                      <span className="lsv-public-badge-verified">
+                        <CheckCircle2 size={14} /> Riscontro Asseverato
+                      </span>
+                    </div>
+
+                    <h3>{q.title || q.question}</h3>
+
+                    {q.description && (
+                      <div className="lsv-public-guide">
+                        <span className="micro-label" style={{ display: 'block', marginBottom: '4px', color: 'var(--cobalt)', fontWeight: 800 }}>INQUADRAMENTO METODOLOGICO (FRAMEWORK SIBILLINI IMPACT)</span>
+                        <p style={{ margin: 0 }}>{q.description}</p>
+                      </div>
+                    )}
+
+                    <div style={{ marginBottom: '16px' }}>
+                      <span className="micro-label" style={{ display: 'block', marginBottom: '4px', color: '#64748b', fontWeight: 800 }}>DOMANDA UFFICIALE DI RILEVAZIONE</span>
+                      <p className="lsv-public-question-prompt" style={{ margin: 0 }}>{q.question}</p>
+                    </div>
+
+                    {q.options && q.options.length > 0 && (
+                      <div className="lsv-public-options-box">
+                        <h4>Pratiche e Risposte del Questionario Esteso Rilevate:</h4>
+                        <ul className="lsv-public-options-list">
+                          {q.options.map((opt, optIdx) => {
+                            const isSelected = (q.selectedOptions || []).includes(opt);
+                            return (
+                              <li key={optIdx} style={{ opacity: isSelected ? 1 : 0.65 }}>
+                                {isSelected ? <CheckCircle2 size={15} style={{ color: '#059669', flexShrink: 0 }} /> : <span style={{ width: 15, display: 'inline-block', textAlign: 'center', color: '#94a3b8' }}>—</span>}
+                                <span style={{ fontWeight: isSelected ? 600 : 400, color: isSelected ? 'var(--ink)' : '#64748b' }}>
+                                  {opt}
+                                </span>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    )}
+
+                    <div className="lsv-public-statement">
+                      <span>Dichiarazione Asseverata per il Report di Sostenibilità</span>
+                      <p>{q.answer}</p>
+                    </div>
+
+                    {q.documentUrl && (
+                      <div className="lsv-public-doc-strip">
+                        <div className="lsv-public-doc-strip__info">
+                          <FileCheck2 size={20} />
+                          <div>
+                            <strong>DOCUMENTO PROBATORIO ASSEVERATO</strong>
+                            <small>{q.documentUrl}</small>
+                          </div>
+                        </div>
+                        <a
+                          href={q.documentUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="button button--outline button--sm"
+                        >
+                          Apri documento <ArrowUpRight size={14} />
+                        </a>
+                      </div>
+                    )}
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <section className="editorial-public-sources">
+            <div className="panel-heading">
+              <div>
+                <span className="micro-label">FONTI E RIFERIMENTI DI SISTEMA</span>
+                <h2>Dati essenziali collegati alla rendicontazione</h2>
+              </div>
+              <FileCheck2 size={23} />
+            </div>
+            <div>
+              {data.sources.map((source) => (
+                <article key={`${source.type}-${source.label}`}>
+                  <span>{source.type}</span>
+                  <b>{source.label}</b>
+                  <StatusBadge status={source.status} label={source.status.replaceAll('_', ' ')} />
+                  {source.detail && <small>{source.detail}</small>}
+                  {source.href && (
+                    <Link to={source.href}>
+                      Vai alla fonte <ArrowUpRight size={13} />
+                    </Link>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <footer>
+            <ShieldCheck size={28} />
+            <div>
+              <b>Attestazione del Valore Condiviso Locale — Convalida Redazionale & Garante</b>
+              <p>I fatti, i contratti e le donazioni riportati nella presente scheda sono stati verificati con riscontro probatorio documentale. Il giudizio editoriale e la misurazione d'impatto sono resi in conformità al disciplinare del Fondo Sibillini Impact.</p>
+            </div>
+          </footer>
+        </article>
+      )}
+
+      {data && data.type !== 'LOCAL_SHARED_VALUE' && (
         <article className="editorial-public-article">
           <header>
             <div className="editorial-public-article__labels">
@@ -109,41 +283,6 @@ export function EditorialPublicPage({ type }) {
             ))}
           </div>
 
-          {data.questions && data.questions.length > 0 && (
-            <section className="editorial-public-questions">
-              <div className="panel-heading">
-                <div>
-                  <span className="micro-label">VERIFICA DEI FATTI & RISCONTRI PROBATORI</span>
-                  <h2>Valore Condiviso Locale Documentato</h2>
-                </div>
-                <ShieldCheck size={23} />
-              </div>
-              <div className="editorial-public-questions__list">
-                {data.questions.map((q, index) => (
-                  <article key={q.id || index} className="editorial-public-question-card">
-                    <div className="editorial-public-question-card__top">
-                      <span className="question-idx">{String(index + 1).padStart(2, '0')}</span>
-                      <span className="question-category">{q.category || 'Valore Condiviso'}</span>
-                      <span className="question-verified-tag"><CheckCircle2 size={14} /> Fatto verificato</span>
-                    </div>
-                    <h3>{q.question}</h3>
-                    <p className="question-answer">{q.answer}</p>
-                    {q.documentUrl && (
-                      <div className="question-doc">
-                        <span className="micro-label">DOCUMENTO PROBATORIO</span>
-                        <a href={q.documentUrl} target="_blank" rel="noopener noreferrer" className="question-doc-link">
-                          <FileCheck2 size={16} />
-                          <span>Apri documento di riscontro</span>
-                          <ArrowUpRight size={14} />
-                        </a>
-                      </div>
-                    )}
-                  </article>
-                ))}
-              </div>
-            </section>
-          )}
-
           <section className="editorial-public-sources">
             <div className="panel-heading">
               <div>
@@ -158,12 +297,18 @@ export function EditorialPublicPage({ type }) {
                   <span>{source.type}</span>
                   <b>{source.label}</b>
                   <StatusBadge status={source.status} label={source.status.replaceAll('_', ' ')} />
-                  {source.verificationPath && <Link to={source.verificationPath}>Verifica pubblica <ArrowUpRight size={15} /></Link>}
+                  {source.detail && <small>{source.detail}</small>}
+                  {source.href && (
+                    <Link to={source.href}>
+                      Vai alla fonte <ArrowUpRight size={13} />
+                    </Link>
+                  )}
                 </article>
               ))}
             </div>
           </section>
-          {data.corrections.length > 0 && (
+
+          {data.corrections && data.corrections.length > 0 && (
             <section className="editorial-public-corrections">
               <h2>Note di revisione e correzione</h2>
               {data.corrections.map((correction, index) => (
@@ -174,9 +319,13 @@ export function EditorialPublicPage({ type }) {
               ))}
             </section>
           )}
+
           <footer>
-            <ShieldCheck size={20} />
-            <p>La verifica dell’impresa riguarda i fatti. Il giudizio editoriale resta indipendente. Questo contenuto è interamente dimostrativo.</p>
+            <ShieldCheck size={24} />
+            <div>
+              <b>Garanzia di trasparenza editoriale</b>
+              <p>La verifica dell’impresa riguarda i fatti e le misurazioni. La redazione mantiene la titolarità dell’analisi e della sintesi narrativa.</p>
+            </div>
           </footer>
         </article>
       )}

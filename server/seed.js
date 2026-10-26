@@ -1,6 +1,7 @@
 import { createArea3Seed } from './area3Seed.js';
 import { createArea4Seed } from './area4Seed.js';
 import { createArea5Seed } from './area5Seed.js';
+import { defaultSharedValueQuestions } from './area2Utils.js';
 
 export function createSeed() {
   const demoLogoSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 90"><rect width="160" height="90" fill="#ffffff"/><path d="M18 65 42 20l24 45H18Zm42 0 24-45 24 45H60Z" fill="#1947e5"/><text x="96" y="69" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#111111">GC</text></svg>';
@@ -301,51 +302,10 @@ export function createSeed() {
         metaDescription: 'Rendicontazione verificabile del valore condiviso locale: occupazione, fornitori di prossimità, sicurezza e matching grant.',
         image: '/images/sibillini-territory.jpg', imageAlt: 'Territorio e comunità dei monti Sibillini coinvolti nei progetti di valore condiviso',
         sections: [
-          { heading: 'Perimetro territoriale e impegni verificati', text: 'La presente rendicontazione raccoglie le evidenze documentali relative agli impatti sul territorio locale, verificando contratti, presenze dei lavoratori e destinazione del Matching Grant.' },
-          { heading: 'Riscontro documentale per ciascun indicatore', text: 'Ogni voce è corredata da riscontro probatorio verificabile (LUL presenze, contratti fornitori locali, attestazione versamento fondo e verbali di formazione tecnica).' },
+          { heading: 'Perimetro di Analisi e Finalità del Local Shared Value', text: 'La presente valutazione documenta l’impegno strutturale dell’azienda nei territori montani e delle aree interne dei Sibillini. Attraverso 6 macro-ambiti definiti dal framework di sostenibilità territoriale, vengono accertati i benefici generati per la comunità locale, le pratiche di co-sviluppo civico, le partnership con il Terzo Settore, gli impegni formali di Matching Grant, il coinvolgimento di persone e fornitori e la partecipazione attiva a tavoli di public policy.' },
+          { heading: 'Metodologia e Riscontri Probatori Documentali', text: 'Ogni requisito dichiarato è vincolato alla verifica di evidenze documentali probatorie tracciabili (convenzioni formali, atti di donazione, accordi di partenariato, policy aziendali e relazioni metodologiche d’impatto).' },
         ],
-        questions: [
-          {
-            id: 'lsv-q1',
-            category: 'Occupazione Locale',
-            question: 'Quota di manodopera locale e inserimento di residenti nell’area sisma',
-            answer: 'Il 68% dei lavoratori impiegati nell’unità operativa risiede nei comuni del comprensorio cratere sisma.',
-            documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/libro-unico-presenze-q3-2026.pdf',
-            verified: true,
-          },
-          {
-            id: 'lsv-q2',
-            category: 'Filiera & Fornitori Territoriali',
-            question: 'Accordi con fornitori e sub-fornitori con sede nei territori montani e interni',
-            answer: 'Attivati contratti con 12 fornitori locali per materiali, manutenzioni e servizi logistici a km zero.',
-            documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/registro-contratti-filiera-locale.pdf',
-            verified: true,
-          },
-          {
-            id: 'lsv-q3',
-            category: 'Matching Grant & Comunità',
-            question: 'Destinazione della devoluzione e del Matching Grant a progetti sociali e culturali della comunità',
-            answer: 'Devoluzione confermata al Fondo Ricreatività con Matching Grant paritario del 30% per il centro giovani locale.',
-            documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/attestazione-fondo-matching-grant.pdf',
-            verified: true,
-          },
-          {
-            id: 'lsv-q4',
-            category: 'Sicurezza & Formazione Tecnica',
-            question: 'Ore di formazione erogate su salute, sicurezza e prevenzione rischi nei cantieri e stabilimenti',
-            answer: 'Erogate 140 ore di formazione certificata su DPI di III categoria e prevenzione infortuni a tutti i lavoratori.',
-            documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/verbali-formazione-sicurezza-2026.pdf',
-            verified: true,
-          },
-          {
-            id: 'lsv-q5',
-            category: 'Sostenibilità Ambientale & Circolarità',
-            question: 'Recupero sfridi, gestione differenziata dei rifiuti e riduzione emissioni nella logistica',
-            answer: 'Raggiunto il 94% di riciclo imballaggi e introdotto il riutilizzo pallet a circuito chiuso con la filiera.',
-            documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/relazione-gestione-rifiuti-circolari.pdf',
-            verified: true,
-          },
-        ],
+        questions: structuredClone(defaultSharedValueQuestions),
         linkedData: { siteId: 'site-ponte-demo', datasetId: 'DS-ECO-2026-21', attestationId: 'ATT-DEMO-0142', reportId: 'REP-DEMO-001' },
         status: 'PUBLISHED', version: 1, author: 'Impresa & Redazione — demo', factualApprovedVersion: 1,
         createdAt: '2026-10-20T10:00:00.000Z', updatedAt: '2026-10-21T10:00:00.000Z', publishedAt: '2026-10-21T10:00:00.000Z', archivedAt: null,

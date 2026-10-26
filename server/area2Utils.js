@@ -136,43 +136,128 @@ export function buildAssetSvg({ generation, asset, textVersion, organizationName
 
 export const defaultSharedValueQuestions = [
   {
-    id: 'lsv-q1',
-    category: 'Occupazione Locale',
-    question: 'Quota di manodopera locale e inserimento di residenti nell’area territoriale',
-    answer: 'Il 68% dei lavoratori impiegati nell’unità operativa risiede nei comuni del comprensorio cratere sisma.',
-    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/libro-unico-presenze-q3-2026.pdf',
+    id: 'lsv-1',
+    category: 'Business Model & Impatto Comunitario',
+    title: '1. Modello di business orientato all’impatto sulla comunità',
+    description: 'Valuta se il core business dell’azienda genera un beneficio strutturale e mirato per stakeholder vulnerabili, fornitori in difficoltà o comunità territoriali marginali, superando la logica della compensazione o della donazione caritativa. L’obiettivo è la creazione di relazioni di fornitura che rafforzano cluster locali e la condivisione del valore creato (Shared Value).',
+    question: 'Il modello di business dell’azienda crea un beneficio specifico per stakeholder quali organizzazioni di beneficenza, venditori o fornitori in difficoltà o comunità locale?',
+    options: [
+      'Sì — Il core business genera beneficio strutturale per stakeholder vulnerabili, fornitori in difficoltà o comunità locale attraverso relazioni di fornitura e cluster territoriali.',
+      'No — L’azienda opera su modelli convenzionali senza un perimetro mirato di impatto comunitario.'
+    ],
+    selectedOptions: [
+      'Sì — Il core business genera beneficio strutturale per stakeholder vulnerabili, fornitori in difficoltà o comunità locale attraverso relazioni di fornitura e cluster territoriali.'
+    ],
+    answer: 'Sì. Il modello di business dell’azienda supera la logica della pura compensazione caritativa e genera un beneficio strutturale per la comunità locale e la filiera territoriale. Attraverso relazioni di fornitura qualificate e il rafforzamento dei cluster locali, l’attività operativa realizza una concreta condivisione del valore (Shared Value) a favore di stakeholder, venditori e fornitori dei comuni montani e dell’area sisma.',
+    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/modello-impatto-comunita-statuto.pdf',
     verified: true,
   },
   {
-    id: 'lsv-q2',
-    category: 'Filiera & Fornitori Territoriali',
-    question: 'Accordi con fornitori e subappaltatori con sede nei territori montani e interni',
-    answer: 'Attivati contratti con 12 fornitori locali per materiali, manutenzioni e servizi logistici a km zero.',
-    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/registro-contratti-filiera-locale.pdf',
+    id: 'lsv-2',
+    category: 'Sostegno Locale & Pratiche Civiche',
+    title: '2. Sostegno Locale — Pratiche di partecipazione civica',
+    description: 'Raccoglie le pratiche di partecipazione attiva e di co-sviluppo civico messe in campo dall’azienda per stimolare il tessuto socio-economico locale e sostenere località marginali attraverso vantaggi competitivi e valore condiviso.',
+    question: 'Quali delle seguenti pratiche di partecipazione civica implementa l’azienda?',
+    options: [
+      'Donazioni di denaro o in natura (beni materiali o servizi donati al posto di denaro) – escluse cause politiche.',
+      'Investimenti per la comunità.',
+      'Servizi alla comunità o pro-bono.',
+      'Sostegno per adottare politiche o pratiche che promuovano una migliore performance sociale o ambientale.',
+      'Sconti su prodotti o servizi per gruppi specifici in condizioni svantaggiate.',
+      'Uso gratuito delle strutture aziendali per ospitare eventi della comunità.'
+    ],
+    selectedOptions: [
+      'Donazioni di denaro o in natura (beni materiali o servizi donati al posto di denaro) – escluse cause politiche.',
+      'Investimenti per la comunità.',
+      'Servizi alla comunità o pro-bono.',
+      'Sostegno per adottare politiche o pratiche che promuovano una migliore performance sociale o ambientale.',
+      'Sconti su prodotti o servizi per gruppi specifici in condizioni svantaggiate.',
+      'Uso gratuito delle strutture aziendali per ospitare eventi della comunità.'
+    ],
+    answer: 'L’azienda implementa le seguenti pratiche di partecipazione civica: (1) Investimenti per la comunità a supporto delle aree interne; (2) Donazioni di beni materiali e servizi ad alto valore d’uso a favore di enti civici e sociali (escluse cause politiche); (3) Servizi alla comunità e attività pro-bono di rigenerazione territoriale; (4) Sostegno per adottare politiche che promuovano una migliore performance sociale e ambientale nella filiera; (5) Sconti e condizioni agevolate su prodotti/servizi per gruppi in condizioni svantaggiate; (6) Concessione gratuita delle strutture aziendali per ospitare eventi, laboratori e incontri della comunità locale.',
+    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/registro-pratiche-sostegno-civico.pdf',
     verified: true,
   },
   {
-    id: 'lsv-q3',
-    category: 'Matching Grant & Comunità',
-    question: 'Destinazione della devoluzione e del Matching Grant a progetti sociali e culturali della comunità',
-    answer: 'Devoluzione confermata al Fondo Ricreatività con Matching Grant paritario del 30% per il centro giovani locale.',
-    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/attestazione-fondo-matching-grant.pdf',
+    id: 'lsv-3',
+    category: 'Partnership & Alleanze Comunitarie',
+    title: '3. Sostegno Locale — Partnership con il Terzo Settore',
+    description: 'Verifica la partecipazione dell’azienda in organizzazioni comunitarie locali e partnership strategiche con organizzazioni senza fini di lucro per il rafforzamento socio-economico del territorio.',
+    question: 'Quali forme di partnership, partecipazione o apporto di capitale a organizzazioni senza fini di lucro sono attive?',
+    options: [
+      'Partnership con organizzazioni benefiche o partecipazione in organizzazioni comunitarie.',
+      'L’azienda offre partecipazione societaria o capitale a un’organizzazione senza fini di lucro.',
+      'Accordi di co-sviluppo civico per sostenere località marginali attraverso vantaggi competitivi e valore condiviso.'
+    ],
+    selectedOptions: [
+      'Partnership con organizzazioni benefiche o partecipazione in organizzazioni comunitarie.',
+      'L’azienda offre partecipazione societaria o capitale a un’organizzazione senza fini di lucro.',
+      'Accordi di co-sviluppo civico per sostenere località marginali attraverso vantaggi competitivi e valore condiviso.'
+    ],
+    answer: 'L’azienda presidia il sostegno locale attraverso: (1) Partnership formali con organizzazioni benefiche ed enti del Terzo Settore radicati nella comunità dei monti Sibillini; (2) Apporto di risorse e partecipazione a sostegno di organizzazioni no-profit territoriali; (3) Accordi pluriennali di co-sviluppo civico per rafforzare la resilienza e i servizi essenziali delle località marginali dell’area sisma.',
+    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/convenzioni-partnership-terzo-settore.pdf',
     verified: true,
   },
   {
-    id: 'lsv-q4',
-    category: 'Sicurezza & Formazione Tecnica',
-    question: 'Ore di formazione erogate su salute, sicurezza e prevenzione rischi nei cantieri e stabilimenti',
-    answer: 'Erogate 140 ore di formazione certificata su DPI di III categoria e prevenzione infortuni a tutti i lavoratori.',
-    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/verbali-formazione-sicurezza-2026.pdf',
+    id: 'lsv-4',
+    category: 'Politiche di Investimento & Matching Grant',
+    title: '4. Procedure e politiche per investimenti — Impegni formali e Matching Grant',
+    description: 'Verifica l’esistenza di standard formali, impegni di lungo periodo e metodologie orientate a misurare l’efficacia degli investimenti territoriali e della condivisione del valore.',
+    question: 'Quali delle seguenti procedure riguardanti le donazioni e gli investimenti orientati alla comunità vengono implementate dall’azienda?',
+    options: [
+      'L’azienda ha una dichiarazione formale riguardante l’impatto sociale o ambientale che spera di generare attraverso le sue attività filantropiche.',
+      'L’azienda ha un impegno formale riguardante le donazioni benefiche (per esempio ha un accordo pluriennale con una organizzazione non profit).',
+      'L’azienda fa donazioni benefiche per lo stesso valore di quelle che vengono fatte dai singoli lavoratori (Matching Grant).'
+    ],
+    selectedOptions: [
+      'L’azienda ha una dichiarazione formale riguardante l’impatto sociale o ambientale che spera di generare attraverso le sue attività filantropiche.',
+      'L’azienda ha un impegno formale riguardante le donazioni benefiche (per esempio ha un accordo pluriennale con una organizzazione non profit).',
+      'L’azienda fa donazioni benefiche per lo stesso valore di quelle che vengono fatte dai singoli lavoratori (Matching Grant).'
+    ],
+    answer: 'L’azienda ha adottato procedure formalizzate per gli investimenti nella comunità: (1) Ha una dichiarazione formale approvata dall’organo amministrativo sull’impatto sociale e ambientale atteso dalle proprie attività filantropiche; (2) Ha sottoscritto un impegno formale pluriennale con il Fondo Ricreatività; (3) Ha attivato il programma di Matching Grant aziendale che pareggia e raddoppia le donazioni e le devoluzioni effettuate dai lavoratori verso le iniziative comunitarie.',
+    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/policy-investimenti-matching-grant.pdf',
     verified: true,
   },
   {
-    id: 'lsv-q5',
-    category: 'Sostenibilità Ambientale & Circolarità',
-    question: 'Recupero sfridi, gestione differenziata dei rifiuti e riduzione emissioni nella logistica',
-    answer: 'Raggiunto il 94% di riciclo imballaggi e introdotto il riutilizzo pallet a circuito chiuso con la filiera.',
-    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/relazione-gestione-rifiuti-circolari.pdf',
+    id: 'lsv-5',
+    category: 'Coinvolgimento Filiera & Misurazione Impatto',
+    title: '5. Coinvolgimento di persone, fornitori e misurazione d’impatto',
+    description: 'Valuta il coinvolgimento attivo dei lavoratori dell’impresa, la mobilitazione della supply chain locale e l’adozione di metodologie formali di misurazione dell’impatto generato nella comunità.',
+    question: 'In che modo l’azienda coinvolge lavoratori e filiera e misura l’impatto dei suoi investimenti nella comunità?',
+    options: [
+      'L’azienda rende partecipi i propri lavoratori in iniziative di sviluppo locale.',
+      'L’azienda coinvolge i propri fornitori o partner per aumentare l’impatto di iniziative di sviluppo locale.',
+      'L’azienda ha procedure o meccanismi per misurare l’impatto dei suoi investimenti nella comunità.'
+    ],
+    selectedOptions: [
+      'L’azienda rende partecipi i propri lavoratori in iniziative di sviluppo locale.',
+      'L’azienda coinvolge i propri fornitori o partner per aumentare l’impatto di iniziative di sviluppo locale.',
+      'L’azienda ha procedure o meccanismi per misurare l’impatto dei suoi investimenti nella comunità.'
+    ],
+    answer: 'L’azienda attua una governance inclusiva dell’impatto territoriale: (1) Rende partecipi i propri lavoratori attraverso ore dedicate e consultazioni su progetti di sviluppo locale; (2) Coinvolge contrattualmente i fornitori e subappaltatori della filiera per elevare l’impatto congiunto sul territorio; (3) Applica procedure e indicatori strutturati per misurare e monitorare periodicamente l’efficacia reale degli investimenti comunitari erogati.',
+    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/disciplinare-coinvolgimento-filiera-metriche.pdf',
+    verified: true,
+  },
+  {
+    id: 'lsv-6',
+    category: 'Promozione di Sistema & Public Policy',
+    title: '6. Promuovere la creazione del Local Shared Value',
+    description: 'Esamina la capacità dell’impresa di fare rete con gli attori del settore e gli stakeholder per elevare gli standard di impatto e generazione di valore nelle comunità locali.',
+    question: 'Tra le seguenti azioni, quali sono state implementate dall’azienda insieme agli stakeholder (inclusa la concorrenza) per migliorare le pratiche e gli impatti generati nella Comunità Locale?',
+    options: [
+      'L’azienda lavora insieme ad altri attori del settore per promuovere interventi che migliorano gli standard sulla generazione del valore nelle Comunità locali.',
+      'L’azienda ha fornito dati o ha contribuito alla conduzione di indagini accademiche su questioni inerenti la misurazione dell’impatto economico e sociale delle Comunità Locali.',
+      'L’azienda partecipa in tavoli di discussione e altri dialoghi pubblici sulle public policy riguardanti le questioni della Comunità Locale.',
+      'L’azienda offre pubblicamente risorse utili per aiutare le altre compagnie o stakeholder a migliorare il proprio sviluppo sociale o ambientale.'
+    ],
+    selectedOptions: [
+      'L’azienda lavora insieme ad altri attori del settore per promuovere interventi che migliorano gli standard sulla generazione del valore nelle Comunità locali.',
+      'L’azienda ha fornito dati o ha contribuito alla conduzione di indagini accademiche su questioni inerenti la misurazione dell’impatto economico e sociale delle Comunità Locali.',
+      'L’azienda partecipa in tavoli di discussione e altri dialoghi pubblici sulle public policy riguardanti le questioni della Comunità Locale.',
+      'L’azienda offre pubblicamente risorse utili per aiutare le altre compagnie o stakeholder a migliorare il proprio sviluppo sociale o ambientale.'
+    ],
+    answer: 'Sul piano della promozione di sistema, l’azienda: (1) Collabora attivamente con altri operatori e concorrenti di settore per promuovere standard elevati di valore condiviso nelle Comunità locali; (2) Fornisce dati certificati e contribuisce a indagini e studi accademici sulla misurazione dell’impatto socio-economico territoriale; (3) Partecipa a tavoli di confronto istituzionale sulle public policy per la rigenerazione delle aree interne e cratere sisma; (4) Condivide pubblicamente modelli operativi, strumenti e risorse per supportare le altre imprese e la filiera nell’avanzamento sociale e ambientale.',
+    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/protocollo-diffusione-public-policy.pdf',
     verified: true,
   },
 ];

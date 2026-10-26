@@ -239,10 +239,14 @@ function validateEditorialContent(body) {
     reportId: body.linkedData?.reportId || null,
   };
   const questions = Array.isArray(body.questions) ? body.questions.map((q, idx) => ({
-    id: q.id || `lsv-q${idx + 1}`,
+    id: q.id || `lsv-${idx + 1}`,
     category: cleanText(q.category, 120) || 'Valore Condiviso',
-    question: cleanText(q.question, 300) || '',
-    answer: cleanText(q.answer, 2000) || '',
+    title: cleanText(q.title, 200) || '',
+    description: cleanText(q.description, 1000) || '',
+    question: cleanText(q.question, 400) || '',
+    options: Array.isArray(q.options) ? q.options.map((opt) => cleanText(opt, 500)).filter(Boolean) : [],
+    selectedOptions: Array.isArray(q.selectedOptions) ? q.selectedOptions.map((opt) => cleanText(opt, 500)).filter(Boolean) : [],
+    answer: cleanText(q.answer, 3000) || '',
     documentUrl: cleanText(q.documentUrl, 500) || '',
     verified: Boolean(q.verified),
   })) : [];

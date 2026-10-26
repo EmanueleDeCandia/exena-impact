@@ -476,62 +476,109 @@ export function EditorialPage() {
                     <div className="editorial-form__section-title">
                       <span>02</span>
                       <div>
-                        <b>Questionario e Riscontri Probatori — Local Shared Value</b>
-                        <small>Per ogni domanda l'impresa deve inserire la risposta e il link dove si trova il documento probatorio.</small>
+                        <b>Questionario Esteso & Riscontri Probatori — Local Shared Value</b>
+                        <small>6 Requisiti territoriali con opzioni selezionabili, sintesi per il report e link obbligatorio al documento probatorio.</small>
                       </div>
                     </div>
                     <div className="lsv-questions-editor">
                       {(draft.questions || []).map((q, index) => (
                         <article key={q.id || index} className="lsv-question-card">
                           <div className="lsv-question-card__top">
-                            <span className="micro-label">DOMANDA {String(index + 1).padStart(2, '0')} · {q.category || 'VALORE CONDIVISO'}</span>
-                            {editable && (draft.questions || []).length > 1 && (
-                              <button
-                                type="button"
-                                className="icon-button"
-                                onClick={() => update('questions', draft.questions.filter((_, qIdx) => qIdx !== index))}
-                                aria-label={`Rimuovi domanda ${index + 1}`}
-                              >
-                                <Trash2 size={15} />
-                              </button>
-                            )}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              <span className="lsv-public-idx">REQUISITO {String(index + 1).padStart(2, '0')}</span>
+                              <span className="lsv-public-cat">{q.category || 'VALORE CONDIVISO'}</span>
+                            </div>
+                            <span className="lsv-public-badge-verified">
+                              <CheckCircle2 size={13} /> Fatto Verificato
+                            </span>
                           </div>
+
                           <div className="field-row">
                             <label className="field">
-                              <span>Categoria / Ambito *</span>
+                              <span>Categoria / Ambito Territoriale *</span>
                               <input
                                 disabled={!editable}
                                 maxLength="120"
                                 value={q.category || ''}
                                 onChange={(e) => updateQuestion(index, 'category', e.target.value)}
-                                placeholder="es. Occupazione Locale, Filiera, Sicurezza"
+                                placeholder="Ambito territoriale"
                               />
                             </label>
                           </div>
+
+                          {q.description && (
+                            <div className="lsv-item-guide">
+                              <div>
+                                <span className="micro-label" style={{ display: 'block', marginBottom: '3px', color: 'var(--cobalt)', fontWeight: 800 }}>INQUADRAMENTO METODOLOGICO (DA NUOVE COMPONENTI)</span>
+                                <p style={{ margin: 0, fontSize: '11px', color: '#475569', lineHeight: 1.5 }}>{q.description}</p>
+                              </div>
+                            </div>
+                          )}
+
                           <label className="field">
-                            <span>Domanda o Requisito di Verifica *</span>
+                            <span>Domanda Ufficiale di Rilevazione *</span>
                             <textarea
                               disabled={!editable}
                               rows="2"
-                              maxLength="300"
+                              maxLength="350"
                               value={q.question || ''}
                               onChange={(e) => updateQuestion(index, 'question', e.target.value)}
-                              placeholder="Descrivi il fatto o requisito territoriale da verificare"
+                              placeholder="Domanda o requisito territoriale del questionario"
                             />
                           </label>
+
+                          {q.options && q.options.length > 0 && (
+                            <div className="lsv-options-selector">
+                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                                <span style={{ fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.06em', color: 'var(--ink)' }}>
+                                  Opzioni e Risposte del Questionario Esteso:
+                                </span>
+                                <small style={{ color: 'var(--workspace-muted)', fontSize: '10px' }}>
+                                  {(q.selectedOptions || []).length} di {q.options.length} selezionate
+                                </small>
+                              </div>
+                              <div className="lsv-options-checklist">
+                                {q.options.map((opt, optIdx) => {
+                                  const isChecked = (q.selectedOptions || []).includes(opt);
+                                  return (
+                                    <label key={optIdx} className="lsv-option-checkbox">
+                                      <input
+                                        type="checkbox"
+                                        disabled={!editable}
+                                        checked={isChecked}
+                                        onChange={(e) => {
+                                          const prev = q.selectedOptions || [];
+                                          const next = e.target.checked
+                                            ? [...prev, opt]
+                                            : prev.filter((item) => item !== opt);
+                                          updateQuestion(index, 'selectedOptions', next);
+                                        }}
+                                      />
+                                      <span style={{ fontWeight: isChecked ? 600 : 400 }}>{opt}</span>
+                                    </label>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+
                           <label className="field">
-                            <span>Risposta / Dichiarazione dell'Impresa *</span>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                              <span>Dichiarazione Sintetica per il Report di Sostenibilità *</span>
+                              <span className="micro-label" style={{ color: 'var(--cobalt)' }}>TESTO COMPLETO PUBBLICAZIONE</span>
+                            </div>
                             <textarea
                               disabled={!editable}
-                              rows="3"
-                              maxLength="2000"
+                              rows="4"
+                              maxLength="2500"
                               value={q.answer || ''}
                               onChange={(e) => updateQuestion(index, 'answer', e.target.value)}
-                              placeholder="Inserisci la sintesi dei fatti, valori e misure applicate"
+                              placeholder="Inserisci la sintesi completa dei fatti e misure adottate per il report"
                             />
                           </label>
+
                           <label className="field">
-                            <span>Link dove si trova il documento probatorio *</span>
+                            <span>Link dove si trova il documento probatorio (Obbligatorio) *</span>
                             <div className="doc-link-input-row">
                               <input
                                 type="url"
@@ -539,7 +586,7 @@ export function EditorialPage() {
                                 maxLength="500"
                                 value={q.documentUrl || ''}
                                 onChange={(e) => updateQuestion(index, 'documentUrl', e.target.value)}
-                                placeholder="https://... o percorso documento (PDF, attestato, registro)"
+                                placeholder="https://... link al documento (PDF, attestato, convenzione)"
                               />
                               {q.documentUrl && (
                                 <a href={q.documentUrl} target="_blank" rel="noopener noreferrer" className="button button--outline button--sm">
@@ -551,25 +598,6 @@ export function EditorialPage() {
                         </article>
                       ))}
                     </div>
-                    {editable && (draft.questions || []).length < 10 && (
-                      <button
-                        className="button button--outline"
-                        type="button"
-                        onClick={() => update('questions', [
-                          ...(draft.questions || []),
-                          {
-                            id: `lsv-q${(draft.questions || []).length + 1}`,
-                            category: 'Territorio & Comunità',
-                            question: 'Nuovo requisito territoriale di valore condiviso',
-                            answer: '',
-                            documentUrl: '',
-                            verified: false,
-                          }
-                        ])}
-                      >
-                        <Plus size={16} />Aggiungi domanda di verifica
-                      </button>
-                    )}
                   </section>
                 )}
 
