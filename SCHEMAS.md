@@ -98,10 +98,27 @@ erDiagram
 - **`brand_assets`** & **`brand_text_versions`** (C05):
   - Asset loghi (SVG/PNG validati), versioni testuali approvate e generazioni composite.
 - **`editorial_contents`** (CMS Editoriale - C06):
-  - `id`: string, `type`: `'CASE_HISTORY' | 'BEST_PRACTICE'`, `slug`: string (indicizzabile), `title`: string
-  - `sections`: array di `{ heading, text }`
-  - `linkedData`: `{ siteId, datasetId, attestationId, reportId }`
-  - `status`: `'DRAFT' | 'PUBLISHED'`, `factualApprovedVersion`: integer
+  - `id`: string (es. `EDI-DEMO-001`, `EDI-DEMO-LSV-01`)
+  - `type`: `'CASE_HISTORY' | 'BEST_PRACTICE' | 'LOCAL_SHARED_VALUE'`
+  - `slug`: string (indicizzabile, es. `valore-condiviso-locale-ponte-vallone-demo`)
+  - `title`: string, `excerpt`: string, `metaDescription`: string, `image`: string, `imageAlt`: string
+  - `sections`: array di `{ heading: string, text: string }`
+  - `questions`: array di 6 requisiti territoriali (specifico per `LOCAL_SHARED_VALUE`):
+    - `id`: string (es. `lsv-1` ... `lsv-6`)
+    - `category`: string (es. `'Business Model & Impatto Comunitario'`, `'Sostegno Locale'`)
+    - `title`: string (titolo ufficiale del requisito)
+    - `description`: string (inquadramento metodologico dal framework di sostenibilità)
+    - `question`: string (domanda ufficiale di rilevazione)
+    - `options`: array di string (elenco risposte e pratiche del questionario esteso)
+    - `selectedOptions`: array di string (opzioni convalidate e attive per l'impresa)
+    - `answer`: string (dichiarazione sintetica asseverata per il report di sostenibilità)
+    - `documentUrl`: string (link al documento o atto probatorio convalidato)
+    - `verified`: boolean
+  - `linkedData`: `{ siteId, datasetId, attestationId, reportId, localSharedValueId }` (collegamento alla scheda di verifica fatti)
+  - `status`: `'DRAFT' | 'PUBLISHED' | 'ARCHIVED'`
+  - `version`: integer, `factualApprovedVersion`: integer | null
+  - `reviewEvents`: array di `{ at, actor, event }`
+  - `corrections`: array di `{ at, note }`
 - **`partner_entries`** (Registro Partner della Ricostruzione - C07):
   - `id`, `publicSlug`, `organizationName`, `consentToPublish`: boolean, `municipalities`: array, `projects`: array
 

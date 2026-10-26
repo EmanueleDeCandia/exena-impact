@@ -3,7 +3,7 @@
     "schemaVersion": 6,
     "demo": true,
     "notice": "Dati sintetici per validazione funzionale. Non utilizzare per reporting, revisione o finalità legali.",
-    "updatedAt": "2026-10-26T01:22:10.934Z"
+    "updatedAt": "2026-10-26T02:22:04.007Z"
   },
   "organizations": [
     {
@@ -108,13 +108,13 @@
     }
   ],
   "organization": {
-    "id": "org-gc-demo",
-    "name": "General Contractor Demo S.p.A.",
-    "profileType": "CONSTRUCTION",
+    "id": "org-csr-demo",
+    "name": "Manifattura Sibillini S.p.A.",
+    "profileType": "CSR_ORIENTED",
     "role": "ORG_ADMIN",
     "siteIds": [
-      "site-ponte-demo",
-      "site-borgo-demo"
+      "unit-stabilimento-marche",
+      "unit-hub-logistica"
     ],
     "partnershipRole": "PROMOTER_PARTNER"
   },
@@ -1503,7 +1503,15 @@
       "demoAccessEnabled": true
     }
   ],
-  "governanceSessions": [],
+  "governanceSessions": [
+    {
+      "token": "83b2e0501e2f47f1880c236ee2dfcb7d7970cb331353437dbcdce6a331878f85",
+      "memberId": "MEM-BOARD-001",
+      "organizationId": "org-gc-demo",
+      "createdAt": "2026-10-26T02:15:06.094Z",
+      "expiresAt": "2026-10-26T10:15:06.095Z"
+    }
+  ],
   "mfaChallenges": [],
   "fundDirectionOptions": [
     {
@@ -1982,7 +1990,78 @@
       "demoAccessEnabled": true
     }
   ],
-  "operationsSessions": [],
+  "operationsSessions": [
+    {
+      "token": "f474d190e47c4f14a89a38a77c74a4d65aeed8707cef44678d13c1de251a7fe9",
+      "memberId": "OP-PROC-001",
+      "organizationId": "org-gc-demo",
+      "createdAt": "2026-10-26T01:52:22.904Z",
+      "expiresAt": "2026-10-26T09:52:22.904Z"
+    },
+    {
+      "token": "ef312da5772944b79efd1b70572aac40bb3e7dbcac464989a60e029a6845e3c9",
+      "memberId": "OP-CSR-PROC",
+      "organizationId": "org-csr-demo",
+      "createdAt": "2026-10-26T02:16:08.261Z",
+      "expiresAt": "2026-10-26T10:16:08.261Z"
+    },
+    {
+      "token": "9d6f7fb1440247a1ae5b120784441a29c15dc2a939d940998eff395f00de9ac7",
+      "memberId": "OP-CSR-PROC",
+      "organizationId": "org-csr-demo",
+      "createdAt": "2026-10-26T02:16:08.309Z",
+      "expiresAt": "2026-10-26T10:16:08.309Z"
+    },
+    {
+      "token": "4aec0a56df87414bb674bebb43510a1cd9f661f36a7c47f3bc04e537ced8142b",
+      "memberId": "OP-CSR-PROC",
+      "organizationId": "org-csr-demo",
+      "createdAt": "2026-10-26T02:16:44.954Z",
+      "expiresAt": "2026-10-26T10:16:44.954Z"
+    },
+    {
+      "token": "a292b1eb4a5b441ba42c7a4b7457c361105cc1fe09e04774ac3e511f2e94fc6f",
+      "memberId": "OP-CSR-SITE",
+      "organizationId": "org-csr-demo",
+      "createdAt": "2026-10-26T02:17:35.335Z",
+      "expiresAt": "2026-10-26T10:17:35.335Z"
+    },
+    {
+      "token": "2465d9c211e84a2caaf469c65c2d0fc49a758f2eac2149668446a0c15d35e13e",
+      "memberId": "OP-PROC-001",
+      "organizationId": "org-gc-demo",
+      "createdAt": "2026-10-26T02:20:21.789Z",
+      "expiresAt": "2026-10-26T10:20:21.789Z"
+    },
+    {
+      "token": "c64ef3a6ab6f4b318d696c499de7113fc67c23d41aac45eab7f0fe53d940dc1a",
+      "memberId": "OP-PROC-001",
+      "organizationId": "org-gc-demo",
+      "createdAt": "2026-10-26T02:20:21.810Z",
+      "expiresAt": "2026-10-26T10:20:21.810Z"
+    },
+    {
+      "token": "03d362ab0acb4e08abc5ff9c95317a3440fa386ea2474ad68cea6b6f67811523",
+      "memberId": "OP-CSR-PROC",
+      "organizationId": "org-csr-demo",
+      "createdAt": "2026-10-26T02:20:48.574Z",
+      "expiresAt": "2026-10-26T10:20:48.574Z"
+    },
+    {
+      "token": "9d5a19176d3d4549bf49afbc29b54d9bf492881c4a204eab8c6efd416d35e12b",
+      "memberId": "OP-CSR-PROC",
+      "organizationId": "org-csr-demo",
+      "createdAt": "2026-10-26T02:20:48.598Z",
+      "expiresAt": "2026-10-26T10:20:48.598Z"
+    },
+    {
+      "token": "3e87d7ecfaa64d4cacbcfd7d409f7658f5e15e1cd0de489ea18f20f6c5896f60",
+      "memberId": "OP-CSR-PROC",
+      "organizationId": "org-csr-demo",
+      "createdAt": "2026-10-26T02:22:04.006Z",
+      "expiresAt": "2026-10-26T10:22:04.006Z"
+    }
+  ],
   "productCatalog": [
     {
       "id": "PROD-ECO-S3S",

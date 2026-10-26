@@ -60,17 +60,18 @@ Le due card Standard e le tre varianti digitali sono collegate. La **Sintesi Sta
 | ID | Route | Funzioni implementate |
 |---|---|---|
 | C05 | `/app/brand-kit` | Logo SVG/PNG/JPEG validato, testi approvati bloccati, template, palette con contrasto, area di sicurezza, anteprima live, archivio, export SVG/PNG reali, inviti di filiera con accettazione e revoca. La query `audience=SUBCONTRACTOR` apre il percorso filiera. |
-| C06 | `/app/editoriale` | Case History ed Executive Page, slug/canonical/metadati social, immagini locali, fonti collegate, bozze noindex, versioni, doppia review fattuale/editoriale, pubblicazione, correzioni versionate e archiviazione. |
+| C06 | `/app/editoriale` | Tre tipologie editoriali: **Case History**, **Executive Page** e il modulo **Local Shared Value** (questionario esteso sui 6 requisiti territoriali del framework con inquadramento metodologico, selezione pratiche, sintesi per il report e link probatorio obbligatorio). Slug/canonical/metadati social, immagini locali, fonti collegate, bozze noindex, versioni, doppia review fattuale/editoriale (con blocco e verifica dello stato del modulo Local Shared Value collegato tramite `localSharedValueId`), pubblicazione, correzioni versionate e archiviazione. |
 | C07 | `/app/registro-partner` | Schede private, consenso, municipalità e progetti pubblicabili, review, pubblicazione, rettifiche e rimozioni tracciate. Directory pubblica con filtri accessibili, dettaglio ed export CSV. |
 
 Route pubbliche Area 2:
 
 - `/inviti/kit/:token`: solo asset e denominazioni necessarie; nessun dato commerciale del General Contractor.
 - `/case-history/:slug` e `/best-practice/:slug`: sole versioni pubblicate; bozze assenti e contenuti archiviati non disponibili.
+- `/shared-value/:slug`: Dossier Esecutivo Asseverato del Valore Condiviso Locale, con ribbon KPI brutalista 6/6, 6 Master Cards con inquadramento metodologico, opzioni del questionario esteso, dichiarazione per il report e link di riscontro probatorio verificato.
 - `/partner`: directory pubblica minimizzata, senza ranking automatico, Partita IVA, importi o dati privati.
 - `/partner/:slug`: stato demo, municipalità, progetti, evidenze pubblicabili, aggiornamenti e rettifiche.
 
-Tutte le console `/app/*` impostano `noindex, nofollow, noarchive`. Le pagine editoriali pubblicate ricevono title, description, canonical, Open Graph e Twitter metadata lato client. Per crawler social e SEO di produzione è raccomandato SSR o pre-rendering delle route pubbliche.
+Tutte le console `/app/*` impostano `noindex, nofollow, noarchive`. La topbar include il pulsante unificato **Reset Seed** (con modale di conferma) per ripristinare in tempo reale il datastore alle condizioni iniziali coerenti. Le pagine editoriali pubblicate ricevono title, description, canonical, Open Graph e Twitter metadata lato client. Per crawler social e SEO di produzione è raccomandato SSR o pre-rendering delle route pubbliche.
 
 ## Area 3 — Hospitality, E-Learning & Digital Certificates
 

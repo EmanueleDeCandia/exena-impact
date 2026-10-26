@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildAssetSvg, contrastRatio, sanitizeSvg, slugify, validateRaster } from './area2Utils.js';
+import { buildAssetSvg, contrastRatio, defaultSharedValueQuestions, editorialPublicPath, sanitizeSvg, slugify, validateRaster } from './area2Utils.js';
 
 test('Area 2 slugs are stable, readable and ASCII', () => {
   assert.equal(slugify('Rendicontazione àrea Sisma — 2026'), 'rendicontazione-area-sisma-2026');
@@ -35,4 +35,10 @@ test('generated SVG escapes organization content and retains demo metadata', () 
   assert.match(svg, /Impresa &lt;Demo&gt; &amp; Partner/);
   assert.match(svg, /DEMO \/ DATI SINTETICI/);
   assert.doesNotMatch(svg, /Impresa <Demo>/);
+});
+
+test('Local Shared Value public path and 6 default questions are valid', () => {
+  assert.equal(editorialPublicPath({ type: 'LOCAL_SHARED_VALUE', slug: 'valore-condiviso-demo' }), '/shared-value/valore-condiviso-demo');
+  assert.equal(defaultSharedValueQuestions.length, 6);
+  assert.ok(defaultSharedValueQuestions.every((q) => q.title && q.question && Array.isArray(q.options) && q.documentUrl));
 });
