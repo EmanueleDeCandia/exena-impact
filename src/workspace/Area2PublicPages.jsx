@@ -176,7 +176,7 @@ export function EditorialPublicPage({ type }) {
                             return (
                               <li key={optIdx} style={{ opacity: isSelected ? 1 : 0.65 }}>
                                 {isSelected ? <CheckCircle2 size={15} style={{ color: '#059669', flexShrink: 0 }} /> : <span style={{ width: 15, display: 'inline-block', textAlign: 'center', color: '#94a3b8' }}>—</span>}
-                                <span style={{ fontWeight: isSelected ? 600 : 400, color: isSelected ? 'var(--ink)' : '#64748b' }}>
+                                <span style={{ fontWeight: 400, color: isSelected ? 'var(--ink)' : '#64748b' }}>
                                   {opt}
                                 </span>
                               </li>

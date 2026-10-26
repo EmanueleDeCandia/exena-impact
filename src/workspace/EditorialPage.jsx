@@ -554,7 +554,7 @@ export function EditorialPage() {
                                           updateQuestion(index, 'selectedOptions', next);
                                         }}
                                       />
-                                      <span style={{ fontWeight: isChecked ? 600 : 400 }}>{opt}</span>
+                                      <span style={{ fontWeight: 400 }}>{opt}</span>
                                     </label>
                                   );
                                 })}
