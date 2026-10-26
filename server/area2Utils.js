@@ -134,6 +134,53 @@ export function buildAssetSvg({ generation, asset, textVersion, organizationName
 </svg>`;
 }
 
+export const defaultSharedValueQuestions = [
+  {
+    id: 'lsv-q1',
+    category: 'Occupazione Locale',
+    question: 'Quota di manodopera locale e inserimento di residenti nell’area territoriale',
+    answer: 'Il 68% dei lavoratori impiegati nell’unità operativa risiede nei comuni del comprensorio cratere sisma.',
+    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/libro-unico-presenze-q3-2026.pdf',
+    verified: true,
+  },
+  {
+    id: 'lsv-q2',
+    category: 'Filiera & Fornitori Territoriali',
+    question: 'Accordi con fornitori e subappaltatori con sede nei territori montani e interni',
+    answer: 'Attivati contratti con 12 fornitori locali per materiali, manutenzioni e servizi logistici a km zero.',
+    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/registro-contratti-filiera-locale.pdf',
+    verified: true,
+  },
+  {
+    id: 'lsv-q3',
+    category: 'Matching Grant & Comunità',
+    question: 'Destinazione della devoluzione e del Matching Grant a progetti sociali e culturali della comunità',
+    answer: 'Devoluzione confermata al Fondo Ricreatività con Matching Grant paritario del 30% per il centro giovani locale.',
+    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/attestazione-fondo-matching-grant.pdf',
+    verified: true,
+  },
+  {
+    id: 'lsv-q4',
+    category: 'Sicurezza & Formazione Tecnica',
+    question: 'Ore di formazione erogate su salute, sicurezza e prevenzione rischi nei cantieri e stabilimenti',
+    answer: 'Erogate 140 ore di formazione certificata su DPI di III categoria e prevenzione infortuni a tutti i lavoratori.',
+    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/verbali-formazione-sicurezza-2026.pdf',
+    verified: true,
+  },
+  {
+    id: 'lsv-q5',
+    category: 'Sostenibilità Ambientale & Circolarità',
+    question: 'Recupero sfridi, gestione differenziata dei rifiuti e riduzione emissioni nella logistica',
+    answer: 'Raggiunto il 94% di riciclo imballaggi e introdotto il riutilizzo pallet a circuito chiuso con la filiera.',
+    documentUrl: 'https://docs.sibillini-impact.org/evidenze/ponte-vallone/relazione-gestione-rifiuti-circolari.pdf',
+    verified: true,
+  },
+];
+
 export function editorialPublicPath(content) {
+  if (content.type === 'LOCAL_SHARED_VALUE') {
+    return `/shared-value/${content.slug}`;
+  }
   return `/${content.type === 'CASE_HISTORY' ? 'case-history' : 'best-practice'}/${content.slug}`;
 }
+

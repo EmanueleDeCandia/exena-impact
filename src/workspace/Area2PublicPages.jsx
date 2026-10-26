@@ -53,7 +53,135 @@ export function EditorialPublicPage({ type }) {
     index: Boolean(data),
     type: 'article',
   });
-  return <PublicShell label={type === 'case-history' ? 'CASE HISTORY / EVIDENZE E NARRATIVA' : 'EXECUTIVE PAGE / ANALISI EDITORIALE'} className="editorial-public-shell">{loading && <LoadingState label="Caricamento contenuto editoriale" />}{error && <div className="public-state-card"><FileCheck2 size={34} /><span className="micro-label">CONTENUTO NON DISPONIBILE</span><h1>{error.status === 410 ? 'Contenuto archiviato.' : 'Pagina non trovata.'}</h1><p>{error.message}. Le bozze private non sono accessibili né indicizzabili.</p><Link className="button button--outline" to="/">Torna al portale <ArrowRight size={17} /></Link></div>}{data && <article className="editorial-public-article"><header><div className="editorial-public-article__labels"><span>{data.type === 'CASE_HISTORY' ? 'CASE HISTORY' : 'EXECUTIVE PAGE'}</span><span>VERSIONE {data.version}</span><span>DEMO / DATI SINTETICI</span></div><h1>{data.title}</h1><p>{data.excerpt}</p><div className="editorial-public-article__byline"><span>{data.author}</span><span>Pubblicato {shortDate(data.publishedAt)}</span><span>Aggiornato {shortDate(data.updatedAt)}</span></div></header><figure><img src={data.image} alt={data.imageAlt} /><figcaption>Immagine editoriale locale · contenuto dimostrativo</figcaption></figure><div className="editorial-public-article__content">{data.sections.map((section, index) => <section key={index}><span>{String(index + 1).padStart(2, '0')}</span><div><h2>{section.heading}</h2><p>{section.text}</p></div></section>)}</div><section className="editorial-public-sources"><div className="panel-heading"><div><span className="micro-label">FONTI E RIFERIMENTI</span><h2>Dati essenziali collegati</h2></div><FileCheck2 size={23} /></div><div>{data.sources.map((source) => <article key={`${source.type}-${source.label}`}><span>{source.type}</span><b>{source.label}</b><StatusBadge status={source.status} label={source.status.replaceAll('_', ' ')} />{source.verificationPath && <Link to={source.verificationPath}>Verifica pubblica <ArrowUpRight size={15} /></Link>}</article>)}</div></section>{data.corrections.length > 0 && <section className="editorial-public-corrections"><h2>Note di revisione e correzione</h2>{data.corrections.map((correction, index) => <div key={index}><time>{dateTime(correction.at)}</time><p>{correction.note}</p></div>)}</section>}<footer><ShieldCheck size={20} /><p>La verifica dell’impresa riguarda i fatti. Il giudizio editoriale resta indipendente. Questo contenuto è interamente dimostrativo.</p></footer></article>}</PublicShell>;
+  const shellLabel = data?.type === 'LOCAL_SHARED_VALUE' || type === 'shared-value'
+    ? 'LOCAL SHARED VALUE / RENDICONTAZIONE TERRITORIALE'
+    : type === 'case-history'
+    ? 'CASE HISTORY / EVIDENZE E NARRATIVA'
+    : 'EXECUTIVE PAGE / ANALISI EDITORIALE';
+
+  const typeLabel = data?.type === 'LOCAL_SHARED_VALUE'
+    ? 'LOCAL SHARED VALUE'
+    : data?.type === 'CASE_HISTORY'
+    ? 'CASE HISTORY'
+    : 'EXECUTIVE PAGE';
+
+  return (
+    <PublicShell label={shellLabel} className="editorial-public-shell">
+      {loading && <LoadingState label="Caricamento contenuto editoriale" />}
+      {error && (
+        <div className="public-state-card">
+          <FileCheck2 size={34} />
+          <span className="micro-label">CONTENUTO NON DISPONIBILE</span>
+          <h1>{error.status === 410 ? 'Contenuto archiviato.' : 'Pagina non trovata.'}</h1>
+          <p>{error.message}. Le bozze private non sono accessibili né indicizzabili.</p>
+          <Link className="button button--outline" to="/">Torna al portale <ArrowRight size={17} /></Link>
+        </div>
+      )}
+      {data && (
+        <article className="editorial-public-article">
+          <header>
+            <div className="editorial-public-article__labels">
+              <span>{typeLabel}</span>
+              <span>VERSIONE {data.version}</span>
+              <span>DEMO / DATI SINTETICI</span>
+            </div>
+            <h1>{data.title}</h1>
+            <p>{data.excerpt}</p>
+            <div className="editorial-public-article__byline">
+              <span>{data.author}</span>
+              <span>Pubblicato {shortDate(data.publishedAt)}</span>
+              <span>Aggiornato {shortDate(data.updatedAt)}</span>
+            </div>
+          </header>
+          <figure>
+            <img src={data.image} alt={data.imageAlt} />
+            <figcaption>Immagine editoriale locale · contenuto dimostrativo</figcaption>
+          </figure>
+          <div className="editorial-public-article__content">
+            {data.sections.map((section, index) => (
+              <section key={index}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h2>{section.heading}</h2>
+                  <p>{section.text}</p>
+                </div>
+              </section>
+            ))}
+          </div>
+
+          {data.questions && data.questions.length > 0 && (
+            <section className="editorial-public-questions">
+              <div className="panel-heading">
+                <div>
+                  <span className="micro-label">VERIFICA DEI FATTI & RISCONTRI PROBATORI</span>
+                  <h2>Valore Condiviso Locale Documentato</h2>
+                </div>
+                <ShieldCheck size={23} />
+              </div>
+              <div className="editorial-public-questions__list">
+                {data.questions.map((q, index) => (
+                  <article key={q.id || index} className="editorial-public-question-card">
+                    <div className="editorial-public-question-card__top">
+                      <span className="question-idx">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="question-category">{q.category || 'Valore Condiviso'}</span>
+                      <span className="question-verified-tag"><CheckCircle2 size={14} /> Fatto verificato</span>
+                    </div>
+                    <h3>{q.question}</h3>
+                    <p className="question-answer">{q.answer}</p>
+                    {q.documentUrl && (
+                      <div className="question-doc">
+                        <span className="micro-label">DOCUMENTO PROBATORIO</span>
+                        <a href={q.documentUrl} target="_blank" rel="noopener noreferrer" className="question-doc-link">
+                          <FileCheck2 size={16} />
+                          <span>Apri documento di riscontro</span>
+                          <ArrowUpRight size={14} />
+                        </a>
+                      </div>
+                    )}
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <section className="editorial-public-sources">
+            <div className="panel-heading">
+              <div>
+                <span className="micro-label">FONTI E RIFERIMENTI</span>
+                <h2>Dati essenziali collegati</h2>
+              </div>
+              <FileCheck2 size={23} />
+            </div>
+            <div>
+              {data.sources.map((source) => (
+                <article key={`${source.type}-${source.label}`}>
+                  <span>{source.type}</span>
+                  <b>{source.label}</b>
+                  <StatusBadge status={source.status} label={source.status.replaceAll('_', ' ')} />
+                  {source.verificationPath && <Link to={source.verificationPath}>Verifica pubblica <ArrowUpRight size={15} /></Link>}
+                </article>
+              ))}
+            </div>
+          </section>
+          {data.corrections.length > 0 && (
+            <section className="editorial-public-corrections">
+              <h2>Note di revisione e correzione</h2>
+              {data.corrections.map((correction, index) => (
+                <div key={index}>
+                  <time>{dateTime(correction.at)}</time>
+                  <p>{correction.note}</p>
+                </div>
+              ))}
+            </section>
+          )}
+          <footer>
+            <ShieldCheck size={20} />
+            <p>La verifica dell’impresa riguarda i fatti. Il giudizio editoriale resta indipendente. Questo contenuto è interamente dimostrativo.</p>
+          </footer>
+        </article>
+      )}
+    </PublicShell>
+  );
 }
 
 export function PartnerDirectoryPage() {

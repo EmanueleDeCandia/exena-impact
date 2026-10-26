@@ -2,7 +2,7 @@ import express, { Router } from 'express';
 import { randomUUID } from 'node:crypto';
 import sharp from 'sharp';
 import { readDb, updateDb } from './store.js';
-import { brandPalettes, brandTemplates, buildAssetSvg, contrastRatio, editorialPublicPath, sanitizeSvg, slugify, validateRaster } from './area2Utils.js';
+import { brandPalettes, brandTemplates, buildAssetSvg, contrastRatio, defaultSharedValueQuestions, editorialPublicPath, sanitizeSvg, slugify, validateRaster } from './area2Utils.js';
 
 export const area2Router = Router();
 const asyncRoute = (handler) => (request, response, next) => Promise.resolve(handler(request, response, next)).catch(next);
@@ -238,7 +238,15 @@ function validateEditorialContent(body) {
     attestationId: body.linkedData?.attestationId || null,
     reportId: body.linkedData?.reportId || null,
   };
-  return { title, excerpt, metaDescription, image: body.image, imageAlt, sections, linkedData };
+  const questions = Array.isArray(body.questions) ? body.questions.map((q, idx) => ({
+    id: q.id || `lsv-q${idx + 1}`,
+    category: cleanText(q.category, 120) || 'Valore Condiviso',
+    question: cleanText(q.question, 300) || '',
+    answer: cleanText(q.answer, 2000) || '',
+    documentUrl: cleanText(q.documentUrl, 500) || '',
+    verified: Boolean(q.verified),
+  })) : [];
+  return { title, excerpt, metaDescription, image: body.image, imageAlt, sections, linkedData, questions };
 }
 
 area2Router.get('/area2/editorial', asyncRoute(async (request, response) => {
@@ -258,22 +266,33 @@ area2Router.get('/area2/editorial', asyncRoute(async (request, response) => {
 
 area2Router.post('/area2/editorial', asyncRoute(async (request, response) => {
   const { type, title } = request.body ?? {};
-  if (!['CASE_HISTORY', 'BEST_PRACTICE'].includes(type)) throw httpError(400, 'Tipologia editoriale non valida');
+  if (!['CASE_HISTORY', 'BEST_PRACTICE', 'LOCAL_SHARED_VALUE'].includes(type)) throw httpError(400, 'Tipologia editoriale non valida');
   if (!cleanText(title, 180) || title.trim().length < 5) throw httpError(400, 'Inserisci un titolo di almeno 5 caratteri');
   const content = await updateDb((db) => {
     const baseSlug = slugify(request.body.slug || title);
     if (!baseSlug) throw httpError(400, 'Slug non valido');
     if (db.editorialContents.some((item) => item.slug === baseSlug && item.status !== 'ARCHIVED')) throw httpError(409, 'Esiste già un contenuto attivo con questo slug');
+    const isLsv = type === 'LOCAL_SHARED_VALUE';
     const item = {
       id: `EDI-DEMO-${randomUUID().slice(0, 8).toUpperCase()}`,
       type,
       title: title.trim(),
       slug: baseSlug,
-      excerpt: 'Bozza editoriale dimostrativa da completare prima della revisione.',
-      metaDescription: 'Bozza editoriale dimostrativa con metadati da completare prima della pubblicazione.',
-      image: '/images/hero-worker.jpg',
-      imageAlt: 'Immagine editoriale dimostrativa da descrivere in modo specifico',
-      sections: [{ heading: 'Sezione da completare', text: 'Inserisci qui la narrazione editoriale e collega le fonti prima della revisione.' }],
+      excerpt: isLsv
+        ? 'Dichiarazione e riscontri documentali sul valore condiviso generato nel territorio.'
+        : 'Bozza editoriale dimostrativa da completare prima della revisione.',
+      metaDescription: isLsv
+        ? 'Rendicontazione verificabile del valore condiviso locale con riscontri documentali.'
+        : 'Bozza editoriale dimostrativa con metadati da completare prima della pubblicazione.',
+      image: isLsv ? '/images/sibillini-territory.jpg' : '/images/hero-worker.jpg',
+      imageAlt: isLsv ? 'Territorio e comunità dei monti Sibillini' : 'Immagine editoriale dimostrativa da descrivere in modo specifico',
+      sections: isLsv
+        ? [
+            { heading: 'Perimetro territoriale e impegni verificati', text: 'Inserisci qui la descrizione dell’ambito territoriale presidiato e le iniziative collegate.' },
+            { heading: 'Metodologia di riscontro documentale', text: 'Tutti i dati territoriali e di fornitura sono supportati da documentazione probatoria accessibile.' },
+          ]
+        : [{ heading: 'Sezione da completare', text: 'Inserisci qui la narrazione editoriale e collega le fonti prima della revisione.' }],
+      questions: isLsv ? (Array.isArray(request.body.questions) && request.body.questions.length ? request.body.questions : structuredClone(defaultSharedValueQuestions)) : [],
       linkedData: { siteId: null, datasetId: null, attestationId: null, reportId: null },
       status: 'DRAFT',
       version: 1,
@@ -425,6 +444,7 @@ function publicEditorialView(db, item) {
     image: item.image,
     imageAlt: item.imageAlt,
     sections: item.sections,
+    questions: item.questions || [],
     version: item.version,
     author: item.author,
     publishedAt: item.publishedAt,
@@ -441,7 +461,7 @@ function publicEditorialView(db, item) {
 }
 
 area2Router.get('/public/editorial/:type/:slug', asyncRoute(async (request, response) => {
-  const type = request.params.type === 'case-history' ? 'CASE_HISTORY' : request.params.type === 'best-practice' ? 'BEST_PRACTICE' : null;
+  const type = request.params.type === 'case-history' ? 'CASE_HISTORY' : request.params.type === 'best-practice' ? 'BEST_PRACTICE' : (request.params.type === 'shared-value' || request.params.type === 'local-shared-value') ? 'LOCAL_SHARED_VALUE' : null;
   if (!type) throw httpError(404, 'Sezione editoriale non trovata');
   const db = await readDb();
   const item = db.editorialContents.find((entry) => entry.type === type && entry.slug === request.params.slug && entry.status === 'PUBLISHED');

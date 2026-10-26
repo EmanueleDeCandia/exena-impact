@@ -445,6 +445,8 @@ export default function WorkspaceApp() {
         <Route path="/inviti/kit/:token" element={<PublicRoute><BrandInvitationPage /></PublicRoute>} />
         <Route path="/case-history/:slug" element={<PublicRoute><EditorialPublicPage type="case-history" /></PublicRoute>} />
         <Route path="/best-practice/:slug" element={<PublicRoute><EditorialPublicPage type="best-practice" /></PublicRoute>} />
+        <Route path="/shared-value/:slug" element={<PublicRoute><EditorialPublicPage type="shared-value" /></PublicRoute>} />
+        <Route path="/local-shared-value/:slug" element={<PublicRoute><EditorialPublicPage type="shared-value" /></PublicRoute>} />
         <Route path="/partner" element={<PublicRoute><PartnerDirectoryPage /></PublicRoute>} />
         <Route path="/partner/:slug" element={<PublicRoute><PartnerPublicDetailPage /></PublicRoute>} />
         <Route path="/verifica/attestato/:token" element={<PublicRoute><CertificateVerificationPage /></PublicRoute>} />

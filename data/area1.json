@@ -3,7 +3,7 @@
     "schemaVersion": 6,
     "demo": true,
     "notice": "Dati sintetici per validazione funzionale. Non utilizzare per reporting, revisione o finalità legali.",
-    "updatedAt": "2026-10-25T21:32:40.820Z"
+    "updatedAt": "2026-10-26T01:06:01.663Z"
   },
   "organizations": [
     {
@@ -756,7 +756,8 @@
         "siteId": null,
         "datasetId": "DS-ECO-2026-21",
         "attestationId": null,
-        "reportId": null
+        "reportId": null,
+        "localSharedValueId": "EDI-DEMO-LSV-01"
       },
       "status": "DRAFT",
       "version": 1,
@@ -768,6 +769,96 @@
       "archivedAt": null,
       "previousVersions": [],
       "reviewEvents": [],
+      "corrections": []
+    },
+    {
+      "id": "EDI-DEMO-LSV-01",
+      "type": "LOCAL_SHARED_VALUE",
+      "title": "Verifica del Valore Condiviso Locale e Territoriale",
+      "slug": "valore-condiviso-locale-ponte-vallone-demo",
+      "excerpt": "Dichiarazione e riscontri documentali sul valore condiviso generato nel territorio dei monti Sibillini e dell’area sisma.",
+      "metaDescription": "Rendicontazione verificabile del valore condiviso locale: occupazione, fornitori di prossimità, sicurezza e matching grant.",
+      "image": "/images/sibillini-territory.jpg",
+      "imageAlt": "Territorio e comunità dei monti Sibillini coinvolti nei progetti di valore condiviso",
+      "sections": [
+        {
+          "heading": "Perimetro territoriale e impegni verificati",
+          "text": "La presente rendicontazione raccoglie le evidenze documentali relative agli impatti sul territorio locale, verificando contratti, presenze dei lavoratori e destinazione del Matching Grant."
+        },
+        {
+          "heading": "Riscontro documentale per ciascun indicatore",
+          "text": "Ogni voce è corredata da riscontro probatorio verificabile (LUL presenze, contratti fornitori locali, attestazione versamento fondo e verbali di formazione tecnica)."
+        }
+      ],
+      "questions": [
+        {
+          "id": "lsv-q1",
+          "category": "Occupazione Locale",
+          "question": "Quota di manodopera locale e inserimento di residenti nell’area sisma",
+          "answer": "Il 68% dei lavoratori impiegati nell’unità operativa risiede nei comuni del comprensorio cratere sisma.",
+          "documentUrl": "https://docs.sibillini-impact.org/evidenze/ponte-vallone/libro-unico-presenze-q3-2026.pdf",
+          "verified": true
+        },
+        {
+          "id": "lsv-q2",
+          "category": "Filiera & Fornitori Territoriali",
+          "question": "Accordi con fornitori e sub-fornitori con sede nei territori montani e interni",
+          "answer": "Attivati contratti con 12 fornitori locali per materiali, manutenzioni e servizi logistici a km zero.",
+          "documentUrl": "https://docs.sibillini-impact.org/evidenze/ponte-vallone/registro-contratti-filiera-locale.pdf",
+          "verified": true
+        },
+        {
+          "id": "lsv-q3",
+          "category": "Matching Grant & Comunità",
+          "question": "Destinazione della devoluzione e del Matching Grant a progetti sociali e culturali della comunità",
+          "answer": "Devoluzione confermata al Fondo Ricreatività con Matching Grant paritario del 30% per il centro giovani locale.",
+          "documentUrl": "https://docs.sibillini-impact.org/evidenze/ponte-vallone/attestazione-fondo-matching-grant.pdf",
+          "verified": true
+        },
+        {
+          "id": "lsv-q4",
+          "category": "Sicurezza & Formazione Tecnica",
+          "question": "Ore di formazione erogate su salute, sicurezza e prevenzione rischi nei cantieri e stabilimenti",
+          "answer": "Erogate 140 ore di formazione certificata su DPI di III categoria e prevenzione infortuni a tutti i lavoratori.",
+          "documentUrl": "https://docs.sibillini-impact.org/evidenze/ponte-vallone/verbali-formazione-sicurezza-2026.pdf",
+          "verified": true
+        },
+        {
+          "id": "lsv-q5",
+          "category": "Sostenibilità Ambientale & Circolarità",
+          "question": "Recupero sfridi, gestione differenziata dei rifiuti e riduzione emissioni nella logistica",
+          "answer": "Raggiunto il 94% di riciclo imballaggi e introdotto il riutilizzo pallet a circuito chiuso con la filiera.",
+          "documentUrl": "https://docs.sibillini-impact.org/evidenze/ponte-vallone/relazione-gestione-rifiuti-circolari.pdf",
+          "verified": true
+        }
+      ],
+      "linkedData": {
+        "siteId": "site-ponte-demo",
+        "datasetId": "DS-ECO-2026-21",
+        "attestationId": "ATT-DEMO-0142",
+        "reportId": "REP-DEMO-001"
+      },
+      "status": "PUBLISHED",
+      "version": 1,
+      "author": "Impresa & Redazione — demo",
+      "factualApprovedVersion": 1,
+      "createdAt": "2026-10-20T10:00:00.000Z",
+      "updatedAt": "2026-10-21T10:00:00.000Z",
+      "publishedAt": "2026-10-21T10:00:00.000Z",
+      "archivedAt": null,
+      "previousVersions": [],
+      "reviewEvents": [
+        {
+          "at": "2026-10-21T09:30:00.000Z",
+          "actor": "Impresa — verifica fatti demo",
+          "event": "Compilazione domande e link documenti probatori completata"
+        },
+        {
+          "at": "2026-10-21T10:00:00.000Z",
+          "actor": "Redazione Startup — demo",
+          "event": "Approvazione verifica fatti e pubblicazione modulo"
+        }
+      ],
       "corrections": []
     }
   ],
@@ -1448,8 +1539,8 @@
       "id": "BRF-LIVE-DEMO",
       "organizationId": "org-gc-demo",
       "title": "Briefing Board — direttive e filiere demo",
-      "startAt": "2026-10-25T21:02:40.470Z",
-      "endAt": "2026-10-25T23:02:40.470Z",
+      "startAt": "2026-10-26T00:14:39.922Z",
+      "endAt": "2026-10-26T02:14:39.922Z",
       "timeZone": "Europe/Rome",
       "durationMinutes": 120,
       "status": "SCHEDULED",
@@ -1528,7 +1619,7 @@
       "followUp": null,
       "events": [
         {
-          "at": "2026-10-25T21:32:40.470Z",
+          "at": "2026-10-26T00:44:39.922Z",
           "actor": "Startup garante — demo",
           "event": "Sessione online e inviti nominativi creati; registrazione disattivata"
         }
@@ -1538,8 +1629,8 @@
       "id": "BRF-FUTURE-DEMO",
       "organizationId": "org-gc-demo",
       "title": "Briefing Board annuale — sessione programmata demo",
-      "startAt": "2026-11-01T21:32:40.470Z",
-      "endAt": "2026-11-01T23:32:40.470Z",
+      "startAt": "2026-11-02T00:44:39.922Z",
+      "endAt": "2026-11-02T02:44:39.922Z",
       "timeZone": "Europe/Rome",
       "durationMinutes": 120,
       "status": "SCHEDULED",
@@ -1618,7 +1709,7 @@
       "followUp": null,
       "events": [
         {
-          "at": "2026-10-25T21:32:40.470Z",
+          "at": "2026-10-26T00:44:39.922Z",
           "actor": "Startup garante — demo",
           "event": "Sessione online e inviti nominativi creati; registrazione disattivata"
         }
@@ -1806,15 +1897,7 @@
       "demoAccessEnabled": true
     }
   ],
-  "operationsSessions": [
-    {
-      "token": "4c64bd42af8a468ebb01a4cb110f736301f98c96a2ca484c8fd2c920d398f2a8",
-      "memberId": "OP-PROC-001",
-      "organizationId": "org-gc-demo",
-      "createdAt": "2026-10-25T21:32:40.820Z",
-      "expiresAt": "2026-10-26T05:32:40.820Z"
-    }
-  ],
+  "operationsSessions": [],
   "productCatalog": [
     {
       "id": "PROD-ECO-S3S",
@@ -1829,49 +1912,49 @@
           "size": "39",
           "stockStatus": "LOW",
           "availableQuantity": 12,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "40",
           "stockStatus": "LOW",
           "availableQuantity": 12,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "41",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "42",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "43",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "44",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "45",
           "stockStatus": "UNCERTAIN",
           "availableQuantity": null,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "46",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         }
       ]
     },
@@ -1888,49 +1971,49 @@
           "size": "39",
           "stockStatus": "LOW",
           "availableQuantity": 12,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "40",
           "stockStatus": "LOW",
           "availableQuantity": 12,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "41",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "42",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "43",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "44",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "45",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         },
         {
           "size": "46",
           "stockStatus": "AVAILABLE",
           "availableQuantity": 250,
-          "updatedAt": "2026-10-25T18:32:40.471Z"
+          "updatedAt": "2026-10-25T21:44:39.923Z"
         }
       ]
     }
@@ -2602,10 +2685,10 @@
       "managerMemberId": null,
       "status": "DRAFT",
       "version": 1,
-      "deadlineAt": "2026-11-08T21:32:40.471Z",
+      "deadlineAt": "2026-11-09T00:44:39.923Z",
       "deliveryWindow": {
-        "from": "2026-11-14T21:32:40.471Z",
-        "to": "2026-11-17T21:32:40.471Z"
+        "from": "2026-11-15T00:44:39.923Z",
+        "to": "2026-11-18T00:44:39.923Z"
       },
       "needs": [
         {
@@ -2622,7 +2705,7 @@
       "shipments": [],
       "events": [
         {
-          "at": "2026-10-24T21:32:40.471Z",
+          "at": "2026-10-25T00:44:39.923Z",
           "actor": "Procurement demo",
           "event": "Piano multi-cantiere creato da ordine confermato demo"
         }
@@ -2638,10 +2721,10 @@
       "managerMemberId": null,
       "status": "DRAFT",
       "version": 1,
-      "deadlineAt": "2026-11-12T21:32:40.471Z",
+      "deadlineAt": "2026-11-13T00:44:39.923Z",
       "deliveryWindow": {
-        "from": "2026-11-18T21:32:40.471Z",
-        "to": "2026-11-21T21:32:40.471Z"
+        "from": "2026-11-19T00:44:39.923Z",
+        "to": "2026-11-22T00:44:39.923Z"
       },
       "needs": [
         {
@@ -2653,7 +2736,7 @@
       "shipments": [],
       "events": [
         {
-          "at": "2026-10-25T01:32:40.471Z",
+          "at": "2026-10-25T04:44:39.923Z",
           "actor": "Procurement demo",
           "event": "Fabbisogno Borgo Alto associato a ordine confermato demo"
         }
@@ -2669,10 +2752,10 @@
       "managerMemberId": "OP-CSR-SITE",
       "status": "VALIDATED",
       "version": 1,
-      "deadlineAt": "2026-11-08T21:32:40.471Z",
+      "deadlineAt": "2026-11-09T00:44:39.923Z",
       "deliveryWindow": {
-        "from": "2026-11-14T21:32:40.471Z",
-        "to": "2026-11-17T21:32:40.471Z"
+        "from": "2026-11-15T00:44:39.923Z",
+        "to": "2026-11-18T00:44:39.923Z"
       },
       "needs": [
         {
@@ -2689,12 +2772,12 @@
       "shipments": [],
       "events": [
         {
-          "at": "2026-10-24T21:32:40.471Z",
+          "at": "2026-10-25T00:44:39.923Z",
           "actor": "Procurement Manifattura Sibillini",
           "event": "Piano logistico stabilimento creato da ordine confermato demo"
         },
         {
-          "at": "2026-10-25T09:32:40.471Z",
+          "at": "2026-10-25T12:44:39.923Z",
           "actor": "Resp. Stabilimento Marche (CSR)",
           "event": "Fabbisogno taglie validato dal presidio produttivo"
         }
@@ -2710,10 +2793,10 @@
       "managerMemberId": "OP-CSR-HUBMGR",
       "status": "DRAFT",
       "version": 1,
-      "deadlineAt": "2026-11-12T21:32:40.471Z",
+      "deadlineAt": "2026-11-13T00:44:39.923Z",
       "deliveryWindow": {
-        "from": "2026-11-18T21:32:40.471Z",
-        "to": "2026-11-21T21:32:40.471Z"
+        "from": "2026-11-19T00:44:39.923Z",
+        "to": "2026-11-22T00:44:39.923Z"
       },
       "needs": [
         {
@@ -2730,7 +2813,7 @@
       "shipments": [],
       "events": [
         {
-          "at": "2026-10-25T05:32:40.471Z",
+          "at": "2026-10-25T08:44:39.923Z",
           "actor": "Procurement Manifattura Sibillini",
           "event": "Fabbisogno hub logistico associato a ordine confermato"
         }
@@ -2811,7 +2894,7 @@
       "tierSpecialty": "Posa Pavimentazioni, Cartongessi & Finiture",
       "status": "INVITED",
       "version": 1,
-      "invitedAt": "2026-10-25T19:32:40.471Z",
+      "invitedAt": "2026-10-25T22:44:39.923Z",
       "acceptedAt": null,
       "identityConfirmedAt": null,
       "revokedAt": null,
@@ -2832,7 +2915,7 @@
       "historicalPairsAtRevocation": null,
       "events": [
         {
-          "at": "2026-10-25T19:32:40.471Z",
+          "at": "2026-10-25T22:44:39.923Z",
           "actor": "General Contractor demo",
           "event": "Invito subappalto 3° livello registrato in attesa di accettazione"
         }
